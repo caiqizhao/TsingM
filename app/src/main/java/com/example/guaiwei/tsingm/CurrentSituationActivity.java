@@ -27,6 +27,7 @@ public class CurrentSituationActivity extends AppCompatActivity {
         CSRadio=findViewById(R.id.radio_current_situation);
         //设置按钮为不可点击
         nextButton.setEnabled(false);
+        nextButton.setAlpha(0.5f);//设置按钮的透明度
         //为下一步按钮设置点击事件
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +43,7 @@ public class CurrentSituationActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 nextButton.setEnabled(true);
+                nextButton.setAlpha(1.0f);//设置按钮的透明度
                 switch (i) {
                     case R.id.radio_current_situation1:
                         user.getUserFitnessStage().setCurrentSituation(1);//如果用户选择了第1项，则将用户的运动状态设置为1（零基础）

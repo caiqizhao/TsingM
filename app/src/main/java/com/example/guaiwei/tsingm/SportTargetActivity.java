@@ -30,6 +30,7 @@ public class SportTargetActivity extends AppCompatActivity {
         user=(User)getIntent().getSerializableExtra("user_data");
         //设置按钮为不可点击
         nextButton.setEnabled(false);
+        nextButton.setAlpha(0.5f);//设置按钮的透明度
         //为下一步按钮设置点击事件
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +46,7 @@ public class SportTargetActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 nextButton.setEnabled(true);
+                nextButton.setAlpha(1.0f);//设置按钮的透明度
                 switch (i) {
                     case R.id.radio_sport_target1:
                         user.getUserFitnessStage().setSportTarget(1);//如果用户选择了第1项，则将用户的运动目标设置为1（减脂）

@@ -35,7 +35,7 @@ public class FlexibilityActivity extends AppCompatActivity {
         FRadio=findViewById(R.id.radio_flexibility);
         //设置按钮为不可点击
         submitButton.setEnabled(false);
-        //获取上一个界面传递过来的用户数据
+        submitButton.setAlpha(0.5f);//设置按钮的透明度
         user=(User)getIntent().getSerializableExtra("user_data");
         //为提交按钮设置点击事件，将用户的测试数据提交至服务器
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +73,7 @@ public class FlexibilityActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 submitButton.setEnabled(true);
+                submitButton.setAlpha(1.0f);//设置按钮的透明度
                 switch (i) {
                     case R.id.radio_flexibility1:
                         user.getUserFitnessStage().setFlexibility(1);//如果用户选择了第1项，则将用户的髋关节柔韧性设置为1

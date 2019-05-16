@@ -24,8 +24,11 @@
             android:gravity="center">
             <EditText
                 android:id="@+id/user_height"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/colorGrayBlack"
+                android:theme="@style/MyEditText"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,8 +54,11 @@
             android:gravity="center">
             <EditText
                 android:id="@+id/user_weight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/colorGrayBlack"
+                android:theme="@style/MyEditText"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

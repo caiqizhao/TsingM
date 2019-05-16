@@ -57,46 +57,25 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="您的出生年月？"
             style="@style/textView_question_style"/>
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:id="@+id/user_btd"
             android:gravity="center"
-            android:layout_marginTop="30dp">
-            <EditText
-                android:id="@+id/user_btd_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="年"
-                android:textSize="20sp"/>
-            <EditText
-                android:id="@+id/user_btd_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="月"
-                android:textSize="20sp"/>
-            <EditText
-                android:id="@+id/user_btd_day"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="日"
-                android:textSize="20sp"/>
-        </LinearLayout>
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:inputType="none"
+            android:textColor="@color/colorGrayBlack"
+            android:theme="@style/MyEditText"
+            android:textSize="20sp"/>
 
     </LinearLayout>
     <Button
