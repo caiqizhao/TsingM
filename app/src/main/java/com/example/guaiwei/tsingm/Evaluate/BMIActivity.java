@@ -1,4 +1,4 @@
-package com.example.guaiwei.tsingm;
+package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.guaiwei.tsingm.Collector.ActivityCollector;
+import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.bean.User;
 
 /**

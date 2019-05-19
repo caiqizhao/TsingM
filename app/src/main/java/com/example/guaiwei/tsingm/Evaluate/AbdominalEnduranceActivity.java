@@ -1,4 +1,4 @@
-package com.example.guaiwei.tsingm;
+package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 
 import com.example.guaiwei.tsingm.Collector.ActivityCollector;
+import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.bean.User;
 
 
@@ -62,6 +63,8 @@ public class AbdominalEnduranceActivity extends AppCompatActivity {
                         break;
                     case R.id.radio_abdominal_endurance5:
                         user.getUserFitnessStage().setAbdominalEndurance(5);//如果用户选择了第5项，则将用户的腹肌耐力设置为5
+                        break;
+                    default:
                         break;
                 }
             }

@@ -1,4 +1,4 @@
-package com.example.guaiwei.tsingm;
+package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 
 import com.example.guaiwei.tsingm.Collector.ActivityCollector;
+import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.bean.User;
 
 /**
@@ -53,6 +54,8 @@ public class CurrentSituationActivity extends AppCompatActivity {
                         break;
                     case R.id.radio_current_situation3:
                         user.getUserFitnessStage().setCurrentSituation(3);//如果用户选择了第3项，则将用户的运动状态设置为3（经验丰富）
+                        break;
+                    default:
                         break;
                 }
             }
