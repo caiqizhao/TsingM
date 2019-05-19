@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        app:titleTextColor="@color/colorBlack"
+        app:title="智能训练计划"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+    </android.support.v7.widget.Toolbar>
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFFFFF">
+        <LinearLayout
+            android:id="@+id/plan_fragment"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/plan_image"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_menu_me" />
+            <TextView
+                android:id="@+id/plan_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="计划"
+                android:textColor="#7597B3" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/food_fragment"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/food_image"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_menu_me" />
+            <TextView
+                android:id="@+id/food_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="饮食"
+                android:textColor="#7597B3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/me_fragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/me_image"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_menu_me" />
+            <TextView
+                android:id="@+id/me_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="我的"
+                android:textColor="#7597B3" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

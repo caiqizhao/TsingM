@@ -1,10 +1,9 @@
-package com.example.guaiwei.tsingm;
+package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,11 +12,10 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.guaiwei.tsingm.Collector.ActivityCollector;
+import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.bean.User;
 import com.example.guaiwei.tsingm.datepicker.CustomDatePicker;
 import com.example.guaiwei.tsingm.datepicker.DateFormatUtils;
-
-import java.io.IOException;
 
 
 /**
@@ -102,6 +100,7 @@ public class InfoActivity extends AppCompatActivity {
         mDatePicker.onDestroy();
         ActivityCollector.removeActivity(this);
     }
+    //初始化日期选择器
     private void initDatePicker() {
         long beginTimestamp = DateFormatUtils.str2Long("1940-01-01", false);
         long endTimestamp = System.currentTimeMillis();

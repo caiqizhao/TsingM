@@ -9,9 +9,17 @@ public class User implements Serializable {
     private double weight;//用户的体重
     private Birthday userBirthday;//用户的出生年月
     private FitnessStage userFitnessStage;//用户的健身阶段数据
+    private String[] exerciseSite;//用户想要训练的部位
     public User(){
         userBirthday=new Birthday();
         userFitnessStage=new FitnessStage();
+    }
+
+    public String[] getExerciseSite() {
+        return exerciseSite;
+    }
+    public void setExerciseSite(String[] exerciseSite) {
+        this.exerciseSite = exerciseSite;
     }
 
     public Birthday getUserBirthday() {
