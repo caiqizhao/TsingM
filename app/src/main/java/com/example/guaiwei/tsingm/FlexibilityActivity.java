@@ -25,7 +25,7 @@ public class FlexibilityActivity extends AppCompatActivity {
     private Button submitButton;//提交按钮
     private RadioGroup FRadio;//判断用户下肢耐力问题的单选按钮组
     //用于接收Http请求的servlet的URL地址
-    private String originAddress = "http://192.168.43.124:8080/TsingMWeb/Recommend";
+    private String originAddress = "http://172.22.155.4:8080/TsingMWeb/Recommend";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
