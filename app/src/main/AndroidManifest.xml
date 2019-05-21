@@ -26,7 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Evaluate.EvaluateStartActivity"/>
+        <activity android:name=".Evaluate.EvaluateStartActivity" />
         <activity android:name=".Evaluate.InfoActivity" />
         <activity android:name=".Evaluate.BMIActivity" />
         <activity android:name=".Evaluate.CardioPulmonaryActivity" />
@@ -44,6 +44,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ExerciseListActivity"></activity>
     </application>
 
 </manifest>

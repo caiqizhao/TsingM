@@ -84,4 +84,15 @@
         <item name="android:layout_marginTop">30dp</item>
     </style>
 
+    <!--日期文本样式-->
+    <style name="DataText">
+        <item name="android:background">@drawable/shape_text</item>
+        <item name="android:textColor">@color/colorGrayBlack</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
 </resources>
