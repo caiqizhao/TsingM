@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         planLayout.setOnClickListener(MainActivity.this);
         foodLayout.setOnClickListener(MainActivity.this);
         myLayout.setOnClickListener(MainActivity.this);
-        planImage.setImageResource(R.drawable.ic_menu_me1);
+        planImage.setImageResource(R.drawable.plan_image_after);
         if(isEvaluate){
             replaceFragment(planFragment);
         }
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 clearChioce();
                 //改变标题
                 toolbar.setTitle("智能训练计划");
-                planImage.setImageResource(R.drawable.ic_menu_me1);
+                planImage.setImageResource(R.drawable.plan_image_after);
                 if(isEvaluate){
                     replaceFragment(planFragment);
                 }
@@ -84,13 +84,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.food_fragment:
                 clearChioce();
-                foodImage.setImageResource(R.drawable.ic_menu_me1);
+                foodImage.setImageResource(R.drawable.food_image_after);
                 toolbar.setTitle("饮食");
                 replaceFragment(foodFragment);
                 break;
             case R.id.me_fragment:
                 clearChioce();
-                myImage.setImageResource(R.drawable.ic_menu_me1);
+                myImage.setImageResource(R.drawable.me_image_after);
                 toolbar.setTitle("我的");
                 replaceFragment(myFragment);
                 break;
@@ -109,9 +109,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 当选中其中一个选项卡时，其他选项卡重置为默认
      */
     private void clearChioce() {
-        planImage.setImageResource(R.drawable.ic_menu_me);
-        foodImage.setImageResource(R.drawable.ic_menu_me);
-        myImage.setImageResource(R.drawable.ic_menu_me);
+        planImage.setImageResource(R.drawable.plan_image);
+        foodImage.setImageResource(R.drawable.food_image);
+        myImage.setImageResource(R.drawable.me_image);
     }
 
     @Override

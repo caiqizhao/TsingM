@@ -40,7 +40,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_menu_me" />
+                android:src="@drawable/plan_image" />
             <TextView
                 android:id="@+id/plan_text"
                 android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:text="计划"
-                android:textColor="#7597B3" />
+                android:textColor="@color/colorGrayBlack" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/food_fragment"
@@ -62,7 +62,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_menu_me" />
+                android:src="@drawable/food_image" />
             <TextView
                 android:id="@+id/food_text"
                 android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:text="饮食"
-                android:textColor="#7597B3" />
+                android:textColor="@color/colorGrayBlack" />
         </LinearLayout>
 
         <LinearLayout
@@ -85,7 +85,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_menu_me" />
+                android:src="@drawable/me_image" />
             <TextView
                 android:id="@+id/me_text"
                 android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:text="我的"
-                android:textColor="#7597B3" />
+                android:textColor="@color/colorGrayBlack" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
