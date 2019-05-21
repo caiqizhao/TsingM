@@ -49,12 +49,12 @@ public class ExerciseListActivity extends AppCompatActivity {
         //设置适配器
         listView.setAdapter(listAdapter);
 
-        //设置选项点击事件
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(ExerciseListActivity.this,"您选择了第"+position+"项运动",Toast.LENGTH_LONG).show();
-            }
-        });
+//        //设置选项点击事件
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+//                Toast.makeText(ExerciseListActivity.this,"您选择了第"+position+"项运动",Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
 }

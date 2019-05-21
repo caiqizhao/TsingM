@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.example.guaiwei.tsingm.Collector.ActivityCollector;
 import com.example.guaiwei.tsingm.R;
+import com.example.guaiwei.tsingm.bean.User_Plan;
 import com.example.guaiwei.tsingm.fragment.EvaluateBeforeFragment;
 import com.example.guaiwei.tsingm.fragment.FoodFragment;
 import com.example.guaiwei.tsingm.fragment.MyFragment;
@@ -41,7 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar = (Toolbar) findViewById(R.id.my_tool_bar);
         setSupportActionBar(toolbar);
         //实例化4个Fragment
-        planFragment=new PlanFragment();
+        if(User_Plan.userPlan!=null)
+            planFragment=new PlanFragment();
         foodFragment=new FoodFragment();
         myFragment=new MyFragment();
         evaluateBeforeFragment=new EvaluateBeforeFragment();
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else
             replaceFragment(evaluateBeforeFragment);
     }
+
     /**
      * 设置点击选项卡的事件处理
      */
@@ -102,7 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void replaceFragment(Fragment fragment) {
         FragmentManager ft=getSupportFragmentManager();
         FragmentTransaction ftr=ft.beginTransaction();
-        ftr.replace(R.id.fl_container,fragment);
+        if (fragment!=null)
+            ftr.replace(R.id.fl_container,fragment);
         ftr.commit();
     }
     /**

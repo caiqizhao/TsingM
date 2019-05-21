@@ -16,6 +16,7 @@ import com.example.guaiwei.tsingm.Utils.GetBeforeData;
 import com.example.guaiwei.tsingm.adapter.DataAdapter;
 import com.example.guaiwei.tsingm.adapter.PlanAdapter;
 import com.example.guaiwei.tsingm.bean.PlanData;
+import com.example.guaiwei.tsingm.bean.User_Plan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +32,19 @@ public class PlanFragment extends Fragment {
     public PlanFragment() {
         // Required empty public constructor
         initPlanData();
-        for(int i=0;i<21;i++){
+        for(int i = 0; i<21; i++){
+
             List<String> list=new ArrayList<>();
-            list.add("何青青"+i);
-            list.add("劳茜"+i);
+            if(User_Plan.userPlan.getDayPlans().size()<=i){
+                list.add("请先完成本周训练");
+            }
+            else{
+//                for(int j=0;j<User_Plan.userPlan.getDayPlans().size();j++) {
+//                    list.add(User_Plan.userPlan.getDayPlans().get(j).getName());
+//                }
+                list.add(User_Plan.userPlan.getDayPlans().get(i).getName());
+            }
+
             plan.add(list);
         }
     }
