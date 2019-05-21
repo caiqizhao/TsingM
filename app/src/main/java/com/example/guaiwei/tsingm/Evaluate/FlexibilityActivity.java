@@ -17,6 +17,7 @@ import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.Utils.GetBeforeData;
 import com.example.guaiwei.tsingm.bean.FitnessStage;
 import com.example.guaiwei.tsingm.bean.User;
+import com.example.guaiwei.tsingm.bean.User_Plan;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * 判断用户坐姿体前屈的程度的界面，测试用户的髋关节柔韧性
@@ -36,7 +38,7 @@ public class FlexibilityActivity extends AppCompatActivity {
     private RadioGroup FRadio;//判断用户下肢耐力问题的单选按钮组
     public static List<String> StringData=new ArrayList<>();
     //用于接收Http请求的servlet的URL地址
-    private String originAddress = "http://192.168.1.165:8080/TsingM/plan/Recommend.do";
+    private String originAddress = "http://192.168.43.124:8080/TsingM/plan/Recommend.do";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,9 +70,11 @@ public class FlexibilityActivity extends AppCompatActivity {
                                     .url(originAddress)
                                     .post(requestBody)
                                     .build();
-                            client.newCall(request).execute();
-//                            Response response = client.newCall(request).execute();
-
+//                            client.newCall(request).execute();
+                            Response response = client.newCall(request).execute();
+                            String str = response.body().string();
+                            System.out.println(str);
+                            User_Plan.userPlan = gson.fromJson(str,User_Plan.class);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
