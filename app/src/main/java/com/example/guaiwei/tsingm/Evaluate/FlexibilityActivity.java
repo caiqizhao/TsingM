@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
@@ -13,9 +14,13 @@ import android.widget.Toast;
 import com.example.guaiwei.tsingm.Collector.ActivityCollector;
 import com.example.guaiwei.tsingm.MainActivity;
 import com.example.guaiwei.tsingm.R;
+import com.example.guaiwei.tsingm.Utils.GetBeforeData;
 import com.example.guaiwei.tsingm.bean.FitnessStage;
 import com.example.guaiwei.tsingm.bean.User;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -29,6 +34,7 @@ public class FlexibilityActivity extends AppCompatActivity {
     private User user;
     private Button submitButton;//提交按钮
     private RadioGroup FRadio;//判断用户下肢耐力问题的单选按钮组
+    public static List<String> StringData=new ArrayList<>();
     //用于接收Http请求的servlet的URL地址
     private String originAddress = "http://192.168.1.165:8080/TsingM/plan/Recommend.do";
     @Override
@@ -95,7 +101,7 @@ public class FlexibilityActivity extends AppCompatActivity {
                         user.getUserFitnessStage().setFlexibility(3);//如果用户选择了第3项，则将用户的髋关节柔韧性设置为3
                         break;
                     case R.id.radio_flexibility4:
-                        user.getUserFitnessStage().setFlexibility(4);//如果用户选择了第4项，则将用户的髋关节柔韧性设置为4
+                        user.getUserFitnessStage().setFlexibility(5);//如果用户选择了第4项，则将用户的髋关节柔韧性设置为4
                         break;
                     default:
                         break;
@@ -113,6 +119,7 @@ public class FlexibilityActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 MainActivity.isEvaluate=true;//设置用户评估状态为已进行评估
+                StringData= GetBeforeData.getBeforeData(null, 20);//存储日期列表
                 Intent intent=new Intent(FlexibilityActivity.this,MainActivity.class);
                 startActivity(intent);
                 finish();

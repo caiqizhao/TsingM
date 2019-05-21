@@ -59,7 +59,7 @@ public class CardioPulmonaryActivity extends AppCompatActivity {
                         user.getUserFitnessStage().setCardioPulmonary(3);//如果用户选择了第3项，则将用户的心肺功能设置为3
                         break;
                     case R.id.cardio_pulmonary4:
-                        user.getUserFitnessStage().setCardioPulmonary(4);//如果用户选择了第4项，则将用户的心肺功能设置为4
+                        user.getUserFitnessStage().setCardioPulmonary(5);//如果用户选择了第4项，则将用户的心肺功能设置为4
                         break;
                     default:
                         break;
