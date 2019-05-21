@@ -7,7 +7,7 @@
     android:gravity="center"
     android:fitsSystemWindows="true"
     android:background="#666666"
-    tools:context=".EvaluateStartActivity">
+    tools:context=".Evaluate.EvaluateStartActivity">
 
     <TextView
         android:id="@+id/text1"

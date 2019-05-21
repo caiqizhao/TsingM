@@ -1,4 +1,4 @@
-package com.example.guaiwei.tsingm;
+package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 
 import com.example.guaiwei.tsingm.Collector.ActivityCollector;
+import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.bean.User;
 
 
@@ -28,6 +29,7 @@ public class ChestEnduranceActivity extends AppCompatActivity {
         CERadio=findViewById(R.id.radio_chest_endurance);
         //设置按钮为不可点击
         nextButton.setEnabled(false);
+        nextButton.setAlpha(0.5f);//设置按钮的透明度
         //获取上一个界面传递过来的用户数据
         user=(User)getIntent().getSerializableExtra("user_data");
         //为下一步按钮设置点击事件
@@ -45,6 +47,7 @@ public class ChestEnduranceActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 nextButton.setEnabled(true);
+                nextButton.setAlpha(1f);
                 switch (i) {
                     case R.id.radio_chest_endurance1:
                         user.getUserFitnessStage().setChestEndurance(1);//如果用户选择了第1项，则将用户的胸肌耐力设置为1
@@ -60,6 +63,8 @@ public class ChestEnduranceActivity extends AppCompatActivity {
                         break;
                     case R.id.radio_chest_endurance5:
                         user.getUserFitnessStage().setChestEndurance(5);//如果用户选择了第5项，则将用户的胸肌耐力设置为5
+                        break;
+                    default:
                         break;
                 }
             }

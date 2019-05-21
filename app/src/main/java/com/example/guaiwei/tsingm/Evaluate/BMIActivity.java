@@ -1,14 +1,16 @@
-package com.example.guaiwei.tsingm;
+package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.guaiwei.tsingm.Collector.ActivityCollector;
+import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.bean.User;
 
 /**
@@ -28,6 +30,9 @@ public class BMIActivity extends AppCompatActivity {
         nextButton=findViewById(R.id.next2);
         userHeight=findViewById(R.id.user_height);
         userWeight=findViewById(R.id.user_weight);
+        //设置编辑框只能输入整数和小数点
+        userHeight.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        userWeight.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
         //获取上一个界面传递过来的用户数据
         user=(User)getIntent().getSerializableExtra("user_data");
         //为下一步按钮设置点击事件

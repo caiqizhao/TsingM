@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.guaiwei.tsingm">
+
     <!-- 允许应用程序改变网络状态 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
@@ -25,23 +26,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".EvaluateStartActivity">
+        <activity android:name=".Evaluate.EvaluateStartActivity"/>
+        <activity android:name=".Evaluate.InfoActivity" />
+        <activity android:name=".Evaluate.BMIActivity" />
+        <activity android:name=".Evaluate.CardioPulmonaryActivity" />
+        <activity android:name=".Evaluate.ChestEnduranceActivity" />
+        <activity android:name=".Evaluate.AbdominalEnduranceActivity" />
+        <activity android:name=".Evaluate.LowerLimbActivity" />
+        <activity android:name=".Evaluate.FlexibilityActivity" />
+        <activity android:name=".Evaluate.CurrentSituationActivity" />
+        <activity android:name=".Evaluate.SportTargetActivity" />
+        <activity android:name=".Evaluate.ExerciseSiteActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".BMIActivity" />
-        <activity android:name=".CardioPulmonaryActivity" />
-        <activity android:name=".ChestEnduranceActivity" />
-        <activity android:name=".AbdominalEnduranceActivity" />
-        <activity android:name=".LowerLimbActivity" />
-        <activity android:name=".FlexibilityActivity" />
-        <activity android:name=".CurrentSituationActivity" />
-        <activity android:name=".SportTargetActivity" />
     </application>
 
 </manifest>

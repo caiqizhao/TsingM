@@ -1,4 +1,4 @@
-package com.example.guaiwei.tsingm;
+package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 
 import com.example.guaiwei.tsingm.Collector.ActivityCollector;
+import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.bean.User;
 
 
@@ -30,6 +31,7 @@ public class CardioPulmonaryActivity extends AppCompatActivity {
         user=(User)getIntent().getSerializableExtra("user_data");
         //设置按钮为不可点击
         nextButton.setEnabled(false);
+        nextButton.setAlpha(0.5f);//设置按钮的透明度
         //为下一步按钮设置点击事件
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +47,7 @@ public class CardioPulmonaryActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 nextButton.setEnabled(true);
+                nextButton.setAlpha(1.0f);//设置按钮的透明度
                 switch (i) {
                     case R.id.cardio_pulmonary1:
                         user.getUserFitnessStage().setCardioPulmonary(1);//如果用户选择了第1项，则将用户的心肺功能设置为1
@@ -57,6 +60,8 @@ public class CardioPulmonaryActivity extends AppCompatActivity {
                         break;
                     case R.id.cardio_pulmonary4:
                         user.getUserFitnessStage().setCardioPulmonary(4);//如果用户选择了第4项，则将用户的心肺功能设置为4
+                        break;
+                    default:
                         break;
                 }
             }
