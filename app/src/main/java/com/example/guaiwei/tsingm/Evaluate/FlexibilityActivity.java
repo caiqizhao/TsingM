@@ -30,7 +30,7 @@ public class FlexibilityActivity extends AppCompatActivity {
     private Button submitButton;//提交按钮
     private RadioGroup FRadio;//判断用户下肢耐力问题的单选按钮组
     //用于接收Http请求的servlet的URL地址
-    private String originAddress = "http://172.22.155.4:8080/TsingMWeb/Recommend";
+    private String originAddress = "http://192.168.1.165:8080/TsingM/plan/Recommend.do";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +53,7 @@ public class FlexibilityActivity extends AppCompatActivity {
                         try {
                             Gson gson = new Gson();
                             String userJson = gson.toJson(user);
+                            System.out.println("成功发送"+userJson);
                             OkHttpClient client = new OkHttpClient();
                             RequestBody requestBody = new FormBody.Builder()
                                     .add("user_data",userJson)
@@ -63,7 +64,7 @@ public class FlexibilityActivity extends AppCompatActivity {
                                     .build();
                             client.newCall(request).execute();
 //                            Response response = client.newCall(request).execute();
-                            System.out.println("成功发送"+userJson);
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
