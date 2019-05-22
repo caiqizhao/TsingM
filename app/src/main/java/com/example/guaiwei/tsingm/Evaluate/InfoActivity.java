@@ -2,7 +2,6 @@ package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +10,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.guaiwei.tsingm.Collector.ActivityCollector;
 import com.example.guaiwei.tsingm.R;
+import com.example.guaiwei.tsingm.bean.BaseActivity;
 import com.example.guaiwei.tsingm.bean.User;
 import com.example.guaiwei.tsingm.datepicker.CustomDatePicker;
 import com.example.guaiwei.tsingm.datepicker.DateFormatUtils;
@@ -21,7 +20,7 @@ import com.example.guaiwei.tsingm.datepicker.DateFormatUtils;
 /**
  * 用户性别年龄信息采集页面
  */
-public class InfoActivity extends AppCompatActivity {
+public class InfoActivity extends BaseActivity {
 
     private User user;//用户
     private Button nextButton;//下一步按钮
@@ -33,7 +32,6 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
-        ActivityCollector.addActivity(this);
         //获取各控件
         nextButton=findViewById(R.id.next1);
         sexRadio=findViewById(R.id.radio_sex);
@@ -94,12 +92,7 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
     }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mDatePicker.onDestroy();
-        ActivityCollector.removeActivity(this);
-    }
+
     //初始化日期选择器
     private void initDatePicker() {
         long beginTimestamp = DateFormatUtils.str2Long("1940-01-01", false);

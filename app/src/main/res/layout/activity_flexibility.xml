@@ -17,7 +17,7 @@
             style="@style/textView_question_style"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             android:gravity="center"
             android:orientation="vertical">
             <RadioGroup
@@ -36,21 +36,21 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="碰不到，距离脚尖约半个手掌"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     style="@style/button_radio_style" />
                 <RadioButton
                     android:id="@+id/radio_flexibility3"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="指尖刚好能碰到脚尖"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     style="@style/button_radio_style" />
                 <RadioButton
                     android:id="@+id/radio_flexibility4"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="指尖可以超过脚尖半个手掌"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     style="@style/button_radio_style" />
             </RadioGroup>
         </LinearLayout>

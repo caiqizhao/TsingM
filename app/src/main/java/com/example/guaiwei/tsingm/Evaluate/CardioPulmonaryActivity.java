@@ -2,20 +2,19 @@ package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
-import com.example.guaiwei.tsingm.Collector.ActivityCollector;
 import com.example.guaiwei.tsingm.R;
+import com.example.guaiwei.tsingm.bean.BaseActivity;
 import com.example.guaiwei.tsingm.bean.User;
 
 
 /**
  * 判断用户心肺功能的问题界面
  */
-public class CardioPulmonaryActivity extends AppCompatActivity {
+public class CardioPulmonaryActivity extends BaseActivity {
     private User user;
     private Button nextButton;//下一步按钮
     private RadioGroup CPRadio;//判断用户心肺功能问题的单选按钮组
@@ -23,7 +22,6 @@ public class CardioPulmonaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cardio_pulmonary);
-        ActivityCollector.addActivity(this);
         //获取相应的控件
         nextButton=findViewById(R.id.next3);
         CPRadio=findViewById(R.id.radio_cardio_pulmonary);
@@ -66,10 +64,5 @@ public class CardioPulmonaryActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ActivityCollector.removeActivity(this);
     }
 }

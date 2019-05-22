@@ -2,21 +2,20 @@ package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.guaiwei.tsingm.Collector.ActivityCollector;
 import com.example.guaiwei.tsingm.R;
+import com.example.guaiwei.tsingm.bean.BaseActivity;
 import com.example.guaiwei.tsingm.bean.User;
 
 /**
  * 获取用户的身高体重的界面
  */
-public class BMIActivity extends AppCompatActivity {
+public class BMIActivity extends BaseActivity {
     private User user;//用户
     private Button nextButton;//下一步按钮
     private EditText userHeight;//记录用户身高的编辑框
@@ -25,7 +24,6 @@ public class BMIActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmi);
-        ActivityCollector.addActivity(this);
         //获取各控件
         nextButton=findViewById(R.id.next2);
         userHeight=findViewById(R.id.user_height);
@@ -51,10 +49,5 @@ public class BMIActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ActivityCollector.removeActivity(this);
     }
 }

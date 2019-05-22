@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.example.guaiwei.tsingm.R;
 
 /**
+ * 饮食Fragment
  * A simple {@link Fragment} subclass.
  */
 public class FoodFragment extends Fragment {

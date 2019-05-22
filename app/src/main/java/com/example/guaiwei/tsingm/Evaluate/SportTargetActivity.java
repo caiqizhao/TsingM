@@ -1,20 +1,19 @@
 package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
-import com.example.guaiwei.tsingm.Collector.ActivityCollector;
 import com.example.guaiwei.tsingm.R;
+import com.example.guaiwei.tsingm.bean.BaseActivity;
 import com.example.guaiwei.tsingm.bean.User;
 
 /**
  * 判断用户运动目标的界面
  */
-public class SportTargetActivity extends AppCompatActivity {
+public class SportTargetActivity extends BaseActivity {
 
     private User user;
     private Button nextButton;//下一步按钮
@@ -23,15 +22,18 @@ public class SportTargetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport_target);
-        ActivityCollector.addActivity(this);
+
         //获取相应的控件
         nextButton=findViewById(R.id.next_st);
         STRadio=findViewById(R.id.radio_sport_target);
+
         //获取上一个界面传递过来的用户数据
         user=(User)getIntent().getSerializableExtra("user_data");
+
         //设置按钮为不可点击
         nextButton.setEnabled(false);
         nextButton.setAlpha(0.5f);//设置按钮的透明度
+
         //为下一步按钮设置点击事件
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +44,7 @@ public class SportTargetActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         //为单选按钮添加点击事件
         STRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -66,10 +69,5 @@ public class SportTargetActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ActivityCollector.removeActivity(this);
     }
 }

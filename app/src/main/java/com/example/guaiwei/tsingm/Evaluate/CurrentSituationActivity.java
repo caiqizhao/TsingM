@@ -1,20 +1,19 @@
 package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
-import com.example.guaiwei.tsingm.Collector.ActivityCollector;
 import com.example.guaiwei.tsingm.R;
+import com.example.guaiwei.tsingm.bean.BaseActivity;
 import com.example.guaiwei.tsingm.bean.User;
 
 /**
  * 判断用户的运动阶段的问题的界面
  */
-public class CurrentSituationActivity extends AppCompatActivity {
+public class CurrentSituationActivity extends BaseActivity {
     private User user=new User();
     private Button nextButton;//下一步按钮
     private RadioGroup CSRadio;//判断用户运动状态问题的单选按钮组
@@ -22,7 +21,6 @@ public class CurrentSituationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_situation);
-        ActivityCollector.addActivity(this);
         //获取相应的控件
         nextButton=findViewById(R.id.next_cs);
         CSRadio=findViewById(R.id.radio_current_situation);
@@ -60,10 +58,5 @@ public class CurrentSituationActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ActivityCollector.removeActivity(this);
     }
 }

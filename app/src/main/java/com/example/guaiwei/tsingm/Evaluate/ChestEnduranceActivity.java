@@ -2,20 +2,19 @@ package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
-import com.example.guaiwei.tsingm.Collector.ActivityCollector;
 import com.example.guaiwei.tsingm.R;
+import com.example.guaiwei.tsingm.bean.BaseActivity;
 import com.example.guaiwei.tsingm.bean.User;
 
 
 /**
  * 判断用户能做几个跪姿俯卧撑的界面，测试用户的胸肌耐力
  */
-public class ChestEnduranceActivity extends AppCompatActivity {
+public class ChestEnduranceActivity extends BaseActivity {
     private User user;
     private Button nextButton;//下一步按钮
     private RadioGroup CERadio;//判断用户胸肌耐力问题的单选按钮组
@@ -23,7 +22,6 @@ public class ChestEnduranceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chest_endurance);
-        ActivityCollector.addActivity(this);
         //获取相应的控件
         nextButton=findViewById(R.id.next4);
         CERadio=findViewById(R.id.radio_chest_endurance);
@@ -69,10 +67,5 @@ public class ChestEnduranceActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ActivityCollector.removeActivity(this);
     }
 }

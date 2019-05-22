@@ -45,6 +45,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ExerciseListActivity"></activity>
+        <service
+            android:name=".service.PlanService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

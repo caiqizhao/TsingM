@@ -15,17 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
-    private List<PlanData> mPlanData;
+    private List<PlanData> mPlanData;//数据源
     private List<Boolean> list_click=new ArrayList<>();//判断该item 是否被点击
     private OnRecycleItemClickListener mListener;//设置item点击监听事件
-
 
     public DataAdapter(List<PlanData> planData){
         mPlanData=planData;
         resetIsClick();
-        list_click.add(0,true);
+        list_click.add(0,true);//设置初始状态
     }
 
+    /**
+     * 重置每个Item的点击状态
+     */
     private void resetIsClick() {
         list_click.clear();
         for (int i=0;i<mPlanData.size();i++){
@@ -61,7 +63,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         PlanData planData=mPlanData.get(i);
         myHolder.weekText.setText(planData.getWeek());
         myHolder.dataText.setText(planData.getData());
-        if (!list_click.get(i)){
+        if (!list_click.get(i)){//判断Item的点击状态，设置背景色和字体颜色
             myHolder.dataText.setTextColor(Color.rgb(70,70,70));
             myHolder.dataText.setBackground(myHolder.view.getResources().getDrawable(R.drawable.shape_text));
         }else {
@@ -90,6 +92,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     public void setOnItemClickListener(OnRecycleItemClickListener listener){
         mListener=listener;
     }
+
+    /**
+     * RecycleView点击事件监听接口
+     */
     public interface OnRecycleItemClickListener{
         void onItemClick(int pos);
     }
