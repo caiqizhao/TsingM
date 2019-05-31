@@ -1,60 +1,113 @@
 package com.example.guaiwei.tsingm;
 
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guaiwei.tsingm.Evaluate.ExerciseSiteActivity;
+import com.example.guaiwei.tsingm.Utils.ToastUtil;
+import com.example.guaiwei.tsingm.adapter.PlanDetailAdapter;
+import com.example.guaiwei.tsingm.bean.DayPlan;
+import com.example.guaiwei.tsingm.bean.EveryAction;
+import com.example.guaiwei.tsingm.bean.User_Plan;
+import com.example.guaiwei.tsingm.bean.xx_action;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 每天训练的每个动作动作页面
+ */
 public class ExerciseListActivity extends AppCompatActivity {
 
-    private ListView listView;
-    private List<Map<String,Object>> data;//数据源
-    private Map<String,Object> item;
-
-    private int image[]={R.drawable.pushup,R.drawable.situp};
-    private String motion[]={"俯卧撑","仰卧起坐"};
-    private int length=2;
+    public static Handler handler;//消息处理
+    private RecyclerView recyclerView;
+    DayPlan dayPlan;//每天的计划数据
+    private Button startButton;//开始训练按钮
+    private List<EveryAction> everyActions;//数据源
+    private TextView timeCountTV,actionCountTV, fatBurningTV;//显示一天训练的总时长，总动作数量，总燃脂的文本框
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_list);
+        handler=new MessageUtil();
+        String dayPlanStr=getIntent().getStringExtra("day_plan");//获取传递过来的每天的训练数据
+        Gson gson=new Gson();
+        dayPlan=(DayPlan)gson.fromJson(dayPlanStr,DayPlan.class);//解析成DayPlan对象
+        initActionAdapter();
+        setTextViewData();
+    }
 
-        //获得listView
-        listView = findViewById(R.id.motionList);
+    /**
+     * 设置总时长，总动作数量，总燃脂的文本框数据
+     */
+    private void setTextViewData() {
+        //各组件实例化
+        timeCountTV=findViewById(R.id.duration);
+        actionCountTV=findViewById(R.id.action_count);
+        fatBurningTV=findViewById(R.id.fatBurning);
+        startButton=findViewById(R.id.start_work);
+        //设置文本框内容
+        timeCountTV.setText(dayPlan.getTime()+"分钟");
+        actionCountTV.setText(dayPlan.getCountAction()+"个");
+        fatBurningTV.setText(dayPlan.getNengliang()+"千卡");
+    }
 
-        //生成数据源data
-        data = new ArrayList<Map<String,Object>>();
-        for(int i = 0;i<length;i++){//每一个item对应List中一行
-            item = new HashMap<String,Object>();
-            item.put("photo",image[i]);
-            item.put("motion",motion[i]);
-            data.add(item);
-        }
-
-        //生成简单适配器
-        SimpleAdapter listAdapter = new SimpleAdapter(this,data,R.layout.exercise_detail_item,
-                new String[]{"photo","motion"},new int[]{R.id.photo,R.id.motion});
-
-        //设置适配器
-        listView.setAdapter(listAdapter);
-
-        //设置选项点击事件
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(ExerciseListActivity.this,"您选择了第"+position+"项运动",Toast.LENGTH_LONG).show();
+    /**
+     * 初始化recyclerView的适配器
+     */
+    private void initActionAdapter(){
+        everyActions=dayPlan.getActions();//获得数据源
+        recyclerView=findViewById(R.id.motionList);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        PlanDetailAdapter planDetailAdapter=new PlanDetailAdapter(everyActions);
+        recyclerView.setAdapter(planDetailAdapter);
+    }
+    /**
+     * 消息处理内部类
+     */
+    private class MessageUtil extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what == 0x003){
+                //获得消息中的数据赋值给用户计划实例
+                Bundle data = msg.getData();
+                String str=data.getString("action_detail");
+                Log.v("1","接收"+str);
+                Gson gson=new Gson();
+                xx_action xxAction=(xx_action)gson.fromJson(str,xx_action.class);
+                Intent intent=new Intent(ExerciseListActivity.this,ActionDetailActivity.class);//成功获取服务器传递的计划数据，跳转到主界面
+                String s=gson.toJson(xxAction);
+                String dayPlayStr=gson.toJson(dayPlan);
+                intent.putExtra("action_detail",s);
+                intent.putExtra("count_action",dayPlan.getCountAction());
+                intent.putExtra("dayplan",dayPlayStr);
+                startActivity(intent);
             }
-        });
+            else if(msg.what==0x004){
+                Bundle data = msg.getData();
+                String str = data.getString("action_detail");
+                ToastUtil.showToast(ExerciseListActivity.this,str);
+            }
+        }
     }
 }

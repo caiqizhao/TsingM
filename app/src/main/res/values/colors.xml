@@ -9,6 +9,7 @@
     <color name="colorGrayBlack">#464646</color>
     <color name="colorGray">#c0c0c0</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorFood">#e5bc84</color>
 
     <!--日期时间选择器的相关颜色-->
     <color name="date_picker_bg">#FFFFFF</color>

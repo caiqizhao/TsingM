@@ -9,13 +9,13 @@ import android.widget.RadioGroup;
 import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.bean.BaseActivity;
 import com.example.guaiwei.tsingm.bean.User;
+import com.example.guaiwei.tsingm.question.SportTargetActivity;
 
 
 /**
  * 判断用户心肺功能的问题界面
  */
 public class CardioPulmonaryActivity extends BaseActivity {
-    private User user;
     private Button nextButton;//下一步按钮
     private RadioGroup CPRadio;//判断用户心肺功能问题的单选按钮组
     @Override
@@ -25,8 +25,6 @@ public class CardioPulmonaryActivity extends BaseActivity {
         //获取相应的控件
         nextButton=findViewById(R.id.next3);
         CPRadio=findViewById(R.id.radio_cardio_pulmonary);
-        //获取上一个界面传递过来的用户数据
-        user=(User)getIntent().getSerializableExtra("user_data");
         //设置按钮为不可点击
         nextButton.setEnabled(false);
         nextButton.setAlpha(0.5f);//设置按钮的透明度
@@ -35,7 +33,6 @@ public class CardioPulmonaryActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(CardioPulmonaryActivity.this,ChestEnduranceActivity.class);
-                intent.putExtra("user_data",user);//将用户的信息数据传递至下一界面
                 //开启新的activity，进入下一个问题页面
                 startActivity(intent);
             }
@@ -48,16 +45,16 @@ public class CardioPulmonaryActivity extends BaseActivity {
                 nextButton.setAlpha(1.0f);//设置按钮的透明度
                 switch (i) {
                     case R.id.cardio_pulmonary1:
-                        user.getUserFitnessStage().setCardioPulmonary(1);//如果用户选择了第1项，则将用户的心肺功能设置为1
+                        User.user.getUserFitnessStage().setCardioPulmonary(1);//如果用户选择了第1项，则将用户的心肺功能设置为1
                         break;
                     case R.id.cardio_pulmonary2:
-                        user.getUserFitnessStage().setCardioPulmonary(2);//如果用户选择了第2项，则将用户的心肺功能设置为2
+                        User.user.getUserFitnessStage().setCardioPulmonary(2);//如果用户选择了第2项，则将用户的心肺功能设置为2
                         break;
                     case R.id.cardio_pulmonary3:
-                        user.getUserFitnessStage().setCardioPulmonary(3);//如果用户选择了第3项，则将用户的心肺功能设置为3
+                        User.user.getUserFitnessStage().setCardioPulmonary(3);//如果用户选择了第3项，则将用户的心肺功能设置为3
                         break;
                     case R.id.cardio_pulmonary4:
-                        user.getUserFitnessStage().setCardioPulmonary(5);//如果用户选择了第4项，则将用户的心肺功能设置为4
+                        User.user.getUserFitnessStage().setCardioPulmonary(5);//如果用户选择了第4项，则将用户的心肺功能设置为4
                         break;
                     default:
                         break;

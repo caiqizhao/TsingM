@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context=".Evaluate.InfoActivity">
+    tools:context=".question.InfoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

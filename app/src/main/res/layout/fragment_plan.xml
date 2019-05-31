@@ -7,6 +7,15 @@
     android:orientation="vertical"
     tools:context=".fragment.PlanFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@color/colorWhite"
+        android:paddingTop="15dp"
+        android:paddingBottom="20dp"
+        android:text="今天是计划的第一天，你的训练任务已经完成1/20天"
+        android:textSize="13dp"/>
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,11 +28,23 @@
         android:layout_width="match_parent"
         android:layout_height="20dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:paddingLeft="15dp"
+        android:textSize="15dp"
+        android:text="完成1个训练"
+        android:background="@color/colorWhite"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/exercise_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:background="@color/colorWhite">
 
     </android.support.v7.widget.RecyclerView>

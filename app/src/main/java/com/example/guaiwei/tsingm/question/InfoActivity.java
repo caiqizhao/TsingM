@@ -1,4 +1,4 @@
-package com.example.guaiwei.tsingm.Evaluate;
+package com.example.guaiwei.tsingm.question;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +22,6 @@ import com.example.guaiwei.tsingm.datepicker.DateFormatUtils;
  */
 public class InfoActivity extends BaseActivity {
 
-    private User user;//用户
     private Button nextButton;//下一步按钮
     private RadioGroup sexRadio;//性别单选组
     private RadioButton sexRadioButton ;//选中的单选按钮
@@ -39,8 +38,6 @@ public class InfoActivity extends BaseActivity {
         userBtd.setInputType(InputType.TYPE_NULL);
         //初始化日期编辑器
         initDatePicker();
-        //获取上一个界面传递过来的用户数据
-        user=(User)getIntent().getSerializableExtra("user_data");
         //设置button为不可点击状态
         nextButton.setEnabled(false);
         nextButton.setAlpha(0.5f);//设置按钮的透明度
@@ -51,13 +48,13 @@ public class InfoActivity extends BaseActivity {
                 try{
                     String date=userBtd.getText().toString();
                     String birthday[]=date.split("-");
-                    user.getUserBirthday().setYear(Integer.parseInt(birthday[0]));//设置用户的出生年份
-                    user.getUserBirthday().setMonth(Integer.parseInt(birthday[1]));//设置用户的出生月份
-                    user.getUserBirthday().setDay(Integer.parseInt(birthday[2]));//设置用户的出生日
+                    User.user.getUserBirthday().setYear(Integer.parseInt(birthday[0]));//设置用户的出生年份
+                    User.user.getUserBirthday().setMonth(Integer.parseInt(birthday[1]));//设置用户的出生月份
+                    User.user.getUserBirthday().setDay(Integer.parseInt(birthday[2]));//设置用户的出生日
                     //Log.v("1"," "+userBtdYear.getText().toString()+","+userBtdMonth.getText().toString()+","+userBtdDay.getText().toString());
                     Intent intent=new Intent(InfoActivity.this,BMIActivity.class);
-                    //将用户数据传递至新的Activity
-                    intent.putExtra("user_data",user);
+//                    //将用户数据传递至新的Activity
+//                    intent.putExtra("user_data",user);
                     //开启新的activity，进入下一个问题页面
                     startActivity(intent);
                 }catch(Exception ex){
@@ -73,7 +70,7 @@ public class InfoActivity extends BaseActivity {
                 nextButton.setAlpha(1.0f);//设置按钮的透明度
                 sexRadioButton=findViewById(i);
                 //设置用户的性别
-                user.setSex(sexRadioButton.getText().toString());
+                User.user.setSex(sexRadioButton.getText().toString());
             }
         });
         //为生日编辑框设置点击事件

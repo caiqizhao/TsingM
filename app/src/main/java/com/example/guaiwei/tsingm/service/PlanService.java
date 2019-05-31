@@ -33,10 +33,8 @@ public class PlanService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Bundle data = intent.getExtras();
-        User user = (User)data.getSerializable("user_data");
         Gson gson = new Gson();
-        final String userJson = gson.toJson(user);
+        final String userJson = gson.toJson(User.user);
         plan = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -45,7 +43,7 @@ public class PlanService extends Service {
                         .add("user_data",userJson)
                         .build();
                 Request request = new Request.Builder()
-                        .url(VariableUtil.Service_IP +"TsingM/plan/Recommend.do")
+                        .url(VariableUtil.Service_IP +"plan/Recommend.do")
                         .post(requestBody)
                         .build();
                 String str="网络连接失败，请重试";//初始化服务器返回的数据
@@ -61,17 +59,11 @@ public class PlanService extends Service {
                     stopSelf();//关闭服务
                 } catch (IOException e) {
                     Message message = new Message();
-                    Log.v("1","1");
                     Bundle data = new Bundle();
-                    Log.v("1","2");
                     data.putString("plan_data",str);
-                    Log.v("1","3");
                     message.setData(data);
-                    Log.v("1","4");
                     message.what = 0x002;
-                    Log.v("1","5");
                     FlexibilityActivity.handler.sendMessage(message);
-                    Log.v("1","6");
                 }
             }
         });

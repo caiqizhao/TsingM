@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/duration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -32,7 +31,7 @@
                 android:text="时长"
                 />
             <TextView
-                android:id="@+id/concreteTime"
+                android:id="@+id/duration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -45,21 +44,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/difficulty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/colorGrayBlack"
                 android:textSize="18dp"
-                android:text="难度"
+                android:text="动作"
                 />
             <TextView
-                android:id="@+id/gradeOfDifficulty"
+                android:id="@+id/action_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="K1"/>
+                android:text="32个"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -67,7 +65,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/fatBurning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -76,7 +73,7 @@
                 android:text="燃脂"
                 />
             <TextView
-                android:id="@+id/kilocalorie"
+                android:id="@+id/fatBurning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -87,10 +84,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/motionList"
         android:background="@color/colorWhite"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </ListView>
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </android.support.v7.widget.RecyclerView>
+    <Button
+        android:id="@+id/start_work"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorBlue"
+        android:text="开始训练"
+        android:textColor="@color/colorWhite"
+        android:textSize="20dp"/>
 </LinearLayout>

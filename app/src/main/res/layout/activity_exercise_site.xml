@@ -75,6 +75,11 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <CheckBox
+                    android:id="@+id/check_belly_site"
+                    android:text="腹部"
+                    style="@style/CheckBox">
+                </CheckBox>
+                <CheckBox
                     android:id="@+id/check_body_site"
                     android:text="全身"
                     style="@style/CheckBox">

@@ -19,6 +19,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -27,26 +28,54 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".Evaluate.EvaluateStartActivity" />
-        <activity android:name=".Evaluate.InfoActivity" />
-        <activity android:name=".Evaluate.BMIActivity" />
+        <activity android:name=".question.InfoActivity" />
+        <activity android:name=".question.BMIActivity" />
         <activity android:name=".Evaluate.CardioPulmonaryActivity" />
         <activity android:name=".Evaluate.ChestEnduranceActivity" />
         <activity android:name=".Evaluate.AbdominalEnduranceActivity" />
         <activity android:name=".Evaluate.LowerLimbActivity" />
         <activity android:name=".Evaluate.FlexibilityActivity" />
         <activity android:name=".Evaluate.CurrentSituationActivity" />
-        <activity android:name=".Evaluate.SportTargetActivity" />
+        <activity android:name=".question.SportTargetActivity" />
         <activity android:name=".Evaluate.ExerciseSiteActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ExerciseListActivity" />
+
+        <service
+            android:name=".service.PlanService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".ActionDetailActivity" />
+
+        <service
+            android:name=".service.ActionDetailService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".question.CoefActivity" />
+
+        <service
+            android:name=".service.FoodService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".service.NextActionService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExerciseListActivity"></activity>
+        <activity android:name=".SearchFoodActivity" />
+        <activity android:name=".SearchFoodDetailActivity" />
+
         <service
-            android:name=".service.PlanService"
+            android:name=".service.SearchFoodService"
             android:enabled="true"
             android:exported="true"></service>
     </application>

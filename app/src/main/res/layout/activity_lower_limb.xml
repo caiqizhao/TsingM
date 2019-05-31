@@ -17,7 +17,7 @@
             style="@style/textView_question_style"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="320dp"
             android:gravity="center"
             android:orientation="vertical">
             <RadioGroup

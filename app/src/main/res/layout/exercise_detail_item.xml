@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <!--图片-->
     <ImageView
         android:id="@+id/photo"
@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/photo"
         android:layout_marginLeft="25dp"
+        android:id="@+id/plan_action"
         android:orientation="vertical">
         <TextView
             android:id="@+id/motion"
@@ -32,4 +33,8 @@
             android:layout_marginTop="10dp"
             android:text="25s"/>
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#40c0c0c0"/>
 </RelativeLayout>

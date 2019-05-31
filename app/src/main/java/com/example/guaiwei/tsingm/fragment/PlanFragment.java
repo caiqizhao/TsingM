@@ -54,6 +54,7 @@ public class PlanFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_plan, container, false);
+        this.view=view;
         // Inflate the layout for this fragment
         return view;
     }
@@ -66,7 +67,7 @@ public class PlanFragment extends Fragment {
         LinearLayoutManager layoutManager=new LinearLayoutManager(this.getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         PlanNameRV.setLayoutManager(layoutManager);
-        planAdapter=new PlanAdapter(plan.get(0));
+        planAdapter=new PlanAdapter(plan.get(0),User_Plan.userPlan.getDayPlans().get(0));
         PlanNameRV.setAdapter(planAdapter);
     }
 
@@ -84,9 +85,14 @@ public class PlanFragment extends Fragment {
         dataAdapter.setOnItemClickListener(new DataAdapter.OnRecycleItemClickListener() {
             @Override
             public void onItemClick(int pos) {
-                planAdapter=new PlanAdapter(plan.get(pos));
-                PlanNameRV.setAdapter(planAdapter);//改变训练名称列表数据源
-                dataAdapter.notifyDataSetChanged();//刷新数据
+                try{
+                    planAdapter=new PlanAdapter(plan.get(pos),User_Plan.userPlan.getDayPlans().get(pos));
+                    PlanNameRV.setAdapter(planAdapter);//改变训练名称列表数据源
+                    dataAdapter.notifyDataSetChanged();//刷新数据
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
     }

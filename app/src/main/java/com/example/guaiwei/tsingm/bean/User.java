@@ -3,6 +3,7 @@ package com.example.guaiwei.tsingm.bean;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    public static User user=new User();
     private String userName;//用户名
     private String sex;//用户性别
     private double height;//用户的身高
@@ -10,6 +11,16 @@ public class User implements Serializable {
     private Birthday userBirthday;//用户的出生年月
     private FitnessStage userFitnessStage;//用户的健身阶段数据
     private String[] exerciseSite;//用户想要训练的部位
+    private double coef;   //运动强度
+
+    public double getCoef() {
+        return coef;
+    }
+
+    public void setCoef(double coef) {
+        this.coef = coef;
+    }
+
     public User(){
         userBirthday=new Birthday();
         userFitnessStage=new FitnessStage();

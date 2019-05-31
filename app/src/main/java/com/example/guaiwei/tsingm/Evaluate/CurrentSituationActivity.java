@@ -9,12 +9,12 @@ import android.widget.RadioGroup;
 import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.bean.BaseActivity;
 import com.example.guaiwei.tsingm.bean.User;
+import com.example.guaiwei.tsingm.question.SportTargetActivity;
 
 /**
  * 判断用户的运动阶段的问题的界面
  */
 public class CurrentSituationActivity extends BaseActivity {
-    private User user=new User();
     private Button nextButton;//下一步按钮
     private RadioGroup CSRadio;//判断用户运动状态问题的单选按钮组
     @Override
@@ -31,8 +31,7 @@ public class CurrentSituationActivity extends BaseActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(CurrentSituationActivity.this,SportTargetActivity.class);
-                intent.putExtra("user_data",user);//将用户的信息数据传递至下一界面
+                Intent intent=new Intent(CurrentSituationActivity.this,ExerciseSiteActivity.class);
                 //开启新的activity，进入下一个问题页面
                 startActivity(intent);
             }
@@ -45,13 +44,13 @@ public class CurrentSituationActivity extends BaseActivity {
                 nextButton.setAlpha(1.0f);//设置按钮的透明度
                 switch (i) {
                     case R.id.radio_current_situation1:
-                        user.getUserFitnessStage().setCurrentSituation(1);//如果用户选择了第1项，则将用户的运动状态设置为1（零基础）
+                        User.user.getUserFitnessStage().setCurrentSituation(1);//如果用户选择了第1项，则将用户的运动状态设置为1（零基础）
                         break;
                     case R.id.radio_current_situation2:
-                        user.getUserFitnessStage().setCurrentSituation(2);//如果用户选择了第2项，则将用户的运动状态设置为2（有经验）
+                        User.user.getUserFitnessStage().setCurrentSituation(2);//如果用户选择了第2项，则将用户的运动状态设置为2（有经验）
                         break;
                     case R.id.radio_current_situation3:
-                        user.getUserFitnessStage().setCurrentSituation(3);//如果用户选择了第3项，则将用户的运动状态设置为3（经验丰富）
+                        User.user.getUserFitnessStage().setCurrentSituation(3);//如果用户选择了第3项，则将用户的运动状态设置为3（经验丰富）
                         break;
                     default:
                         break;

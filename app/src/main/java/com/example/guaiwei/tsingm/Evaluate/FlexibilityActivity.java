@@ -29,7 +29,6 @@ import java.util.List;
  * 判断用户坐姿体前屈的程度的界面，测试用户的髋关节柔韧性
  */
 public class FlexibilityActivity extends AppCompatActivity {
-    private User user;
     private Button submitButton;//提交按钮
     private RadioGroup FRadio;//判断用户下肢耐力问题的单选按钮组
     public static List<String> StringData=new ArrayList<>();
@@ -45,7 +44,6 @@ public class FlexibilityActivity extends AppCompatActivity {
         //设置按钮为不可点击
         submitButton.setEnabled(false);
         submitButton.setAlpha(0.5f);//设置按钮变透明
-        user=(User)getIntent().getSerializableExtra("user_data");
         //为提交按钮设置点击事件，将用户的测试数据提交至服务器
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,16 +63,16 @@ public class FlexibilityActivity extends AppCompatActivity {
                 submitButton.setAlpha(1.0f);//设置按钮恢复颜色
                 switch (i) {
                     case R.id.radio_flexibility1:
-                        user.getUserFitnessStage().setFlexibility(1);//如果用户选择了第1项，则将用户的髋关节柔韧性设置为1
+                        User.user.getUserFitnessStage().setFlexibility(1);//如果用户选择了第1项，则将用户的髋关节柔韧性设置为1
                         break;
                     case R.id.radio_flexibility2:
-                        user.getUserFitnessStage().setFlexibility(2);//如果用户选择了第2项，则将用户的髋关节柔韧性设置为2
+                        User.user.getUserFitnessStage().setFlexibility(2);//如果用户选择了第2项，则将用户的髋关节柔韧性设置为2
                         break;
                     case R.id.radio_flexibility3:
-                        user.getUserFitnessStage().setFlexibility(3);//如果用户选择了第3项，则将用户的髋关节柔韧性设置为3
+                        User.user.getUserFitnessStage().setFlexibility(3);//如果用户选择了第3项，则将用户的髋关节柔韧性设置为3
                         break;
                     case R.id.radio_flexibility4:
-                        user.getUserFitnessStage().setFlexibility(5);//如果用户选择了第4项，则将用户的髋关节柔韧性设置为4
+                        User.user.getUserFitnessStage().setFlexibility(5);//如果用户选择了第4项，则将用户的髋关节柔韧性设置为4
                         break;
                     default:
                         break;
@@ -97,7 +95,6 @@ public class FlexibilityActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent intent=new Intent(FlexibilityActivity.this,PlanService.class);
-                intent.putExtra("user_data",user);
                 startService(intent);//开启服务，向服务器发送请求，请求训练计划
 
             }
@@ -122,7 +119,6 @@ public class FlexibilityActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Log.v("1","before");
             if(msg.what == 0x001){
                 //获得消息中的数据赋值给用户计划实例
                 Bundle data = msg.getData();
@@ -137,13 +133,9 @@ public class FlexibilityActivity extends AppCompatActivity {
                 finish();
             }
             else if(msg.what==0x002){
-                Log.v("1","7");
                 Bundle data = msg.getData();
-                Log.v("1","8");
                 String str = data.getString("plan_data");
-                Log.v("1","9");
                 ToastUtil.showToast(FlexibilityActivity.this,str);
-                Log.v("1","0");
             }
         }
     }

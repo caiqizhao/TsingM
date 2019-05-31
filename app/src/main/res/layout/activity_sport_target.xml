@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MainEvaluate"
     android:orientation="vertical"
-    tools:context=".Evaluate.SportTargetActivity">
+    tools:context=".question.SportTargetActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -17,7 +17,7 @@
             style="@style/textView_question_style"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="350dp"
             android:gravity="center"
             android:orientation="vertical">
             <RadioGroup
