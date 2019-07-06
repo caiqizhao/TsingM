@@ -1,14 +1,18 @@
 package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.guaiwei.tsingm.R;
-import com.example.guaiwei.tsingm.bean.BaseActivity;
-import com.example.guaiwei.tsingm.bean.User;
+import com.example.guaiwei.tsingm.utils.ChangeColor;
+import com.example.guaiwei.tsingm.gson.BaseActivity;
+import com.example.guaiwei.tsingm.gson.User;
 
 
 /**
@@ -17,13 +21,19 @@ import com.example.guaiwei.tsingm.bean.User;
 public class AbdominalEnduranceActivity extends BaseActivity {
     private Button nextButton;//下一步按钮
     private RadioGroup AERadio;//判断用户腹肌耐力问题的单选按钮组
+    private ImageView juanfuIV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abdominal_endurance);
         //获取相应的控件
-        nextButton=findViewById(R.id.next5);
-        AERadio=findViewById(R.id.radio_abdominal_endurance);
+        nextButton=(Button)findViewById(R.id.next5);
+        AERadio=(RadioGroup)findViewById(R.id.radio_abdominal_endurance);
+        juanfuIV=(ImageView)findViewById(R.id.juanfu_image);
+
+        //设置背景图片
+        Glide.with(this).load(R.mipmap.juanfu).into(juanfuIV);
+
         //设置按钮为不可点击
         nextButton.setEnabled(false);
         nextButton.setAlpha(0.5f);//设置按钮的透明度
@@ -65,5 +75,6 @@ public class AbdominalEnduranceActivity extends BaseActivity {
                 }
             }
         });
+        ChangeColor.changeColor(this,Color.parseColor("#80000000"));//改变状态栏颜色
     }
 }

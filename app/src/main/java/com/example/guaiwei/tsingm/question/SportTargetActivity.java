@@ -2,14 +2,15 @@ package com.example.guaiwei.tsingm.question;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioGroup;
 
-import com.example.guaiwei.tsingm.Evaluate.ExerciseSiteActivity;
+import android.widget.RadioGroup;
 import com.example.guaiwei.tsingm.R;
-import com.example.guaiwei.tsingm.bean.BaseActivity;
-import com.example.guaiwei.tsingm.bean.User;
+
+import com.example.guaiwei.tsingm.gson.BaseActivity;
+import com.example.guaiwei.tsingm.gson.User;
 
 /**
  * 判断用户运动目标的界面
@@ -23,8 +24,8 @@ public class SportTargetActivity extends BaseActivity {
         setContentView(R.layout.activity_sport_target);
 
         //获取相应的控件
-        nextButton=findViewById(R.id.next_st);
-        STRadio=findViewById(R.id.radio_sport_target);
+        nextButton=(Button)findViewById(R.id.next_st);
+        STRadio=(RadioGroup) findViewById(R.id.radio_sport_target);
 
         //设置按钮为不可点击
         nextButton.setEnabled(false);
@@ -64,5 +65,6 @@ public class SportTargetActivity extends BaseActivity {
                 }
             }
         });
+
     }
 }

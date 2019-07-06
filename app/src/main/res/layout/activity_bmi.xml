@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".question.BMIActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="您的身高？"
-            style="@style/textView_question_style"/>
+            style="@style/textView_question_style1"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="您的体重？"
-            style="@style/textView_question_style"/>
+            style="@style/textView_question_style1"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,72 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/MainEvaluate"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".Evaluate.ChestEnduranceActivity">
+    <ImageView
+        android:id="@+id/fuwocheng_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="一次可以做多少个跪姿俯卧撑?"
-            style="@style/textView_question_style"/>
+        android:layout_height="match_parent"
+        android:background="#80000000">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="320dp"
-            android:gravity="center"
+            style="@style/MainEvaluate"
             android:orientation="vertical">
-            <RadioGroup
-                android:id="@+id/radio_chest_endurance"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="25dp">
-                <RadioButton
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/radio_chest_endurance1"
-                    android:text="从来没尝试过，或1个都做不了"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_chest_endurance2"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="几乎没做过俯卧撑，但撑1-8个还是没问题的"
-                    android:layout_marginTop="15dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_chest_endurance3"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="偶尔练练，9-23 个还是没问题的"
-                    android:layout_marginTop="15dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_chest_endurance4"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="经常做，24-33 个没有问题"
-                    android:layout_marginTop="15dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_chest_endurance5"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="很轻松，做33个以上不在话下"
-                    android:layout_marginTop="15dp"
-                    style="@style/button_radio_style" />
-            </RadioGroup>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="一次可以做多少个跪姿俯卧撑?"
+                    style="@style/textView_question_style"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <RadioGroup
+                        android:id="@+id/radio_chest_endurance"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="25dp">
+                        <RadioButton
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/radio_chest_endurance1"
+                            android:text="从来没尝试过，或1个都做不了"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_chest_endurance2"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="几乎没做过俯卧撑，但撑1-8个还是没问题的"
+                            android:textSize="13dp"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_chest_endurance3"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="偶尔练练，9-23 个还是没问题的"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_chest_endurance4"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="经常做，24-33 个没有问题"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_chest_endurance5"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="很轻松，做33个以上不在话下"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/next4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/button_nomal_style"
+                android:layout_marginBottom="20dp"
+                android:text="下一步"/>
+
         </LinearLayout>
     </LinearLayout>
-    <Button
-        android:id="@+id/next4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/button_nomal_style"
-        android:layout_marginBottom="20dp"
-        android:text="下一步"/>
-</LinearLayout>
+</RelativeLayout>

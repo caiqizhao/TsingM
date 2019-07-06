@@ -7,12 +7,8 @@ import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
 
-import com.example.guaiwei.tsingm.ActionDetailActivity;
-import com.example.guaiwei.tsingm.Evaluate.FlexibilityActivity;
-import com.example.guaiwei.tsingm.ExerciseListActivity;
-import com.example.guaiwei.tsingm.Utils.VariableUtil;
-import com.example.guaiwei.tsingm.bean.xx_action;
-import com.google.gson.Gson;
+import com.example.guaiwei.tsingm.activity.ExerciseListActivity;
+import com.example.guaiwei.tsingm.utils.VariableUtil;
 
 import java.io.IOException;
 

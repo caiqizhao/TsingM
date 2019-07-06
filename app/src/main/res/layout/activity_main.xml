@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorWhite"
-        app:titleTextColor="@color/colorBlack"
-        app:title="智能训练计划"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-    </android.support.v7.widget.Toolbar>
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/my_tool_bar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:background="@drawable/my_bg"-->
+        <!--app:titleTextColor="@color/colorWhite"-->
+        <!--app:title="智能训练计划"-->
+        <!--android:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->
+        <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light">-->
+    <!--</android.support.v7.widget.Toolbar>-->
     <FrameLayout
         android:id="@+id/fl_container"
         android:layout_width="match_parent"
@@ -29,6 +30,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:layout_weight="5"
+        android:layout_weight="9"
+        app:itemBackground="@color/colorWhite"
+        app:itemIconTint="@drawable/bottom_item_tint_list"
+        app:itemTextColor="@drawable/bottom_item_tint_list"
         app:menu="@menu/navigation" />
 </LinearLayout>

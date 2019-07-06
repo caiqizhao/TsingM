@@ -8,10 +8,8 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.guaiwei.tsingm.R;
-import com.example.guaiwei.tsingm.bean.BaseActivity;
-import com.example.guaiwei.tsingm.bean.User;
-import com.example.guaiwei.tsingm.question.InfoActivity;
-import com.example.guaiwei.tsingm.question.SportTargetActivity;
+import com.example.guaiwei.tsingm.gson.BaseActivity;
+import com.example.guaiwei.tsingm.gson.User;
 
 import java.util.ArrayList;
 
@@ -22,7 +20,7 @@ public class ExerciseSiteActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_site);
-        nextButton=findViewById(R.id.next_site);
+        nextButton=(Button) findViewById(R.id.next_site);
         checkBoxList.add((CheckBox)findViewById(R.id.check_chest_site));
         checkBoxList.add((CheckBox)findViewById(R.id.check_shoulder_site));
         checkBoxList.add((CheckBox)findViewById(R.id.check_back_site));

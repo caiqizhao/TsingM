@@ -1,15 +1,18 @@
 package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.guaiwei.tsingm.R;
-import com.example.guaiwei.tsingm.bean.BaseActivity;
-import com.example.guaiwei.tsingm.bean.User;
-import com.example.guaiwei.tsingm.question.SportTargetActivity;
+import com.example.guaiwei.tsingm.utils.ChangeColor;
+import com.example.guaiwei.tsingm.gson.BaseActivity;
+import com.example.guaiwei.tsingm.gson.User;
 
 
 /**
@@ -18,16 +21,21 @@ import com.example.guaiwei.tsingm.question.SportTargetActivity;
 public class CardioPulmonaryActivity extends BaseActivity {
     private Button nextButton;//下一步按钮
     private RadioGroup CPRadio;//判断用户心肺功能问题的单选按钮组
+    private ImageView CPImage;//背景动图
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cardio_pulmonary);
         //获取相应的控件
-        nextButton=findViewById(R.id.next3);
-        CPRadio=findViewById(R.id.radio_cardio_pulmonary);
+        nextButton=(Button) findViewById(R.id.next3);
+        CPRadio=(RadioGroup) findViewById(R.id.radio_cardio_pulmonary);
+        CPImage=(ImageView) findViewById(R.id.xingfei_image);
         //设置按钮为不可点击
         nextButton.setEnabled(false);
         nextButton.setAlpha(0.5f);//设置按钮的透明度
+
+        Glide.with(this).load(R.mipmap.upstair).into(CPImage);
+
         //为下一步按钮设置点击事件
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,5 +69,6 @@ public class CardioPulmonaryActivity extends BaseActivity {
                 }
             }
         });
+        ChangeColor.changeColor(this,Color.parseColor("#80000000"));//改变状态栏颜色
     }
 }

@@ -1,14 +1,18 @@
 package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.guaiwei.tsingm.R;
-import com.example.guaiwei.tsingm.bean.BaseActivity;
-import com.example.guaiwei.tsingm.bean.User;
+import com.example.guaiwei.tsingm.utils.ChangeColor;
+import com.example.guaiwei.tsingm.gson.BaseActivity;
+import com.example.guaiwei.tsingm.gson.User;
 
 
 /**
@@ -17,16 +21,21 @@ import com.example.guaiwei.tsingm.bean.User;
 public class ChestEnduranceActivity extends BaseActivity {
     private Button nextButton;//下一步按钮
     private RadioGroup CERadio;//判断用户胸肌耐力问题的单选按钮组
+    private ImageView CEImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chest_endurance);
         //获取相应的控件
-        nextButton=findViewById(R.id.next4);
-        CERadio=findViewById(R.id.radio_chest_endurance);
+        nextButton=(Button) findViewById(R.id.next4);
+        CERadio=(RadioGroup) findViewById(R.id.radio_chest_endurance);
+        CEImage=(ImageView)findViewById(R.id.fuwocheng_image);
         //设置按钮为不可点击
         nextButton.setEnabled(false);
         nextButton.setAlpha(0.5f);//设置按钮的透明度
+
+        Glide.with(this).load(R.mipmap.fuwc).into(CEImage);
+
         //为下一步按钮设置点击事件
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,5 +72,6 @@ public class ChestEnduranceActivity extends BaseActivity {
                 }
             }
         });
+        ChangeColor.changeColor(this,Color.parseColor("#80000000"));
     }
 }

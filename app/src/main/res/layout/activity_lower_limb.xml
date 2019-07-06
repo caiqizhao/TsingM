@@ -1,72 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/MainEvaluate"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".Evaluate.LowerLimbActivity">
+    <ImageView
+        android:id="@+id/lower_limb_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="深蹲可以完成多少次?(蹲至大腿与地面平行)"
-            style="@style/textView_question_style"/>
+        android:layout_height="match_parent"
+        android:background="#80000000">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="320dp"
-            android:gravity="center"
+            style="@style/MainEvaluate"
             android:orientation="vertical">
-            <RadioGroup
-                android:id="@+id/radio_lower_limb"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="30dp">
-                <RadioButton
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/radio_lower_limb1"
-                    android:text="没试过，或达不到11次"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_lower_limb2"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="只能蹲11-22次，感觉很吃力"
-                    android:layout_marginTop="15dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_lower_limb3"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="偶尔自己会练，坚持做23-30次没问题"
-                    android:layout_marginTop="15dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_lower_limb4"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="经常练，做31-38次没有问题"
-                    android:layout_marginTop="15dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_lower_limb5"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="很轻松，做39次以上不在话下"
-                    android:layout_marginTop="15dp"
-                    style="@style/button_radio_style" />
-            </RadioGroup>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="深蹲可以完成多少次?(蹲至大腿与地面平行)"
+                    style="@style/textView_question_style"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <RadioGroup
+                        android:id="@+id/radio_lower_limb"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30dp">
+                        <RadioButton
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/radio_lower_limb1"
+                            android:text="没试过，或达不到11次"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_lower_limb2"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="只能蹲11-22次，感觉很吃力"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_lower_limb3"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="偶尔自己会练，坚持做23-30次没问题"
+                            android:textSize="15dp"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_lower_limb4"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="经常练，做31-38次没有问题"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_lower_limb5"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="很轻松，做39次以上不在话下"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/next6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/button_nomal_style"
+                android:layout_marginBottom="20dp"
+                android:text="下一步"/>
         </LinearLayout>
+
     </LinearLayout>
-    <Button
-        android:id="@+id/next6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/button_nomal_style"
-        android:layout_marginBottom="20dp"
-        android:text="下一步"/>
-</LinearLayout>
+
+</RelativeLayout>

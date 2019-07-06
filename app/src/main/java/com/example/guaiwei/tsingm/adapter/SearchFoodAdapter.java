@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.guaiwei.tsingm.R;
-import com.example.guaiwei.tsingm.SearchFoodDetailActivity;
-import com.example.guaiwei.tsingm.Utils.VariableUtil;
-import com.example.guaiwei.tsingm.bean.Food;
+import com.example.guaiwei.tsingm.activity.SearchFoodDetailActivity;
+import com.example.guaiwei.tsingm.utils.VariableUtil;
+import com.example.guaiwei.tsingm.gson.Food;
 import com.google.gson.Gson;
 
 import java.util.List;

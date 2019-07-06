@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.guaiwei.tsingm.R;
-import com.example.guaiwei.tsingm.bean.PlanData;
+import com.example.guaiwei.tsingm.gson.PlanData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup,int i) {
         View view=LayoutInflater.from(viewGroup.getContext())
                 .inflate((R.layout.data_item),viewGroup,false);
         final ViewHolder holder=new ViewHolder(view);
@@ -70,7 +70,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             myHolder.dataText.setTextColor(Color.rgb(255,255,255));
             myHolder.dataText.setBackground(myHolder.view.getResources().getDrawable(R.drawable.focus_text));
         }
-        viewHolder.dataText.setOnClickListener(new View.OnClickListener() {
+        myHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mListener!=null){
@@ -99,5 +99,4 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     public interface OnRecycleItemClickListener{
         void onItemClick(int pos);
     }
-
 }

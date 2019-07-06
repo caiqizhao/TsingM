@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".fragment.HaoNengFragment">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单位：千卡"
+            android:layout_margin="10dp"
+            android:textColor="@color/pregnancy_color_888888"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_margin="10dp">
+            <com.example.guaiwei.tsingm.utils.SportStepCountView
+                android:id="@+id/circleProgress"
+                android:layout_width="210dp"
+                android:layout_height="210dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true" />
+            <Button
+                android:id="@+id/checkHistoryData"
+                android:layout_marginTop="155dp"
+                android:layout_width="76dp"
+                android:layout_height="26dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/pregnancy_color_888888"
+                android:textSize="14sp"
+                android:text="查看历史"
+                android:background="@drawable/check_step_history_rectangle" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="今日耗能分布"
+                android:textSize="18dp"
+                android:textColor="@color/colorGrayBlack"/>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#12d59d"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:text="运动类型" />
+                    <TextView
+                        android:layout_width="5dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:background="#12d59d"
+                        android:padding="5dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:text="已耗能(千卡)" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingTop="6dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:background="@color/colorWhite"
+                        android:padding="5dp"
+                        android:textColor="@color/pregnancy_color_888888"
+                        android:text="健身"/>
+                    <TextView
+                        android:layout_width="5dp"/>
+                    <TextView
+                        android:id="@+id/haoneng_fit"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
+                        android:textStyle="bold"
+                        android:background="@color/colorWhite" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingTop="6dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:background="@color/colorWhite"
+                        android:padding="5dp"
+                        android:textColor="@color/pregnancy_color_888888"
+                        android:text="行走"/>
+                    <TextView
+                        android:layout_width="5dp"/>
+                    <TextView
+                        android:id="@+id/haoneng_foot"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
+                        android:textStyle="bold"
+                        android:background="@color/colorWhite"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingTop="6dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:background="@color/colorWhite"
+                        android:padding="5dp"
+                        android:textColor="@color/pregnancy_color_888888"
+                        android:text="跑步"/>
+                    <TextView
+                        android:layout_width="5dp"/>
+                    <TextView
+                        android:id="@+id/haoneng_run"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
+                        android:textStyle="bold"
+                        android:background="@color/colorWhite"/>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>c
+</LinearLayout>

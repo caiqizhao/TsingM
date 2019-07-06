@@ -3,13 +3,13 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorGray</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorBlue</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>
         <item name="android:fitsSystemWindows">true</item>
-        <item name="android:clipToPadding">false</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:clipToPadding">false</item>-->
+        <!--<item name="android:windowLightStatusBar">true</item>-->
         <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
     </style>
 
@@ -30,20 +30,40 @@
         <item name="android:background">@drawable/button_start_evaluate</item>
     </style>
 
-    <!--设置问题单选按钮样式 -->
+    <!--设置问题单选按钮1样式 -->
     <style name="button_radio_style">
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">17dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@drawable/circle_radio</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:padding">5dp</item>
+    </style>
+    <!--设置问题单选按钮2样式 -->
+    <style name="button_radio_style1">
+        <item name="android:textSize">17dp</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:textColor">@color/colorGrayBlack</item>
         <item name="android:background">@drawable/circle_radio</item>
         <item name="android:gravity">center</item>
         <item name="android:button">@null</item>
         <item name="android:layout_width">match_parent</item>
-
+        <item name="android:padding">5dp</item>
     </style>
-    <!--设置问题字体的样式 -->
+
+    <!--设置问题字体1的样式 -->
     <style name="textView_question_style">
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">25dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+    <!--设置问题字体2的样式 -->
+    <style name="textView_question_style1">
+        <item name="android:textSize">25dp</item>
         <item name="android:textColor">@color/colorGrayBlack</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginBottom">5dp</item>
@@ -70,7 +90,7 @@
     <style name="MainEvaluate">
         <item name="android:layout_marginRight">50dp</item>
         <item name="android:layout_marginLeft">50dp</item>
-        <item name="android:layout_marginTop">90dp</item>
+        <item name="android:layout_marginTop">50dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
@@ -78,7 +98,7 @@
     <!--Fragment的Title字体样式-->
     <style name="FragmentTitle">
         <item name="android:textColor">@color/colorBlack</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">30dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_marginLeft">10dp</item>
@@ -90,7 +110,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/colorGrayBlack</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">20dp</item>
         <item name="android:layout_marginTop">30dp</item>
     </style>
 
@@ -105,4 +125,19 @@
         <item name="android:layout_marginBottom">10dp</item>
     </style>
 
+    <!--自定义圆形进度条-->
+    <declare-styleable name="SportStepCountView">
+        <attr name="mpc_percent" format="float" />
+        <attr name="mpc_stroke_width" format="dimension" />
+        <attr name="mpc_start_color" format="color" />
+        <attr name="mpc_end_color" format="color" />
+        <!-- 背景环的颜色 -->
+        <attr name="mpc_default_color" format="color" />
+    </declare-styleable>
+
+    <style name="TextInputAppTheme" parent="Base.TextAppearance.AppCompat.Caption">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
 </resources>

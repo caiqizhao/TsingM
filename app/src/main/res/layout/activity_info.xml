@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="您的性别？"
-            style="@style/textView_question_style"/>
+            style="@style/textView_question_style1"/>
         <RadioGroup
             android:id="@+id/radio_sex"
             android:gravity="center"
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="您的出生年月？"
-            style="@style/textView_question_style"/>
+            style="@style/textView_question_style1"/>
         <EditText
             android:layout_width="150dp"
             android:layout_height="wrap_content"

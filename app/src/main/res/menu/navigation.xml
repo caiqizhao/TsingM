@@ -3,7 +3,7 @@
     <item
         android:id="@+id/navigation_plan"
         android:icon="@drawable/plan_image"
-        android:title="计划" />
+        android:title="运动" />
 
     <item
         android:id="@+id/navigation_food"

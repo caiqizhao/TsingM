@@ -1,28 +1,23 @@
 package com.example.guaiwei.tsingm.question;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
 import com.example.guaiwei.tsingm.Collector.ActivityCollector;
-import com.example.guaiwei.tsingm.Evaluate.FlexibilityActivity;
 import com.example.guaiwei.tsingm.MainActivity;
 import com.example.guaiwei.tsingm.R;
-import com.example.guaiwei.tsingm.SplashActivity;
-import com.example.guaiwei.tsingm.Utils.GetBeforeData;
-import com.example.guaiwei.tsingm.Utils.ToastUtil;
-import com.example.guaiwei.tsingm.bean.BaseActivity;
-import com.example.guaiwei.tsingm.bean.Nutriment;
-import com.example.guaiwei.tsingm.bean.User;
-import com.example.guaiwei.tsingm.bean.User_Plan;
+import com.example.guaiwei.tsingm.utils.ToastUtil;
+import com.example.guaiwei.tsingm.gson.BaseActivity;
+import com.example.guaiwei.tsingm.gson.User;
 import com.example.guaiwei.tsingm.service.FoodService;
 import com.google.gson.Gson;
 
@@ -34,6 +29,9 @@ public class CoefActivity extends BaseActivity {
     public static Handler handler;//消息处理
     private Button submitButton;//完成按钮
     private RadioGroup coefRadio;//判断用户运动目标的单选按钮组
+    private ProgressDialog progressDialog;//进度对话框
+
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,22 +39,28 @@ public class CoefActivity extends BaseActivity {
         handler=new MessageUtil();
 
         //获取相应的控件
-        submitButton=findViewById(R.id.next_coef);
-        coefRadio=findViewById(R.id.radio_coef);
+        submitButton=(Button) findViewById(R.id.next_coef);
+        coefRadio=(RadioGroup)findViewById(R.id.radio_coef);
 
         //设置按钮为不可点击
         submitButton.setEnabled(false);
         submitButton.setAlpha(0.5f);//设置按钮的透明度
 
+        editor=PreferenceManager.getDefaultSharedPreferences(CoefActivity.this).edit();
+
         //为下一步按钮设置点击事件
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showProgressDialog();
+                //将用户输入的数据信息持久化
+                String userData=new Gson().toJson(User.user);
+                editor.putString("user_data",userData);
+                editor.apply();
+
                 Intent intent=new Intent(CoefActivity.this,FoodService.class);
                 //开启服务向服务器发出请求
                 startService(intent);
-//                Intent intent=new Intent(CoefActivity.this,MainActivity.class);//成功获取服务器传递的计划数据，跳转到主界面
-//                startActivity(intent);
             }
         });
 
@@ -85,7 +89,8 @@ public class CoefActivity extends BaseActivity {
                 }
             }
         });
-    }/**
+    }
+    /**
      * 消息处理内部类
      */
     private class MessageUtil extends Handler {
@@ -97,22 +102,40 @@ public class CoefActivity extends BaseActivity {
                 Bundle data = msg.getData();
                 String foodStr=data.getString("food");//人体每天需要摄入的营养素
                 Log.v("1",foodStr);
-                Gson gson=new Gson();
-                Nutriment.nutriment=gson.fromJson(foodStr,Nutriment.class);
-//                SplashActivity.editor.putString("nutriment",foodStr);
-//                SplashActivity.editor.apply();
                 Intent intent=new Intent(CoefActivity.this,MainActivity.class);//成功获取服务器传递的计划数据，跳转到主界面
                 startActivity(intent);
-//                SplashActivity.editor.putBoolean("isFirst",false);
-//                SplashActivity.editor.apply();
+                editor.putString("nutriment",foodStr);
+                editor.putBoolean("isFirst",false);
+                editor.apply();
                 ActivityCollector.finishAll();//销毁之前的活动
+                closeProgressDialog();
             }
             else if(msg.what==0x006){
                 Bundle data = msg.getData();
                 String str = data.getString("food");
                 ToastUtil.showToast(CoefActivity.this,str);
+                closeProgressDialog();
             }
         }
     }
+    /**
+     * 显示进度对话框
+     */
+    private void showProgressDialog(){
+        if(progressDialog==null){
+            progressDialog=new ProgressDialog(this);
+            progressDialog.setMessage("请稍等...");
+            progressDialog.setCanceledOnTouchOutside(false);
+        }
+        progressDialog.show();
+    }
 
+    /**
+     * 关闭进度对话框
+     */
+    private void closeProgressDialog(){
+        if(progressDialog!=null){
+            progressDialog.dismiss();
+        }
+    }
 }

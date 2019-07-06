@@ -7,8 +7,8 @@ import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
 
-import com.example.guaiwei.tsingm.SearchFoodActivity;
-import com.example.guaiwei.tsingm.Utils.VariableUtil;
+import com.example.guaiwei.tsingm.activity.SearchFoodActivity;
+import com.example.guaiwei.tsingm.utils.VariableUtil;
 
 import java.io.IOException;
 

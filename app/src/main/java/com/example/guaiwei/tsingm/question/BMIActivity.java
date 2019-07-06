@@ -8,11 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.guaiwei.tsingm.Evaluate.CardioPulmonaryActivity;
-import com.example.guaiwei.tsingm.MainActivity;
 import com.example.guaiwei.tsingm.R;
-import com.example.guaiwei.tsingm.bean.BaseActivity;
-import com.example.guaiwei.tsingm.bean.User;
+import com.example.guaiwei.tsingm.gson.BaseActivity;
+import com.example.guaiwei.tsingm.gson.User;
 
 /**
  * 获取用户的身高体重的界面
@@ -26,9 +24,9 @@ public class BMIActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmi);
         //获取各控件
-        nextButton=findViewById(R.id.next2);
-        userHeight=findViewById(R.id.user_height);
-        userWeight=findViewById(R.id.user_weight);
+        nextButton=(Button) findViewById(R.id.next2);
+        userHeight=(EditText) findViewById(R.id.user_height);
+        userWeight=(EditText) findViewById(R.id.user_weight);
         //设置编辑框只能输入整数和小数点
         userHeight.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
         userWeight.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);

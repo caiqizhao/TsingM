@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Message;
-import android.util.Log;
 
 import com.example.guaiwei.tsingm.Evaluate.FlexibilityActivity;
-import com.example.guaiwei.tsingm.Utils.VariableUtil;
-import com.example.guaiwei.tsingm.bean.User;
+import com.example.guaiwei.tsingm.utils.VariableUtil;
+import com.example.guaiwei.tsingm.gson.User;
 import com.google.gson.Gson;
 
 import java.io.IOException;

@@ -1,14 +1,18 @@
 package com.example.guaiwei.tsingm.Evaluate;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.guaiwei.tsingm.R;
-import com.example.guaiwei.tsingm.bean.BaseActivity;
-import com.example.guaiwei.tsingm.bean.User;
+import com.example.guaiwei.tsingm.gson.BaseActivity;
+import com.example.guaiwei.tsingm.gson.User;
+import com.example.guaiwei.tsingm.utils.ChangeColor;
 
 
 /**
@@ -17,16 +21,22 @@ import com.example.guaiwei.tsingm.bean.User;
 public class LowerLimbActivity extends BaseActivity {
     private Button nextButton;//下一步按钮
     private RadioGroup LLRadio;//判断用户下肢耐力问题的单选按钮组
+    private ImageView LLImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lower_limb);
+
         //获取相应的控件
-        nextButton=findViewById(R.id.next6);
-        LLRadio=findViewById(R.id.radio_lower_limb);
+        nextButton=(Button) findViewById(R.id.next6);
+        LLRadio=(RadioGroup) findViewById(R.id.radio_lower_limb);
+        LLImage=(ImageView)findViewById(R.id.lower_limb_image);
+
         //设置按钮为不可点击
         nextButton.setEnabled(false);
         nextButton.setAlpha(0.5f);//设置按钮的透明度
+
+        Glide.with(this).load(R.mipmap.shengdun).into(LLImage);
 
         //为下一步按钮设置点击事件
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -64,5 +74,6 @@ public class LowerLimbActivity extends BaseActivity {
                 }
             }
         });
+        ChangeColor.changeColor(this,Color.parseColor("#80000000"));
     }
 }

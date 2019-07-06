@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.guaiwei.tsingm.Evaluate.EvaluateStartActivity;
+import com.example.guaiwei.tsingm.Evaluate.CurrentSituationActivity;
 import com.example.guaiwei.tsingm.R;
 
 /**
@@ -23,12 +23,12 @@ public class EvaluateBeforeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_evaluate_before, container, false);
-        btn=view.findViewById(R.id.plan_btn);//实例化按钮控件
+        btn=view.findViewById(R.id.start_evaluate);//实例化按钮控件
         //为按钮设置点击事件
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(view.getContext(),EvaluateStartActivity.class);
+                Intent intent=new Intent(view.getContext(),CurrentSituationActivity.class);
                 startActivity(intent);
             }
         });

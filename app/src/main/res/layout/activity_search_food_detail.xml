@@ -4,18 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SearchFoodDetailActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".activity.SearchFoodDetailActivity">
 
-    <LinearLayout
-        android:background="@color/colorWhite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/detail_food_back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/back_icon"/>
-    </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

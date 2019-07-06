@@ -11,8 +11,8 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.guaiwei.tsingm.R;
-import com.example.guaiwei.tsingm.bean.BaseActivity;
-import com.example.guaiwei.tsingm.bean.User;
+import com.example.guaiwei.tsingm.gson.BaseActivity;
+import com.example.guaiwei.tsingm.gson.User;
 import com.example.guaiwei.tsingm.datepicker.CustomDatePicker;
 import com.example.guaiwei.tsingm.datepicker.DateFormatUtils;
 
@@ -32,9 +32,9 @@ public class InfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
         //获取各控件
-        nextButton=findViewById(R.id.next1);
-        sexRadio=findViewById(R.id.radio_sex);
-        userBtd=findViewById(R.id.user_btd);
+        nextButton=(Button) findViewById(R.id.next1);
+        sexRadio=(RadioGroup) findViewById(R.id.radio_sex);
+        userBtd=(EditText) findViewById(R.id.user_btd);
         userBtd.setInputType(InputType.TYPE_NULL);
         //初始化日期编辑器
         initDatePicker();
@@ -68,7 +68,7 @@ public class InfoActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 nextButton.setEnabled(true);//设置下一步按钮可点击
                 nextButton.setAlpha(1.0f);//设置按钮的透明度
-                sexRadioButton=findViewById(i);
+                sexRadioButton=(RadioButton) findViewById(i);
                 //设置用户的性别
                 User.user.setSex(sexRadioButton.getText().toString());
             }

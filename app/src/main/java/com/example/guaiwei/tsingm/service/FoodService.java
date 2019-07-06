@@ -7,9 +7,8 @@ import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
 
-import com.example.guaiwei.tsingm.ExerciseListActivity;
-import com.example.guaiwei.tsingm.Utils.VariableUtil;
-import com.example.guaiwei.tsingm.bean.User;
+import com.example.guaiwei.tsingm.utils.VariableUtil;
+import com.example.guaiwei.tsingm.gson.User;
 import com.example.guaiwei.tsingm.question.CoefActivity;
 import com.google.gson.Gson;
 

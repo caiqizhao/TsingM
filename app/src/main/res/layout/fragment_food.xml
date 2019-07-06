@@ -6,114 +6,207 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".fragment.FoodFragment">
-
-    <com.youth.banner.Banner
-        android:id="@+id/banner_food"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:title_textcolor="@color/colorWhite"
-        app:title_textsize="20dp">
-    </com.youth.banner.Banner>
-
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:background="#FFFFFF">
+        android:background="@drawable/my_bg">
+        <!--<android.support.v7.widget.SearchView-->
+            <!--android:id="@+id/search"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="35dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_marginLeft="35dp"-->
+            <!--android:layout_marginRight="35dp"-->
+            <!--android:imeOptions="actionSearch"-->
+            <!--app:iconifiedByDefault="false"-->
+            <!--android:textCursorDrawable="@null"-->
+            <!--android:focusable="false"-->
+            <!--android:background="@drawable/login_edit_text">-->
+        <!--</android.support.v7.widget.SearchView>-->
         <LinearLayout
-            android:id="@+id/zaocan"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:orientation="vertical">
+            android:id="@+id/search_ll"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/login_edit_text">
             <ImageView
-                android:id="@+id/zaocan_image"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/zaocan_before" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/search_icon"/>
             <TextView
-                android:id="@+id/zaocan_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:text="早餐"
-                android:textColor="@color/colorGray" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/wucan"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:orientation="vertical">
-            <ImageView
-                android:id="@+id/wucan_image"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/wucan_before" />
-            <TextView
-                android:id="@+id/wucan_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:text="午餐"
-                android:textColor="@color/colorGray" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/wancan"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_centerVertical="true"
-            android:orientation="vertical">
-            <ImageView
-                android:id="@+id/wancan_image"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/wancan_before" />
-            <TextView
-                android:id="@+id/wancan_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:text="晚餐"
-                android:textColor="@color/colorGray" />
+                android:text="搜索食物"
+                android:textColor="@color/colorWhite"
+                android:layout_marginLeft="5dp"
+                android:textSize="15dp"/>
         </LinearLayout>
     </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tishi_tv"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="5dp">
+                <com.youth.banner.Banner
+                    android:id="@+id/banner_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    app:title_textcolor="@color/colorWhite"
+                    app:title_textsize="20dp">
+                </com.youth.banner.Banner>
+            </android.support.v7.widget.CardView>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
-                android:paddingLeft="15dp"
                 android:paddingBottom="10dp"
-                android:paddingRight="15dp"
-                android:text="一天之计在于晨，人体经过一夜的消耗，身体需要科学的能量搭配来开始全新的一天。早餐建议以适量的蛋白质，少量的主食为主,最好能再摄入些蔬菜。"/>
+                android:background="#FFFFFF">
+                <LinearLayout
+                    android:id="@+id/zaocan"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/zaocan_image"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/zaocan_before" />
+                    <TextView
+                        android:id="@+id/zaocan_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:text="早餐"
+                        android:textColor="@color/colorGray" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/wucan"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/wucan_image"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/wucan_before" />
+                    <TextView
+                        android:id="@+id/wucan_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:text="午餐"
+                        android:textColor="@color/colorGray" />
+                </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/wancan"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/wancan_image"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/wancan_before" />
+                    <TextView
+                        android:id="@+id/wancan_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:text="晚餐"
+                        android:textColor="@color/colorGray" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/no_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#fbfbfd">
+                <ImageView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/nofood"/>
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="还未生成饮食方案"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请点击下方按钮为您智能生成饮食方案"/>
+                <Button
+                    android:id="@+id/create_food"
+                    android:layout_height="40dp"
+                    android:layout_width="150dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="15dp"
+                    android:background="@drawable/button_start_evaluate"
+                    android:text="生成饮食"/>
+            </LinearLayout>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/food_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorWhite">
-
+                android:layout_marginTop="2dp">
             </android.support.v7.widget.RecyclerView>
+            <RelativeLayout
+                android:id="@+id/change_RL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/change"
+                    android:layout_marginTop="9dp"
+                    android:layout_toLeftOf="@id/change_food"/>
+                <TextView
+                    android:id="@+id/change_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="5dp"
+                    android:layout_alignParentRight="true"
+                    android:text="换一批"
+                    android:textColor="@color/colorBlue"/>
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>
