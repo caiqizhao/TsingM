@@ -3,6 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.guaiwei.tsingm">
 
+    <!-- 允许程序打开网络套接字 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 允许程序设置内置sd卡的写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 用于访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 用于写入缓存数据到扩展存储卡 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <!-- 允许应用程序改变网络状态 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
@@ -17,7 +51,10 @@
 
     <!-- 允许应用程序完全使用网络 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
+        android:name=".utils.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -25,26 +62,120 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Evaluate.EvaluateStartActivity" />
-        <activity android:name=".Evaluate.InfoActivity" />
-        <activity android:name=".Evaluate.BMIActivity" />
-        <activity android:name=".Evaluate.CardioPulmonaryActivity" />
+        <activity android:name=".question.InfoActivity" />
+        <activity android:name=".question.BMIActivity" />
+        <activity android:name=".Evaluate.CardioPulmonaryActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
         <activity android:name=".Evaluate.ChestEnduranceActivity" />
-        <activity android:name=".Evaluate.AbdominalEnduranceActivity" />
+        <activity android:name=".Evaluate.AbdominalEnduranceActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
         <activity android:name=".Evaluate.LowerLimbActivity" />
         <activity android:name=".Evaluate.FlexibilityActivity" />
         <activity android:name=".Evaluate.CurrentSituationActivity" />
-        <activity android:name=".Evaluate.SportTargetActivity" />
+        <activity android:name=".question.SportTargetActivity" />
         <activity android:name=".Evaluate.ExerciseSiteActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".activity.ExerciseListActivity" />
 
-        <activity android:name=".MainActivity">
+        <service
+            android:name=".service.PlanService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.ActionDetailActivity" />
+
+        <service
+            android:name=".service.ActionDetailService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".question.CoefActivity" />
+
+        <service
+            android:name=".service.FoodService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".service.NextActionService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExerciseListActivity"></activity>
+        <activity android:name=".activity.SearchFoodActivity" />
+        <activity android:name=".activity.SearchFoodDetailActivity" />
+
+        <service
+            android:name=".service.SearchFoodService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.WorkDataActivity" />
+        <activity android:name=".activity.HistoryWorkDataActivity" />
+        <activity
+            android:name=".activity.StartExerciseActivity"
+            android:screenOrientation="landscape" />
+
+        <service
+            android:name=".service.TimeService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".service.BindService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".service.uploadService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.CompleteActivity" />
+        <activity android:name=".activity.LoginActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity android:name=".activity.SignUpActivity" />
+        <activity android:name=".activity.RunActivity" />
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="7bd42568bb2e150c646281cb67464425" />
+
+        <service
+            android:name="com.amap.api.location.APSService"
+            tools:ignore="WrongManifestParent" />
+        <service
+            android:name=".service.LoginService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".service.RegisterService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

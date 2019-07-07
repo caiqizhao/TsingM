@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MainEvaluate"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".Evaluate.ExerciseSiteActivity">
 
     <LinearLayout
@@ -15,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="您想锻炼的部位（最多选择三项）"
-            style="@style/textView_question_style"/>
+            style="@style/textView_question_style1"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -74,6 +75,11 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/check_belly_site"
+                    android:text="腹部"
+                    style="@style/CheckBox">
+                </CheckBox>
                 <CheckBox
                     android:id="@+id/check_body_site"
                     android:text="全身"

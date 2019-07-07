@@ -1,66 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/MainEvaluate"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".Evaluate.CardioPulmonaryActivity">
+    <ImageView
+        android:id="@+id/xingfei_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="上楼梯时(约五层楼高),是否感觉呼吸急促?"
-            style="@style/textView_question_style"/>
+        android:layout_height="match_parent"
+        android:background="#80000000">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            style="@style/MainEvaluate"
             android:orientation="vertical">
-            <RadioGroup
-                android:id="@+id/radio_cardio_pulmonary"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="30dp">
-
-                <RadioButton
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/cardio_pulmonary1"
-                    android:text="非常急促"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/cardio_pulmonary2"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="急促"
-                    android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/cardio_pulmonary3"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="一般"
-                    android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/cardio_pulmonary4"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="几乎没有感觉"
-                    android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
-            </RadioGroup>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="上楼梯时(约五层楼高),是否感觉呼吸急促?"
+                    style="@style/textView_question_style"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <RadioGroup
+                        android:id="@+id/radio_cardio_pulmonary"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="25dp">
+                        <RadioButton
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/cardio_pulmonary1"
+                            android:text="非常急促"
+                            android:layout_marginBottom="10dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/cardio_pulmonary2"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="急促"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/cardio_pulmonary3"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="一般"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/cardio_pulmonary4"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="几乎没有感觉"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+                            style="@style/button_radio_style" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/next3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/button_nomal_style"
+                android:layout_marginBottom="20dp"
+                android:text="下一步"/>
         </LinearLayout>
     </LinearLayout>
-    <Button
-        android:id="@+id/next3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/button_nomal_style"
-        android:layout_marginBottom="20dp"
-        android:text="下一步"/>
-</LinearLayout>
+</RelativeLayout>

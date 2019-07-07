@@ -1,65 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/MainEvaluate"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".Evaluate.FlexibilityActivity">
+
+    <ImageView
+        android:id="@+id/flexibility_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="坐姿体前屈时，手指是否可以触碰到脚尖?"
-            style="@style/textView_question_style"/>
+        android:layout_height="match_parent"
+        android:background="#80000000">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            style="@style/MainEvaluate"
             android:orientation="vertical">
-            <RadioGroup
-                android:id="@+id/radio_flexibility"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="30dp">
-                <RadioButton
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/radio_flexibility1"
-                    android:text="碰不到，手到脚尖的距离大于整个手掌"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_flexibility2"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="碰不到，距离脚尖约半个手掌"
-                    android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_flexibility3"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="指尖刚好能碰到脚尖"
-                    android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_flexibility4"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="指尖可以超过脚尖半个手掌"
-                    android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
-            </RadioGroup>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="坐姿体前屈时，手指是否可以触碰到脚尖?"
+                    style="@style/textView_question_style"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <RadioGroup
+                        android:id="@+id/radio_flexibility"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30dp">
+                        <RadioButton
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/radio_flexibility1"
+                            android:text="碰不到，手到脚尖的距离大于整个手掌"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_flexibility2"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="碰不到，距离脚尖约半个手掌"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_flexibility3"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="指尖刚好能碰到脚尖"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_flexibility4"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="指尖可以超过脚尖半个手掌"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/evaluate_complete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/button_nomal_style"
+                android:layout_marginBottom="20dp"
+                android:text="生成训练计划"/>
         </LinearLayout>
+
     </LinearLayout>
-    <Button
-        android:id="@+id/evaluate_complete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/button_nomal_style"
-        android:layout_marginBottom="20dp"
-        android:text="生成训练计划"/>
-</LinearLayout>
+
+</RelativeLayout>

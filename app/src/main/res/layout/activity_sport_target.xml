@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MainEvaluate"
     android:orientation="vertical"
-    tools:context=".Evaluate.SportTargetActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".question.SportTargetActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -14,10 +15,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="您的运动目标?"
-            style="@style/textView_question_style"/>
+            style="@style/textView_question_style1"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="350dp"
             android:gravity="center"
             android:orientation="vertical">
             <RadioGroup
@@ -30,7 +31,7 @@
                     android:layout_weight="1"
                     android:id="@+id/radio_sport_target1"
                     android:text="减脂"
-                    style="@style/button_radio_style" />
+                    style="@style/button_radio_style1" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -43,7 +44,7 @@
                     android:layout_weight="1"
                     android:text="局部塑形"
                     android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
+                    style="@style/button_radio_style1" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -57,7 +58,7 @@
                     android:layout_weight="1"
                     android:text="增肌"
                     android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
+                    style="@style/button_radio_style1" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -71,7 +72,7 @@
                     android:layout_weight="1"
                     android:text="保持健康"
                     android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
+                    style="@style/button_radio_style1" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

@@ -2,78 +2,87 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/MainEvaluate"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".Evaluate.CurrentSituationActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="您的运动现状?"
-            style="@style/textView_question_style"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        style="@style/MainEvaluate">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="vertical">
-            <RadioGroup
-                android:id="@+id/radio_current_situation"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="30dp">
-                <RadioButton
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/radio_current_situation1"
-                    android:text="零基础"
-                    style="@style/button_radio_style" />
-                <TextView
+                android:layout_height="wrap_content"
+                android:text="您的运动现状?"
+                style="@style/textView_question_style1"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <RadioGroup
+                    android:id="@+id/radio_current_situation"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.5"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:text="很少运动，需要从入门开始，适应运动的节奏"/>
-                <RadioButton
-                    android:id="@+id/radio_current_situation2"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="有经验"
-                    android:layout_marginTop="5dp"
-                    style="@style/button_radio_style" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.5"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:text="有运动习惯，具备一定的运动基础"/>
-                <RadioButton
-                    android:id="@+id/radio_current_situation3"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="经验丰富"
-                    android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.5"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:text="有规律的运动习惯，运动能力突出"/>
-            </RadioGroup>
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="40dp">
+                    <RadioButton
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:id="@+id/radio_current_situation1"
+                        android:text="零基础"
+                        style="@style/button_radio_style1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="很少运动，需要从入门开始，适应运动的节奏"/>
+                    <RadioButton
+                        android:id="@+id/radio_current_situation2"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="有经验"
+                        android:layout_marginTop="20dp"
+                        style="@style/button_radio_style1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="有运动习惯，具备一定的运动基础"/>
+                    <RadioButton
+                        android:id="@+id/radio_current_situation3"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="经验丰富"
+                        android:layout_marginTop="20dp"
+                        style="@style/button_radio_style1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="有规律的运动习惯，运动能力突出"/>
+                </RadioGroup>
+            </LinearLayout>
         </LinearLayout>
+        <Button
+            android:id="@+id/next_cs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/button_nomal_style"
+            android:layout_marginBottom="20dp"
+            android:text="下一步"/>
     </LinearLayout>
-    <Button
-        android:id="@+id/next_cs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/button_nomal_style"
-        android:layout_marginBottom="20dp"
-        android:text="下一步"/>
+
 </LinearLayout>
