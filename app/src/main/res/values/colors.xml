@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#20464646</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorBlue">#24C68A</color>
     <color name="colorBlueTransparent">#2024C68A</color>
@@ -9,6 +9,8 @@
     <color name="colorGrayBlack">#464646</color>
     <color name="colorGray">#c0c0c0</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorFood">#e5bc84</color>
+    <color name="trans_white">#88FFFFFF</color>
 
     <!--日期时间选择器的相关颜色-->
     <color name="date_picker_bg">#FFFFFF</color>
@@ -21,4 +23,16 @@
     <color name="current_time_bg">#FFFFFF</color>
     <color name="current_time_text">#666666</color>
     <color name="selected_time_text">#57C5E8</color>
+
+    <color name="bg_blue">#58ACED</color>
+    <color name="txt_black_light">#333333</color>
+    <color name="bg_white">#FFFFFF</color>
+    <color name="text_yellow">#FFC800</color>
+    <color name="white">#ffffff</color>
+    <color name="pregnancy_color_181818">#181818</color>
+    <color name="pregnancy_color_888888">#888888</color>
+    <color name="pregnancy_color_49c9c9">#49c9c9</color>
+    <color name="pregnancy_color_f5f5f5">#f5f5f5</color>
+    <color name="line_message">#FFBBBBBB</color>
+    <color name="pregnancy_color_ececec">#ececec</color>
 </resources>

@@ -1,75 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/MainEvaluate"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".Evaluate.AbdominalEnduranceActivity">
+    <ImageView
+        android:id="@+id/juanfu_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="可以做多少个标准卷腹? (肩胛骨离开地面)"
-            style="@style/textView_question_style"/>
+        android:layout_height="match_parent"
+        android:background="#80000000">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            style="@style/MainEvaluate"
             android:orientation="vertical">
-            <RadioGroup
-                android:id="@+id/radio_abdominal_endurance"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="30dp">
-                <RadioButton
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/radio_abdominal_endurance1"
-                    android:text="没什么概念，或坚持不到13个"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_abdominal_endurance2"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="曾经试过，只能坚持13-22个"
-                    android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_abdominal_endurance3"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="偶尔练练，23-31 个没什么问题"
-                    android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_abdominal_endurance4"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="经常练，能连续做32-39个"
-
-
-                    android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
-                <RadioButton
-                    android:id="@+id/radio_abdominal_endurance5"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="很轻松，做39个以上不在话下"
-                    android:layout_marginTop="10dp"
-                    style="@style/button_radio_style" />
-            </RadioGroup>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="可以做多少个标准卷腹? \n(肩胛骨离开地面)"
+                    style="@style/textView_question_style"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <RadioGroup
+                        android:id="@+id/radio_abdominal_endurance"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="25dp">
+                        <RadioButton
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:id="@+id/radio_abdominal_endurance1"
+                            android:text="没什么概念，或坚持不到13个"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_abdominal_endurance2"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="曾经试过，只能坚持13-22个"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_abdominal_endurance3"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="偶尔练练，23-31 个没什么问题"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_abdominal_endurance4"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="经常练，能连续做32-39个"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                        <RadioButton
+                            android:id="@+id/radio_abdominal_endurance5"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="很轻松，做39个以上不在话下"
+                            android:layout_marginTop="15dp"
+                            style="@style/button_radio_style" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:id="@+id/next5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/button_nomal_style"
+                android:layout_marginBottom="20dp"
+                android:text="下一步"/>
         </LinearLayout>
     </LinearLayout>
-    <Button
-        android:id="@+id/next5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/button_nomal_style"
-        android:layout_marginBottom="20dp"
-        android:text="下一步"/>
-</LinearLayout>
+</RelativeLayout>
