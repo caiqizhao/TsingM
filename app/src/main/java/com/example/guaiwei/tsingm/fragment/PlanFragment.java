@@ -152,7 +152,6 @@ public class PlanFragment extends Fragment {
                 }
             }
         });
-        return view;
     }
 
 
