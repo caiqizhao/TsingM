@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.activity.SearchFoodDetailActivity;
 import com.example.guaiwei.tsingm.gson.RecommendFood;
+import com.example.guaiwei.tsingm.utils.VariableUtil;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -28,7 +31,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                RecommendFood recommendFood=recommendFoods.get(holder.getAdapterPosition());
+                Gson gson=new Gson();
+                String foodStr=gson.toJson(recommendFood);
                 Intent intent=new Intent(view.getContext(),SearchFoodDetailActivity.class);
+                intent.putExtra("food_detail",foodStr);
                 view.getContext().startActivity(intent);
             }
         });
@@ -38,9 +45,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, int position) {
         RecommendFood recommendFood=recommendFoods.get(position);
-        holder.foodNaame.setText(recommendFood.getFoodName());
-        holder.foodNengLiang.setText(recommendFood.getFoodReLiang());
+        holder.foodNaame.setText(recommendFood.getFood_name().split("，")[0]);
+        holder.foodNengLiang.setText(recommendFood.getEnergy());
         holder.foodG.setText(recommendFood.getFoodG());
+        String url=VariableUtil.Service_IP+"food/"+recommendFood.getFood_name()+".jpg";
+        Glide.with(holder.view.getContext()).load(url).into(holder.foodImage);
     }
 
     @Override

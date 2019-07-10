@@ -9,7 +9,8 @@
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -65,6 +66,7 @@
                         android:text="0"
                         android:textStyle="bold"
                         android:textSize="50sp"
+                        android:textColor="@color/colorGrayBlack"
                         android:gravity="center" />
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -77,7 +79,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="完成（次）"
+                                android:text="完成度（%）"
                                 android:textSize="15sp"
                                 android:gravity="center" />
                             <TextView
@@ -85,6 +87,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="0"
+                                android:textColor="@color/colorGrayBlack"
                                 android:textStyle="bold"
                                 android:textSize="22sp"
                                 android:gravity="center" />
@@ -105,6 +108,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="0"
+                                android:textColor="@color/colorGrayBlack"
                                 android:textStyle="bold"
                                 android:textSize="22sp"
                                 android:gravity="center" />
@@ -121,6 +125,13 @@
                 android:layout_height="wrap_content">
 
             </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="暂无数据~"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

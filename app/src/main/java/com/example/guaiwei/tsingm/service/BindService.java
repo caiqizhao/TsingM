@@ -182,7 +182,6 @@ public class BindService extends Service implements SensorEventListener {
             }
         }
         updateNotification();
-
     }
 
     /**

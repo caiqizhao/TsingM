@@ -45,7 +45,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="body_in" />
+                                      <entry key="outputName" value="text_in" />
+                                      <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="f1bc1c" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -84,7 +86,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="2ceb2c" />
+                                      <entry key="backgroundColor" value="24c68a" />
                                       <entry key="foregroundAssetType" value="TEXT" />
                                     </map>
                                   </option>

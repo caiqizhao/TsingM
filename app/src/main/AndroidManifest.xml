@@ -136,10 +136,6 @@
             android:screenOrientation="landscape" />
 
         <service
-            android:name=".service.TimeService"
-            android:enabled="true"
-            android:exported="true" />
-        <service
             android:name=".service.BindService"
             android:enabled="true"
             android:exported="true" />
@@ -149,7 +145,8 @@
             android:exported="true" />
 
         <activity android:name=".activity.CompleteActivity" />
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activity.LoginActivity"
+            android:launchMode="singleTask">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -175,7 +172,10 @@
         <service
             android:name=".service.RegisterService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".activity.BodyDataActivity" />
+        <activity android:name=".activity.SetActivity"></activity>
     </application>
 
 </manifest>

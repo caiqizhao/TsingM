@@ -7,7 +7,8 @@
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -49,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="0"
+                android:textColor="@color/colorGrayBlack"
                 android:textStyle="bold"
                 android:textSize="50sp"
                 android:gravity="center" />
@@ -71,6 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="0"
+                        android:textColor="@color/colorGrayBlack"
                         android:textStyle="bold"
                         android:textSize="22sp"
                         android:gravity="center" />
@@ -90,6 +93,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="0"
+                        android:textColor="@color/colorGrayBlack"
                         android:textStyle="bold"
                         android:textSize="22sp"
                         android:gravity="center" />
@@ -109,6 +113,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="0"
+                        android:textColor="@color/colorGrayBlack"
                         android:textStyle="bold"
                         android:textSize="22sp"
                         android:gravity="center" />

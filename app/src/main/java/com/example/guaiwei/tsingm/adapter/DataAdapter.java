@@ -64,10 +64,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         myHolder.weekText.setText(planData.getWeek());
         myHolder.dataText.setText(planData.getData());
         if (!list_click.get(i)){//判断Item的点击状态，设置背景色和字体颜色
-            myHolder.dataText.setTextColor(Color.rgb(70,70,70));
+            myHolder.dataText.setTextColor(Color.parseColor("#707070"));
             myHolder.dataText.setBackground(myHolder.view.getResources().getDrawable(R.drawable.shape_text));
         }else {
-            myHolder.dataText.setTextColor(Color.rgb(255,255,255));
+            myHolder.dataText.setTextColor(Color.parseColor("#ffffff"));
             myHolder.dataText.setBackground(myHolder.view.getResources().getDrawable(R.drawable.focus_text));
         }
         myHolder.view.setOnClickListener(new View.OnClickListener() {

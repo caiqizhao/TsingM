@@ -201,9 +201,9 @@ public class LineChartManager {
             lineData = new LineData(lineDataSets.get(0),lineDataSets.get(1));
             lineChart.setData(lineData);
         }
-        if (timeList.size() > 11) {
-            timeList.clear();
-        }
+//        if (timeList.size() > 11) {
+//            timeList.clear();
+//        }
         timeList.add(str);
         for (int i = 0; i < numbers.size(); i++) {
             Entry entry = new Entry(lineDataSet.getEntryCount(), numbers.get(i));

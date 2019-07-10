@@ -84,7 +84,7 @@ public class FootFragment extends Fragment {
      * 生成走路的记录，存入数据库中
      */
     public void createFootDb(){
-        List<MotionRecordsEntity> motionRecordsEntitys=DataSupport.where("data=?",GetBeforeData.getBeforeData(null,0).get(0)).find(MotionRecordsEntity.class);
+        List<MotionRecordsEntity> motionRecordsEntitys=DataSupport.where("data=? and movement_type=?",GetBeforeData.getBeforeData(null,0).get(0),"行走").find(MotionRecordsEntity.class);
         System.out.print(motionRecordsEntitys.size()+"");
         if(motionRecordsEntitys.size()==0){
             MotionRecordsEntity motionRecordsEntity=new MotionRecordsEntity();

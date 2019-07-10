@@ -1,6 +1,7 @@
 package com.example.guaiwei.tsingm.fragment;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.guaiwei.tsingm.MainActivity;
 import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.activity.SearchFoodActivity;
@@ -31,7 +33,11 @@ import com.example.guaiwei.tsingm.adapter.FoodAdapter;
 import com.example.guaiwei.tsingm.gson.Nutriment;
 import com.example.guaiwei.tsingm.gson.RecommendFood;
 import com.example.guaiwei.tsingm.db.NutrimentInfo;
+import com.example.guaiwei.tsingm.utils.ToastUtil;
+import com.example.guaiwei.tsingm.utils.Util;
+import com.example.guaiwei.tsingm.utils.Utility;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
@@ -49,18 +55,23 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
     private List<Integer> imageRes=new ArrayList<>();//轮播图的图片资源
     private List<String> titles=new ArrayList<>();//轮播图的标题
     private Boolean isEvaluate;
-    private String recommendFood;//没进行健身阶段评估之前的饮食推荐
-    private List<RecommendFood> recommendFoods;//进行健身评估之后的饮食推荐
+    private String breakFast1,lunch1,supper1;
+    private String breakFast2,lunch2,supper2;
+    private List<List<RecommendFood>> breakFasts;//早餐列表
+    private List<List<RecommendFood>> lunchs;//午餐列表
+    private List<List<RecommendFood>> suppers;//晚餐列表
+    public static int i=0,j=0,k=0;
+    public static int id=0;//记录现在查看的是哪一餐
 
     private Banner banner;//播放轮播图的组件
     private Nutriment nutriment;//营养素
     private TextView changeFood;
     private Button createFood;
     private LinearLayout searchViewLL;
-    SharedPreferences prefs;
+    private SharedPreferences prefs;
 
     private RecyclerView foodRV;//显示食物的列表
-    FoodAdapter foodAdapter;//适配器
+    private FoodAdapter foodAdapter;//适配器
 
     //三餐导航个组件
     private LinearLayout zaocanLL,wucanLL,wangcanLL;
@@ -69,6 +80,7 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
 
     private LinearLayout noFoodLL;
     private RelativeLayout relativeLayout;
+    private ProgressDialog progressDialog;//进度对话框
 
 
     private View view;    //布局
@@ -80,23 +92,22 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
     /**
      * 初始化食物列表的数据
      */
-    private void initRecycleViewData() {
-        List<RecommendFood> zaocan=new ArrayList<>();
-//        RecommendFood zaocan1=new RecommendFood();zaocan1.setFoodName("玉米");zaocan1.setFoodReLiang("127千卡");zaocan1.setFoodG("144g");
-//        RecommendFood zaocan2=new RecommendFood();zaocan2.setFoodName("鸡蛋");zaocan2.setFoodReLiang("71千卡");zaocan2.setFoodG("53g");
-//        RecommendFood zaocan3=new RecommendFood();zaocan3.setFoodName("脱脂牛奶");zaocan3.setFoodReLiang("99千卡");zaocan3.setFoodG("301g");
-//        zaocan.add(zaocan1);zaocan.add(zaocan2);zaocan.add(zaocan3);
-//        List<RecommendFood> wucan=new ArrayList<>();
-//        RecommendFood wucan1=new RecommendFood();wucan1.setFoodName("红薯");wucan1.setFoodReLiang("226千卡");wucan1.setFoodG("247g");
-//        RecommendFood wucan2=new RecommendFood();wucan2.setFoodName("牛肉");wucan2.setFoodReLiang("128千卡");wucan2.setFoodG("56g");
-//        RecommendFood wucan3=new RecommendFood();wucan3.setFoodName("菠菜");wucan3.setFoodReLiang("19千卡");wucan3.setFoodG("91g");
-//        wucan.add(wucan1);wucan.add(wucan2);wucan.add(wucan3);
-//        List<RecommendFood> wangcang=new ArrayList<>();
-//        RecommendFood wangcang1=new RecommendFood();wangcang1.setFoodName("玉米");wangcang1.setFoodReLiang("191千卡");wangcang1.setFoodG("202g");
-//        RecommendFood wangcang2=new RecommendFood();wangcang2.setFoodName("牛肉");wangcang2.setFoodReLiang("111千卡");wangcang2.setFoodG("105g");
-//        RecommendFood wangcang3=new RecommendFood();wangcang3.setFoodName("菠菜");wangcang3.setFoodReLiang("19千卡");wangcang3.setFoodG("91g");
-//        wangcang.add(wangcang1);wangcang.add(wangcang2);wangcang.add(wangcang3);
-//        recommendFoods.add(zaocan);recommendFoods.add(wucan);recommendFoods.add(wangcang);
+    private void initRecommendFoodData() {
+        SharedPreferences.Editor editor=prefs.edit();
+        Gson gson=new Gson();
+        String breakFast1=gson.toJson(Utility.getBreakFast().get(0));
+        String breakFast2=gson.toJson(Utility.getBreakFast().get(1));
+        String lunch1=gson.toJson(Utility.getLunch().get(0));
+        String lunch2=gson.toJson(Utility.getLunch().get(1));
+        String supper1=gson.toJson(Utility.getSupper().get(0));
+        String supper2=gson.toJson(Utility.getSupper().get(1));
+        editor.putString("breakFast1",breakFast1);
+        editor.putString("lunch1",lunch1);
+        editor.putString("supper1",supper1);
+        editor.putString("breakFast2",breakFast2);
+        editor.putString("lunch2",lunch2);
+        editor.putString("supper2",supper2);
+        editor.apply();
     }
 
     /**
@@ -128,17 +139,6 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
             }
         }
     }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
     /**
      * 初始化列表的适配器
      */
@@ -146,8 +146,6 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
         LinearLayoutManager layoutManager=new LinearLayoutManager(view.getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         foodRV.setLayoutManager(layoutManager);
-//        foodAdapter=new FoodAdapter(recommendFoods.get(0));
-        foodRV.setAdapter(foodAdapter);
     }
 
     /**
@@ -200,32 +198,86 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
         initBanner();
         initNavigationView();
         initComponent();
-//        initRecycleView();
+        initRecycleView();
         zaocanLL.setOnClickListener(this);
         wucanLL.setOnClickListener(this);
         wangcanLL.setOnClickListener(this);
         searchViewLL.setOnClickListener(this);
-        zaocanTV.setTextColor(getContext().getResources().getColor(R.color.colorFood));
-        zaocanIV.setImageResource(R.drawable.zaocan_after);
+        createFood.setOnClickListener(this);
+        changeFood.setOnClickListener(this);
+        if (id==0){
+            zaocanTV.setTextColor(getContext().getResources().getColor(R.color.colorFood));
+            zaocanIV.setImageResource(R.drawable.zaocan_after);
+        }
+        if (id==1){
+            wucanIV.setImageResource(R.drawable.wucan_after);
+            wucanTV.setTextColor(getContext().getResources().getColor(R.color.colorFood));
+        }
+        if (id==2){
+            wangcanIV.setImageResource(R.drawable.wancan_after);
+            wangcanTV.setTextColor(getContext().getResources().getColor(R.color.colorFood));
+        }
         isEvaluate=prefs.getBoolean("isEvaluate",false);
-        recommendFood=prefs.getString("recommend_food",null);
-        recommendFoods=DataSupport.where("data=?",GetBeforeData.getBeforeData(null,0).get(0)).find(RecommendFood.class);
-        if(!isEvaluate&&recommendFood==null){
+        getPrefs();
+//        recommendFoods=DataSupport.where("data=?",GetBeforeData.getBeforeData(null,0).get(0)).find(RecommendFood.class);
+        if(breakFasts.size()==0){
             noFoodView();
         }
-        if(!isEvaluate&&recommendFood!=null){
+        else{
             haveFoodView();
-//            Gson gson=new Gson();
-//            gson.fromJson(recommendFood,RecommendFood.class);
-
+            if(id==0){
+                foodAdapter=new FoodAdapter(breakFasts.get(i%2));
+                foodRV.setAdapter(foodAdapter);
+            }
+            if (id==1){
+                foodAdapter = new FoodAdapter(lunchs.get(j%2));
+                foodRV.setAdapter(foodAdapter);
+            }
+            if (id==2){
+                foodAdapter = new FoodAdapter(suppers.get(k%2));
+                foodRV.setAdapter(foodAdapter);
+            }
         }
-        if(isEvaluate&&recommendFoods.size()==0){
-            noFoodView();
-        }
-        if(isEvaluate&&recommendFoods.size()!=0){
-            haveFoodView();
-        }
+//        if(!isEvaluate&&recommendFood!=null){
+//            haveFoodView();
+//        }
+//        if(isEvaluate&&recommendFoods.size()==0){
+//            noFoodView();
+//        }
+//        if(isEvaluate&&recommendFoods.size()!=0){
+//            haveFoodView();
+//        }
         return view;
+    }
+
+    /**
+     * 获取SharedPreferences中的食物数据
+     */
+    private void getPrefs(){
+        breakFasts=new ArrayList<>();
+        lunchs=new ArrayList<>();
+        suppers=new ArrayList<>();
+        breakFast1=prefs.getString("breakFast1",null);
+        lunch1=prefs.getString("lunch1",null);
+        supper1=prefs.getString("supper1",null);
+        breakFast2=prefs.getString("breakFast2",null);
+        lunch2=prefs.getString("lunch2",null);
+        supper2=prefs.getString("supper2",null);
+        if(breakFast1!=null){
+            Gson gson=new Gson();
+            List<RecommendFood> bf1=gson.fromJson(breakFast1,new TypeToken<List<RecommendFood>>(){}.getType());
+            List<RecommendFood>bf2=gson.fromJson(breakFast2,new TypeToken<List<RecommendFood>>(){}.getType());
+            breakFasts.add(bf1);
+            breakFasts.add(bf2);
+            List<RecommendFood> l1=gson.fromJson(lunch1,new TypeToken<List<RecommendFood>>(){}.getType());
+            List<RecommendFood> l2=gson.fromJson(lunch2,new TypeToken<List<RecommendFood>>(){}.getType());
+            lunchs.add(l1);
+            lunchs.add(l2);
+            List<RecommendFood> s1=gson.fromJson(supper1,new TypeToken<List<RecommendFood>>(){}.getType());
+            List<RecommendFood> s2=gson.fromJson(supper2,new TypeToken<List<RecommendFood>>(){}.getType());
+            suppers.add(s1);
+            suppers.add(s2);
+        }
     }
 
     /**
@@ -269,40 +321,103 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
                 clearChioce();
                 zaocanIV.setImageResource(R.drawable.zaocan_after);
                 zaocanTV.setTextColor(getContext().getResources().getColor(R.color.colorFood));
-                if(recommendFoods.size()!=0){
-//                    foodAdapter=new FoodAdapter(recommendFoods.get(0));
+                if(breakFasts.size()!=0){
+                    foodAdapter=new FoodAdapter(breakFasts.get(i%2));
                     foodRV.setAdapter(foodAdapter);
                 }
+                id=0;
                 break;
             case R.id.wucan:
                 clearChioce();
                 wucanIV.setImageResource(R.drawable.wucan_after);
                 wucanTV.setTextColor(getContext().getResources().getColor(R.color.colorFood));
-                if (recommendFoods.size()!=0) {
-//                    foodAdapter = new FoodAdapter(recommendFoods.get(1));
+                if (lunchs.size()!=0) {
+                    foodAdapter = new FoodAdapter(lunchs.get(j%2));
                     foodRV.setAdapter(foodAdapter);
                 }
+                id=1;
                 break;
             case R.id.wancan:
                 clearChioce();
                 wangcanIV.setImageResource(R.drawable.wancan_after);
                 wangcanTV.setTextColor(getContext().getResources().getColor(R.color.colorFood));
-                if (recommendFoods.size()!=0){
-//                    foodAdapter=new FoodAdapter(recommendFoods.get(2));
+                if (suppers.size()!=0){
+                    foodAdapter=new FoodAdapter(suppers.get(k%2));
                     foodRV.setAdapter(foodAdapter);
                 }
+                id=2;
                 break;
             case R.id.change_food:
+//                showProgressDialog();
                 //换一批食物点击事件（未完）
+
+                if(id==0){
+                    i++;
+                    foodAdapter=new FoodAdapter(breakFasts.get(i%2));
+                    foodRV.setAdapter(foodAdapter);
+                }
+                if (id==1){
+                    j++;
+                    foodAdapter = new FoodAdapter(lunchs.get(j%2));
+                    foodRV.setAdapter(foodAdapter);
+                }
+                if (id==2){
+                    k++;
+                    foodAdapter = new FoodAdapter(suppers.get(k%2));
+                    foodRV.setAdapter(foodAdapter);
+                }
+//                closeProgressDialog();
                 break;
             case R.id.create_food:
+//                showProgressDialog();
                 //生成食物
+                initRecommendFoodData();
+                haveFoodView();
+                getPrefs();
+                if(id==0){
+                    foodAdapter=new FoodAdapter(breakFasts.get(i%2));
+                    foodRV.setAdapter(foodAdapter);
+                }
+                if (id==1){
+                    foodAdapter = new FoodAdapter(lunchs.get(j%2));
+                    foodRV.setAdapter(foodAdapter);
+                }
+                if (id==2){
+                    foodAdapter = new FoodAdapter(suppers.get(k%2));
+                    foodRV.setAdapter(foodAdapter);
+                }
+//                if(breakFasts!=null){
+//                    foodAdapter=new FoodAdapter(breakFasts.get(i%2));
+//                    foodRV.setAdapter(foodAdapter);
+//                }
+//                closeProgressDialog();
                 break;
             case R.id.search_ll:
                 Intent intent=new Intent(view.getContext(),SearchFoodActivity.class);
                 startActivity(intent);
             default:
                 break;
+        }
+    }
+
+    /**
+     * 显示进度对话框
+     */
+    private  void  showProgressDialog(){
+        if(progressDialog==null){
+            progressDialog=new ProgressDialog(MyApplication.getContext());
+            progressDialog.setMessage("请稍等...");
+            progressDialog.setCanceledOnTouchOutside(false);
+        }
+        progressDialog.show();
+    }
+
+    /**
+     * 关闭进度对话框
+     */
+    private void  closeProgressDialog(){
+        if(progressDialog!=null){
+            progressDialog.dismiss();
         }
     }
 }

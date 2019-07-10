@@ -4,15 +4,28 @@ import org.litepal.crud.DataSupport;
 
 public class RecommendFood extends DataSupport {
     private int id;
-    private String foodName;//食物的名称
+    private String food_name;//食物的名称
     private String foodG;//食物克数
-    private String foodReLiang;//食物的热量
-    private String url;//图片地址
+    private String energy;//食物的热量
+    private String rl;//100g食物的热量
+//    private String url;//图片地址
     private String dbz;
     private String cshhw;
     private String zf;
     private String type;
     private String data;
+
+    public RecommendFood(){}
+    public RecommendFood(String food_name, String foodG,String energy, String rl, String dbz, String cshhw, String zf, String type) {
+        this.food_name = food_name;
+        this.foodG = foodG;
+        this.energy=energy;
+        this.rl = rl;
+        this.dbz = dbz;
+        this.cshhw = cshhw;
+        this.zf = zf;
+        this.type = type;
+    }
 
     public String getData() {
         return data;
@@ -54,44 +67,23 @@ public class RecommendFood extends DataSupport {
         this.type = type;
     }
 
+    public String getFood_name() { return food_name; }
 
+    public void setFood_name(String food_name) { this.food_name = food_name; }
 
-    public int getId() {
-        return id;
-    }
+    public String getFoodG() { return foodG; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setFoodG(String foodG) { this.foodG = foodG; }
 
-    public String getUrl() {
-        return url;
-    }
+    public String getRl() { return rl; }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-    public String getFoodName() {
-        return foodName;
-    }
+    public void setRl(String rl) { this.rl = rl; }
 
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
-    }
+    public String getEnergy() { return energy; }
 
-    public String getFoodG() {
-        return foodG;
-    }
+    public void setEnergy(String energy) { this.energy = energy; }
 
-    public void setFoodG(String foodG) {
-        this.foodG = foodG;
-    }
+    public int getId() { return id; }
 
-    public String getFoodReLiang() {
-        return foodReLiang;
-    }
-
-    public void setFoodReLiang(String foodReLiang) {
-        this.foodReLiang = foodReLiang;
-    }
+    public void setId(int id) { this.id = id; }
 }

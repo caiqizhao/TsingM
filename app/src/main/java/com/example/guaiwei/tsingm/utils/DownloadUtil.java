@@ -72,7 +72,6 @@ public class DownloadUtil {
                     Message message = new Message();
                     message.what=0x0001;
                     ExerciseListActivity.handler.sendMessage(message);
-
                 } catch (IOException e) {
                     e.printStackTrace();
                     Message message = new Message();

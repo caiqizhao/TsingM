@@ -52,7 +52,7 @@ public class SearchFoodDetailActivity extends BaseActivity {
      * 设置各组件的数据
      */
     private void setData() {
-        foodName.setText(food.getFood_name());
+        foodName.setText(food.getFood_name().split("，")[0]);
         String url=VariableUtil.Service_IP+"food/"+food.getFood_name()+".jpg";
         Glide.with(this).load(url).into(foodPhoto);
         foodNengLiang.setText(food.getRl()+"千卡/100g(毫升)");

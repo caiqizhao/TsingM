@@ -250,6 +250,7 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        //设置显示视频显示在surfaceView上
         mPlayer.setDisplay(surfaceHolder);
         play();
         Log.v("1","surfaceCreated");
@@ -259,7 +260,6 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
      *播放视频
      */
     private void play(){
-        //设置显示视频显示在surfaceView上
         try{
             mPlayer.reset();
             mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -272,8 +272,7 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
             File file = new File(everyActionUrl.get(i));
             FileInputStream fis = new FileInputStream(file);
             mPlayer.setDataSource(fis.getFD());
-//            mPlayer.setDataSource(VariableUtil.Service_IP+everyActions.get(i).getId()+".mp4");
-            // 异步准备并播放
+            // 准备并播放
             mPlayer.prepare();
             mPlayer.start();
             mPlayer.seekTo(currentPosition);
@@ -338,11 +337,11 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
         factHaoNeng=(complete_i*1.0/everyActions.size()*1.0)*Integer.parseInt(dayPlan.getNengliang());
         dayPlan.setCompleteAction(complete_i+"");
         dayPlan.setCompleteData(GetBeforeData.getBeforeData(null,0).get(0));
-        if(dayPlan.getShijihaoneng()!=null||!TextUtils.isEmpty(dayPlan.getShijihaoneng())){
-            dayPlan.setShijihaoneng(Double.parseDouble(dayPlan.getShijihaoneng())+Double.parseDouble(df.format(factHaoNeng))+"");
-        }
-        else
-            dayPlan.setShijihaoneng(df.format(factHaoNeng));
+//        if(dayPlan.getShijihaoneng()!=null||!TextUtils.isEmpty(dayPlan.getShijihaoneng())){
+//            dayPlan.setShijihaoneng(Double.parseDouble(dayPlan.getShijihaoneng())+Double.parseDouble(df.format(factHaoNeng))+"");
+//        }
+//        else
+        dayPlan.setShijihaoneng(df.format(factHaoNeng));
         dayPlan.updateAll("id=?",String.valueOf(dayPlan.getId()));
 
         List<MotionRecordsEntity> motionRecordsEntitys=DataSupport.where("dayplanId=?",String.valueOf(dayPlan.getId())).find(MotionRecordsEntity.class);
@@ -361,7 +360,7 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
             motionRecordsEntity.setHaoneng(Double.parseDouble(dayPlan.getShijihaoneng()));
             motionRecordsEntity.setData(dayPlan.getCompleteData());
             String time[]=motionRecordsEntity.getTime().split(":");
-            int t=Integer.parseInt(time[0])*60+Integer.parseInt(time[1]);
+            int t=Integer.parseInt(time[0])*60+Integer.parseInt(time[1])+n;
             motionRecordsEntity.setTime(GetBeforeData.formatTime(t));
             motionRecordsEntity.save();
         }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.guaiwei.tsingm.R;
@@ -36,6 +37,7 @@ public class HaoNengFragment extends Fragment {
     private double footHaoneng;//步行耗能
     private double fitHoaneng;//健身耗能
     private double runHaoneng;//跑步耗能
+    private ImageView isComplete;
     public HaoNengFragment() {
         // Required empty public constructor
     }
@@ -77,6 +79,7 @@ public class HaoNengFragment extends Fragment {
         fitTv=view.findViewById(R.id.haoneng_fit);
         historyBtn=view.findViewById(R.id.checkHistoryData);
         sportStepCountView=view.findViewById(R.id.circleProgress);
+        isComplete=view.findViewById(R.id.iscomplete);
     }
 
     /**
@@ -89,6 +92,11 @@ public class HaoNengFragment extends Fragment {
         footTv.setText(footHaoneng+"");
         fitTv.setText(fitHoaneng+"");
         runTv.setText(runHaoneng+"");
+        if(shijiHaoneng>tuijianHaoneng){
+            isComplete.setVisibility(View.VISIBLE);
+        }
+        else
+            isComplete.setVisibility(View.GONE);
     }
 
     /**

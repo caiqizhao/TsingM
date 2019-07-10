@@ -64,7 +64,7 @@ public class SearchFoodAdapter extends RecyclerView.Adapter<SearchFoodAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Food food=foodList.get(position);
-        holder.foodName.setText(food.getFood_name());
+        holder.foodName.setText(food.getFood_name().split("，")[0]);
         String url=VariableUtil.Service_IP+"food/"+food.getFood_name()+".jpg";
         Glide.with(holder.view.getContext()).load(url).into(holder.foodImage);
         holder.foodNengliang.setText(food.getRl()+"千卡/100g(毫升)");
