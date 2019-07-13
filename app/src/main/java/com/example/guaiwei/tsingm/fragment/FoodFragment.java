@@ -5,14 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,19 +19,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.example.guaiwei.tsingm.MainActivity;
 import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.activity.SearchFoodActivity;
-import com.example.guaiwei.tsingm.utils.DensityUtil;
 import com.example.guaiwei.tsingm.utils.GetBeforeData;
 import com.example.guaiwei.tsingm.utils.MyApplication;
 import com.example.guaiwei.tsingm.adapter.FoodAdapter;
 import com.example.guaiwei.tsingm.gson.Nutriment;
-import com.example.guaiwei.tsingm.gson.RecommendFood;
+import com.example.guaiwei.tsingm.db.RecommendFood;
 import com.example.guaiwei.tsingm.db.NutrimentInfo;
-import com.example.guaiwei.tsingm.utils.ToastUtil;
-import com.example.guaiwei.tsingm.utils.Util;
 import com.example.guaiwei.tsingm.utils.Utility;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -55,11 +47,9 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
     private List<Integer> imageRes=new ArrayList<>();//轮播图的图片资源
     private List<String> titles=new ArrayList<>();//轮播图的标题
     private Boolean isEvaluate;
-    private String breakFast1,lunch1,supper1;
-    private String breakFast2,lunch2,supper2;
-    private List<List<RecommendFood>> breakFasts;//早餐列表
-    private List<List<RecommendFood>> lunchs;//午餐列表
-    private List<List<RecommendFood>> suppers;//晚餐列表
+    private List<RecommendFood> breakFasts;//早餐列表
+    private List<RecommendFood> lunchs;//午餐列表
+    private List<RecommendFood> suppers;//晚餐列表
     public static int i=0,j=0,k=0;
     public static int id=0;//记录现在查看的是哪一餐
 
@@ -69,6 +59,7 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
     private Button createFood;
     private LinearLayout searchViewLL;
     private SharedPreferences prefs;
+    SharedPreferences.Editor editor;
 
     private RecyclerView foodRV;//显示食物的列表
     private FoodAdapter foodAdapter;//适配器
@@ -87,26 +78,29 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
     public FoodFragment() {
         // Required empty public constructor
         initBannerData();
+        editor=prefs.edit();
     }
 
     /**
      * 初始化食物列表的数据
      */
     private void initRecommendFoodData() {
-        SharedPreferences.Editor editor=prefs.edit();
         Gson gson=new Gson();
-        String breakFast1=gson.toJson(Utility.getBreakFast().get(0));
-        String breakFast2=gson.toJson(Utility.getBreakFast().get(1));
-        String lunch1=gson.toJson(Utility.getLunch().get(0));
-        String lunch2=gson.toJson(Utility.getLunch().get(1));
-        String supper1=gson.toJson(Utility.getSupper().get(0));
-        String supper2=gson.toJson(Utility.getSupper().get(1));
-        editor.putString("breakFast1",breakFast1);
-        editor.putString("lunch1",lunch1);
-        editor.putString("supper1",supper1);
-        editor.putString("breakFast2",breakFast2);
-        editor.putString("lunch2",lunch2);
-        editor.putString("supper2",supper2);
+        breakFasts=Utility.getBreakFast().get(i%2);
+        String breakFast=gson.toJson(breakFasts);
+//        String breakFast2=gson.toJson(Utility.getBreakFast().get(1));
+        lunchs=Utility.getLunch().get(j%2);
+        String lunch=gson.toJson(lunchs);
+//        String lunch2=gson.toJson(Utility.getLunch().get(1));
+        suppers=Utility.getSupper().get(k%2);
+        String supper=gson.toJson(suppers);
+//        String supper2=gson.toJson(Utility.getSupper().get(1));
+        editor.putString("breakFast",breakFast);
+        editor.putString("lunch",lunch);
+        editor.putString("supper",supper);
+//        editor.putString("breakFast2",breakFast2);
+//        editor.putString("lunch2",lunch2);
+//        editor.putString("supper2",supper2);
         editor.apply();
     }
 
@@ -226,15 +220,15 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
         else{
             haveFoodView();
             if(id==0){
-                foodAdapter=new FoodAdapter(breakFasts.get(i%2));
+                foodAdapter=new FoodAdapter(breakFasts);
                 foodRV.setAdapter(foodAdapter);
             }
             if (id==1){
-                foodAdapter = new FoodAdapter(lunchs.get(j%2));
+                foodAdapter = new FoodAdapter(lunchs);
                 foodRV.setAdapter(foodAdapter);
             }
             if (id==2){
-                foodAdapter = new FoodAdapter(suppers.get(k%2));
+                foodAdapter = new FoodAdapter(suppers);
                 foodRV.setAdapter(foodAdapter);
             }
         }
@@ -257,26 +251,17 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
         breakFasts=new ArrayList<>();
         lunchs=new ArrayList<>();
         suppers=new ArrayList<>();
-        breakFast1=prefs.getString("breakFast1",null);
-        lunch1=prefs.getString("lunch1",null);
-        supper1=prefs.getString("supper1",null);
-        breakFast2=prefs.getString("breakFast2",null);
-        lunch2=prefs.getString("lunch2",null);
-        supper2=prefs.getString("supper2",null);
-        if(breakFast1!=null){
+        String breakFast=prefs.getString("breakFast",null);
+        String lunch=prefs.getString("lunch",null);
+        String supper=prefs.getString("supper",null);
+//        breakFast2=prefs.getString("breakFast2",null);
+//        lunch2=prefs.getString("lunch2",null);
+//        supper2=prefs.getString("supper2",null);
+        if(breakFast!=null&&lunch!=null&&supper!=null){
             Gson gson=new Gson();
-            List<RecommendFood> bf1=gson.fromJson(breakFast1,new TypeToken<List<RecommendFood>>(){}.getType());
-            List<RecommendFood>bf2=gson.fromJson(breakFast2,new TypeToken<List<RecommendFood>>(){}.getType());
-            breakFasts.add(bf1);
-            breakFasts.add(bf2);
-            List<RecommendFood> l1=gson.fromJson(lunch1,new TypeToken<List<RecommendFood>>(){}.getType());
-            List<RecommendFood> l2=gson.fromJson(lunch2,new TypeToken<List<RecommendFood>>(){}.getType());
-            lunchs.add(l1);
-            lunchs.add(l2);
-            List<RecommendFood> s1=gson.fromJson(supper1,new TypeToken<List<RecommendFood>>(){}.getType());
-            List<RecommendFood> s2=gson.fromJson(supper2,new TypeToken<List<RecommendFood>>(){}.getType());
-            suppers.add(s1);
-            suppers.add(s2);
+            breakFasts=gson.fromJson(breakFast,new TypeToken<List<RecommendFood>>(){}.getType());
+            lunchs=gson.fromJson(lunch,new TypeToken<List<RecommendFood>>(){}.getType());
+            suppers=gson.fromJson(supper,new TypeToken<List<RecommendFood>>(){}.getType());
         }
     }
 
@@ -322,7 +307,7 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
                 zaocanIV.setImageResource(R.drawable.zaocan_after);
                 zaocanTV.setTextColor(getContext().getResources().getColor(R.color.colorFood));
                 if(breakFasts.size()!=0){
-                    foodAdapter=new FoodAdapter(breakFasts.get(i%2));
+                    foodAdapter=new FoodAdapter(breakFasts);
                     foodRV.setAdapter(foodAdapter);
                 }
                 id=0;
@@ -332,7 +317,7 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
                 wucanIV.setImageResource(R.drawable.wucan_after);
                 wucanTV.setTextColor(getContext().getResources().getColor(R.color.colorFood));
                 if (lunchs.size()!=0) {
-                    foodAdapter = new FoodAdapter(lunchs.get(j%2));
+                    foodAdapter = new FoodAdapter(lunchs);
                     foodRV.setAdapter(foodAdapter);
                 }
                 id=1;
@@ -342,7 +327,7 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
                 wangcanIV.setImageResource(R.drawable.wancan_after);
                 wangcanTV.setTextColor(getContext().getResources().getColor(R.color.colorFood));
                 if (suppers.size()!=0){
-                    foodAdapter=new FoodAdapter(suppers.get(k%2));
+                    foodAdapter=new FoodAdapter(suppers);
                     foodRV.setAdapter(foodAdapter);
                 }
                 id=2;
@@ -350,22 +335,32 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
             case R.id.change_food:
 //                showProgressDialog();
                 //换一批食物点击事件（未完）
-
+                Gson gson=new Gson();
                 if(id==0){
                     i++;
-                    foodAdapter=new FoodAdapter(breakFasts.get(i%2));
+                    breakFasts=Utility.getBreakFast().get(i%2);
+                    String breakFast=gson.toJson(breakFasts);
+                    editor.putString("breakFast",breakFast);
+                    foodAdapter=new FoodAdapter(breakFasts);
                     foodRV.setAdapter(foodAdapter);
                 }
                 if (id==1){
                     j++;
-                    foodAdapter = new FoodAdapter(lunchs.get(j%2));
+                    lunchs=Utility.getLunch().get(j%2);
+                    String lunch=gson.toJson(lunchs);
+                    editor.putString("lunch",lunch);
+                    foodAdapter = new FoodAdapter(lunchs);
                     foodRV.setAdapter(foodAdapter);
                 }
                 if (id==2){
                     k++;
-                    foodAdapter = new FoodAdapter(suppers.get(k%2));
+                    suppers=Utility.getSupper().get(k%2);
+                    String supper=gson.toJson(suppers);
+                    foodAdapter = new FoodAdapter(suppers);
+                    editor.putString("supper",supper);
                     foodRV.setAdapter(foodAdapter);
                 }
+                editor.apply();
 //                closeProgressDialog();
                 break;
             case R.id.create_food:
@@ -375,15 +370,15 @@ public class FoodFragment extends Fragment implements View.OnClickListener{
                 haveFoodView();
                 getPrefs();
                 if(id==0){
-                    foodAdapter=new FoodAdapter(breakFasts.get(i%2));
+                    foodAdapter=new FoodAdapter(breakFasts);
                     foodRV.setAdapter(foodAdapter);
                 }
                 if (id==1){
-                    foodAdapter = new FoodAdapter(lunchs.get(j%2));
+                    foodAdapter = new FoodAdapter(lunchs);
                     foodRV.setAdapter(foodAdapter);
                 }
                 if (id==2){
-                    foodAdapter = new FoodAdapter(suppers.get(k%2));
+                    foodAdapter = new FoodAdapter(suppers);
                     foodRV.setAdapter(foodAdapter);
                 }
 //                if(breakFasts!=null){

@@ -18,6 +18,7 @@ import com.example.guaiwei.tsingm.Evaluate.CurrentSituationActivity;
 import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.activity.BodyDataActivity;
 import com.example.guaiwei.tsingm.activity.SetActivity;
+import com.example.guaiwei.tsingm.db.RecommendFood;
 import com.example.guaiwei.tsingm.utils.GetBeforeData;
 import com.example.guaiwei.tsingm.utils.MyApplication;
 import com.example.guaiwei.tsingm.activity.WorkDataActivity;
@@ -33,12 +34,14 @@ import java.util.List;
  * 用户基本信息Fragment
  * A simple {@link Fragment} subclass.
  */
-public class MyFragment extends Fragment {
-    private TextView heightTV,weightTV,timeCountTV,weekTimeCountTV,changeInfo;//身高体重的文本框,修改信息文本框
+public class  MyFragment extends Fragment {
+    private TextView userName,heightTV,weightTV,foodEnergyTv,sportEnergyTv,changeInfo;//身高体重的文本框,修改信息文本框
     private RelativeLayout workDataRL,bodyDataRL,bodyTextRL,setRL;
     private ImageView headImage;//头像
     private View view;
     Intent intent;
+
+    double sportEnergy=0.0,foodEnergy=0.0;
 
     public MyFragment() {
     }
@@ -59,6 +62,8 @@ public class MyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(),WorkDataActivity.class);
+                intent.putExtra("food_energy",foodEnergy);
+                intent.putExtra("sport_energy",sportEnergy);
                 startActivity(intent);
             }
         });
@@ -93,34 +98,39 @@ public class MyFragment extends Fragment {
         String userData=prefs.getString("user_data",null);
         User user=new Gson().fromJson(userData,User.class);
         if(user!=null){
+            userName.setText(user.getUserName());
             heightTV.setText(user.getHeight()+"");
             weightTV.setText(user.getWeight()+"");
         }
         headImage.setImageResource(R.mipmap.head);
-        List<MotionRecordsEntity> motionRecordsEntitys=DataSupport.findAll(MotionRecordsEntity.class);
-        int countTime=0;double countHaoNeng=0.0;
-        if(motionRecordsEntitys!=null){
+        String data=GetBeforeData.getBeforeData(null,0).get(0);
+        List<MotionRecordsEntity> motionRecordsEntitys=DataSupport.where("data=?",data).find(MotionRecordsEntity.class);
+        List<RecommendFood> recommendFoods=DataSupport.where("data=?",data).find(RecommendFood.class);
+        if(motionRecordsEntitys.size()!=0){
             for(MotionRecordsEntity motionRecordsEntity:motionRecordsEntitys){
-                if(!motionRecordsEntity.getMovement_type().equals("行走")){
-                    String timeStr= motionRecordsEntity.getTime();
-                    int time=GetBeforeData.transforTime(timeStr);
-                    countTime+=time;
-                    double haoNeng=motionRecordsEntity.getHaoneng();
-                    countHaoNeng+=haoNeng;
-                }
+                double haoNeng=motionRecordsEntity.getHaoneng();
+                sportEnergy+=haoNeng;
             }
         }
-        timeCountTV.setText(countTime+"");
+        if (recommendFoods.size()!=0){
+            for (RecommendFood recommendFood:recommendFoods){
+                double haoNeng=Double.parseDouble(recommendFood.getEnergy().replaceAll("[^0-9.]",""));
+                foodEnergy+=haoNeng;
+            }
+        }
+        sportEnergyTv.setText(sportEnergy+"");
+        foodEnergyTv.setText(foodEnergy+"");
     }
 
     /**
      * 初始化各组件
      */
     private void initComponent() {
+        userName=view.findViewById(R.id.name_me);
         heightTV=view.findViewById(R.id.height);
         weightTV=view.findViewById(R.id.weight);
-        timeCountTV=view.findViewById(R.id.time_count);
-        weekTimeCountTV=view.findViewById(R.id.week_time_count);
+        foodEnergyTv=view.findViewById(R.id.food_energy);
+        sportEnergyTv=view.findViewById(R.id.sport_energy);
         changeInfo=view.findViewById(R.id.change_info);
 
         bodyDataRL=view.findViewById(R.id.my_body_data);

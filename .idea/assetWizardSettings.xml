@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/D:/Android/AndroidStudio/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_navigate_next_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/D:/Android/AndroidStudio/plugins/android/lib/android.jar!/images/material_design_icons/alert/ic_error_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -45,9 +45,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="text_in" />
+                                      <entry key="outputName" value="warn" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="f1bc1c" />
+                                      <entry key="themeColor" value="d81e06" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -95,6 +95,11 @@
                             </entry>
                           </map>
                         </option>
+                        <option name="values">
+                          <map>
+                            <entry key="outputIconType" value="ACTIONBAR" />
+                          </map>
+                        </option>
                       </PersistentState>
                     </value>
                   </entry>
@@ -118,7 +123,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/D:/Android/AndroidStudio/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_local_dining_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/D:/Android/AndroidStudio/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_directions_run_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -129,7 +134,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="24c68a" />
-                            <entry key="outputName" value="food_image" />
+                            <entry key="outputName" value="plan_image" />
                             <entry key="sourceFile" value="C:\Users\A" />
                           </map>
                         </option>

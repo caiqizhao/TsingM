@@ -1,197 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#584f60"
     android:fitsSystemWindows="true"
     tools:context=".activity.WorkDataActivity">
-    <Button
-        android:id="@+id/detail_data_back"
-        android:layout_width="30dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@mipmap/back"/>
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="我的运动数据"
-        android:layout_margin="10dp"
-        android:textSize="25sp"
-        android:textColor="@color/colorWhite"/>
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="3dp">
-        <LinearLayout
-            android:id="@+id/detail_work_data"
+        android:layout_height="350dp"
+        android:orientation="vertical"
+        android:background="#3e424e">
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/text1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="累计运动时长"
-                    android:textSize="18sp"
-                    android:textColor="#FF121111"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/history"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:layout_toLeftOf="@id/iv1"
-                    android:text="运动历史"
-                    android:textSize="15sp" />
-                <ImageView
-                    android:id="@+id/iv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:paddingTop="10dp"
-                    android:src="@drawable/in_icon" />
-            </RelativeLayout>
+            android:text="今日评分"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+
+            <com.example.guaiwei.tsingm.view.ScoreView
+                android:id="@+id/score_view"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerVertical="true" />
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/action_time"
-                    android:layout_width="match_parent"
+                    android:id="@+id/score"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="99"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="60dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/food_btn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/button_data_food"
+                android:text="饮食记录"
+                android:textColor="@color/colorWhite"
+                android:textSize="20dp" />
+            <Button
+                android:id="@+id/sport_btn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/button_data_sport"
+                android:text="运动记录"
+                android:textColor="@color/colorWhite"
+                android:textSize="20dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="300dp"
+        app:cardBackgroundColor="#fafafa"
+        app:cardCornerRadius="10dp">
+        <LinearLayout
+            android:id="@+id/food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:text="完成进度"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/colorWhite">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" 
+                    android:text="饮食摄入"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlack"
                     android:paddingLeft="10dp"
-                    android:textColor="#FF121111"
-                    android:textSize="50sp"
+                    android:paddingRight="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:paddingRight="4dp"
+                    android:text="推荐值："/>
+                <TextView
+                    android:id="@+id/recommend_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" 
+                    android:textStyle="bold"
+                    android:textSize="17dp"
+                    android:textColor="@color/colorBlack"
+                    android:text="10"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" 
+                    android:paddingLeft="4dp"
+                    android:text="千卡"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:background="@color/colorWhite">
+
+                <com.example.guaiwei.tsingm.view.EnergyProgressView
+                    android:id="@+id/food_progess"
+                    android:layout_width="220dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp"/>
+                <ImageView
+                    android:id="@+id/food_warn_img"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/warn"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="运动消耗"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlack"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:paddingRight="4dp"
+                    android:text="推荐值："/>
+                <TextView
+                    android:id="@+id/recommend_sport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17dp"
+                    android:textColor="@color/colorBlack"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:text="分钟"
-                    android:textSize="20sp"/>
+                    android:paddingLeft="4dp"
+                    android:text="千卡"/>
             </LinearLayout>
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp">
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="消耗（千卡）"
-                        android:textSize="15sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="0"
-                        android:textColor="#FF121111"
-                        android:textStyle="bold"
-                        android:textSize="20sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="累计（天）"
-                        android:textSize="15sp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textColor="#FF121111"
-                        android:textStyle="bold"
-                        android:textSize="20sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="连续（天）"
-                        android:textSize="15sp"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textColor="#FF121111"
-                            android:textStyle="bold"
-                            android:textSize="20sp" />
-                </LinearLayout>
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+                <com.example.guaiwei.tsingm.view.EnergyProgressView
+                    android:id="@+id/sport_progess"
+                    android:layout_width="220dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp" />
+                <ImageView
+                    android:id="@+id/sport_warn_img"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/warn"/>
             </LinearLayout>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.CardView
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    <LinearLayout
+        android:layout_below="@id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:layout_margin="10dp"
-        app:cardCornerRadius="5dp">
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:background="@mipmap/important"/>
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/colorBlue"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:orientation="vertical">
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
-                    android:layout_margin="10dp"
-                    android:src="@mipmap/leg"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:textColor="@color/colorWhite"
-                    android:gravity="center"
-                    android:text="今日步数"
-                    android:layout_marginTop="10dp"/>
-            </LinearLayout>
+                android:layout_marginTop="10dp"
+                android:text="根据你的身体情况和目标"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/bushu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="25sp"
-                    android:textColor="@color/colorWhite"
-                    android:text="0"
-                    android:layout_margin="10dp" />
+                    android:text="计算每日所需热量"/>
+                <TextView
+                    android:id="@+id/energy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="25dp"
+                    android:text="1130"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="步"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/colorWhite"/>
+                    android:textColor="@color/colorBlue"
+                    android:text="千卡"/>
             </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="即饮食摄入-运动消耗"/>
         </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-</LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

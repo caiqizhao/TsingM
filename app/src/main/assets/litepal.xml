@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
     <dbname value="TsingM"></dbname>
-    <version value="10"></version>
+    <version value="11"></version>
     <list>
         <mapping class="com.example.guaiwei.tsingm.db.DayPlanInfo"></mapping>
         <mapping class="com.example.guaiwei.tsingm.db.EveryActionInfo"></mapping>
         <mapping class="com.example.guaiwei.tsingm.db.MotionRecordsEntity"></mapping>
         <mapping class="com.example.guaiwei.tsingm.db.NutrimentInfo"></mapping>
-        <mapping class="com.example.guaiwei.tsingm.gson.RecommendFood"></mapping>
+        <mapping class="com.example.guaiwei.tsingm.db.RecommendFood"></mapping>
         <mapping class="com.example.guaiwei.tsingm.db.LocationPoint"></mapping>
     </list>
 </litepal>

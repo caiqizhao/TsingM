@@ -71,7 +71,6 @@ public class FlexibilityActivity extends BaseActivity {
                 String userData=new Gson().toJson(User.user);
                 editor.putString("user_data",userData);
                 editor.apply();
-
                 Intent intent=new Intent(FlexibilityActivity.this,PlanService.class);
                 startService(intent);//开启服务，向服务器发送请求，请求训练计划
            }
@@ -121,18 +120,17 @@ public class FlexibilityActivity extends BaseActivity {
 //                    editor.apply();
 //                }
                 Utility.dbSave(str);//将服务器传递的数据存储到数据库中
-                Intent intent=new Intent(FlexibilityActivity.this,MainActivity.class);//成功获取服务器传递的计划数据，跳转到主界面
                 stringData=GetBeforeData.getBeforeData(null, 20);//存储日期列表
                 Gson gson=new Gson();
                 String dataStr=gson.toJson(stringData);
-                closeProgressDialog();
-                startActivity(intent);
-//                MainActivity.isEvaluate=true;
                 // 设置用户评估状态为已进行评估
                 editor.putBoolean("isEvaluate",true);
                 editor.putString("plan_data",dataStr);
                 editor.apply();
-
+                closeProgressDialog();
+                Intent intent=new Intent(FlexibilityActivity.this,MainActivity.class);//成功获取服务器传递的计划数据，跳转到主界面
+                startActivity(intent);
+//                MainActivity.isEvaluate=true;
                 ActivityCollector.finishAll();//销毁之前的活动
             }
             else if(msg.what==0x002){

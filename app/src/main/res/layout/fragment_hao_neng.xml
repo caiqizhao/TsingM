@@ -34,7 +34,7 @@
             android:gravity="center_horizontal"
             android:layout_margin="10dp">
 
-            <com.example.guaiwei.tsingm.utils.SportStepCountView
+            <com.example.guaiwei.tsingm.view.ConsumeEnergyView
                 android:id="@+id/circleProgress"
                 android:layout_width="210dp"
                 android:layout_height="210dp"

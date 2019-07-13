@@ -1,4 +1,4 @@
-package com.example.guaiwei.tsingm.gson;
+package com.example.guaiwei.tsingm.db;
 
 import org.litepal.crud.DataSupport;
 
@@ -14,9 +14,11 @@ public class RecommendFood extends DataSupport {
     private String zf;
     private String type;
     private String data;
+    private Boolean isComplete;//打卡是否完成
+    private String kind;//推荐的食物三餐类型
 
     public RecommendFood(){}
-    public RecommendFood(String food_name, String foodG,String energy, String rl, String dbz, String cshhw, String zf, String type) {
+    public RecommendFood(String food_name, String foodG,String energy, String rl, String dbz, String cshhw, String zf, String type,boolean isComplete,String kind) {
         this.food_name = food_name;
         this.foodG = foodG;
         this.energy=energy;
@@ -25,6 +27,8 @@ public class RecommendFood extends DataSupport {
         this.cshhw = cshhw;
         this.zf = zf;
         this.type = type;
+        this.isComplete=isComplete;
+        this.kind=kind;
     }
 
     public String getData() {
@@ -86,4 +90,12 @@ public class RecommendFood extends DataSupport {
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
+
+    public Boolean getComplete() { return isComplete; }
+
+    public void setComplete(Boolean complete) { isComplete = complete; }
+
+    public String getKind() { return kind; }
+
+    public void setKind(String kind) { this.kind = kind; }
 }
