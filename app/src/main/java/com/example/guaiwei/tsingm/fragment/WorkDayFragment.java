@@ -58,8 +58,8 @@ public class WorkDayFragment extends Fragment {
     private int type;//判断是饮食记录还是运动记录
 
     private RecyclerView recordRV,breakfastRv,lunchRv,supperRv;
-    private TextView timeTv,countTv,haonengTv,dayDate,energyTv,noDataTv;
-    private LinearLayout sportText1,foodLL,breakfastLL,lunchLL,supperLL;
+    private TextView timeTv,countTv,haonengTv,dayDate,energyTv,noDataTv,foodDateTv;
+    private LinearLayout sportText1,sportTimeLL,foodLL,foodDateLL,breakfastLL,lunchLL,supperLL;
     private LineChart mLineChart;
     private View view;
 
@@ -106,6 +106,7 @@ public class WorkDayFragment extends Fragment {
         lunchs=new ArrayList<>();
         suppers=new ArrayList<>();
         if(id>=0){
+            foodDateTv.setText(dates.get(id));
             for (RecommendFood recommendFood:allRecommendFoods){
                 if (recommendFood.getData().equals(nutrimentInfos.get(id).getData())){
                     if(recommendFood.getKind().equals("早餐")){
@@ -209,11 +210,19 @@ public class WorkDayFragment extends Fragment {
      * 为运动记录recycleView设置适配器
      */
     private void initSportAdapter() {
-        LinearLayoutManager layoutManager1=new LinearLayoutManager(getContext());
-        layoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
-        recordRV.setLayoutManager(layoutManager1);
-        MotionRrecordsAdapter motionRrecordsAdapter=new MotionRrecordsAdapter(dayRecords);
-        recordRV.setAdapter(motionRrecordsAdapter);
+        if (dayRecords.size()==0){
+            recordRV.setVisibility(View.GONE);
+            noDataTv.setVisibility(View.VISIBLE);
+        }
+        else{
+            recordRV.setVisibility(View.VISIBLE);
+            noDataTv.setVisibility(View.GONE);
+            LinearLayoutManager layoutManager1=new LinearLayoutManager(getContext());
+            layoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
+            recordRV.setLayoutManager(layoutManager1);
+            MotionRrecordsAdapter motionRrecordsAdapter=new MotionRrecordsAdapter(dayRecords);
+            recordRV.setAdapter(motionRrecordsAdapter);
+        }
     }
 
     /**
@@ -222,11 +231,10 @@ public class WorkDayFragment extends Fragment {
     private void initFoodAdapter() {
         if(breakFasts.size()==0){
             breakfastLL.setVisibility(View.GONE);
-            breakfastRv.setVisibility(View.GONE);
         }
         else {
             breakfastLL.setVisibility(View.VISIBLE);
-            breakfastRv.setVisibility(View.VISIBLE);
+            noDataTv.setVisibility(View.GONE);
             LinearLayoutManager breafastLayoutManager=new LinearLayoutManager(getContext());
             breafastLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             breakfastRv.setLayoutManager(breafastLayoutManager);
@@ -235,11 +243,10 @@ public class WorkDayFragment extends Fragment {
         }
         if(lunchs.size()==0){
             lunchLL.setVisibility(View.GONE);
-            lunchRv.setVisibility(View.GONE);
         }
         else {
             lunchLL.setVisibility(View.VISIBLE);
-            lunchRv.setVisibility(View.VISIBLE);
+            noDataTv.setVisibility(View.GONE);
             LinearLayoutManager lunchLayoutManger=new LinearLayoutManager(getContext());
             lunchLayoutManger.setOrientation(LinearLayoutManager.VERTICAL);
             lunchRv.setLayoutManager(lunchLayoutManger);
@@ -248,16 +255,18 @@ public class WorkDayFragment extends Fragment {
         }
         if(suppers.size()==0){
             supperLL.setVisibility(View.GONE);
-            supperRv.setVisibility(View.GONE);
         }
         else {
             supperLL.setVisibility(View.VISIBLE);
-            supperRv.setVisibility(View.VISIBLE);
+            noDataTv.setVisibility(View.GONE);
             LinearLayoutManager supperLayoutManger=new LinearLayoutManager(getContext());
             supperLayoutManger.setOrientation(LinearLayoutManager.VERTICAL);
             supperRv.setLayoutManager(supperLayoutManger);
             FoodRecordAdapter adapter=new FoodRecordAdapter(breakFasts);
             supperRv.setAdapter(adapter);
+        }
+        if (breakFasts.size()==0&&lunchs.size()==0&&suppers.size()==0){
+            noDataTv.setVisibility(View.VISIBLE);
         }
     }
 
@@ -272,15 +281,18 @@ public class WorkDayFragment extends Fragment {
         haonengTv=view.findViewById(R.id.day_haoneng);
         dayDate=view.findViewById(R.id.day_date);
         sportText1=view.findViewById(R.id.sport_text1);
+        sportTimeLL=view.findViewById(R.id.sport_time);
         noDataTv=view.findViewById(R.id.no_data);
         energyTv=view.findViewById(R.id.energy_tv);
         breakfastRv=view.findViewById(R.id.breakfast_record);
         lunchRv=view.findViewById(R.id.lunch_record);
         supperRv=view.findViewById(R.id.supper_record);
         foodLL=view.findViewById(R.id.food_record);
+        foodDateLL=view.findViewById(R.id.food_date);
         breakfastLL=view.findViewById(R.id.breakfast);
         lunchLL=view.findViewById(R.id.lunch);
         supperLL=view.findViewById(R.id.supper);
+        foodDateTv=view.findViewById(R.id.date);
     }
 
     @Override
@@ -348,7 +360,8 @@ public class WorkDayFragment extends Fragment {
     private void sportView(){
         foodLL.setVisibility(View.GONE);
         sportText1.setVisibility(View.VISIBLE);
-        timeTv.setVisibility(View.VISIBLE);
+        sportTimeLL.setVisibility(View.VISIBLE);
+        foodDateLL.setVisibility(View.GONE);
         energyTv.setText("消耗（千卡）");
     }
 
@@ -357,8 +370,9 @@ public class WorkDayFragment extends Fragment {
      */
     private void foodView(){
         foodLL.setVisibility(View.VISIBLE);
+        foodDateLL.setVisibility(View.VISIBLE);
         sportText1.setVisibility(View.GONE);
-        timeTv.setVisibility(View.GONE);
+        sportTimeLL.setVisibility(View.GONE);
         energyTv.setText("摄入（千卡）");
     }
 }

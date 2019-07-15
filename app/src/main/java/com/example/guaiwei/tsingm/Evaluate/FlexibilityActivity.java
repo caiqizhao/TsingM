@@ -17,6 +17,9 @@ import com.bumptech.glide.Glide;
 import com.example.guaiwei.tsingm.Collector.ActivityCollector;
 import com.example.guaiwei.tsingm.MainActivity;
 import com.example.guaiwei.tsingm.R;
+import com.example.guaiwei.tsingm.db.DayPlanInfo;
+import com.example.guaiwei.tsingm.db.EveryActionInfo;
+import com.example.guaiwei.tsingm.db.NutrimentInfo;
 import com.example.guaiwei.tsingm.utils.ChangeColor;
 import com.example.guaiwei.tsingm.utils.GetBeforeData;
 import com.example.guaiwei.tsingm.utils.ToastUtil;
@@ -25,6 +28,8 @@ import com.example.guaiwei.tsingm.gson.BaseActivity;
 import com.example.guaiwei.tsingm.gson.User;
 import com.example.guaiwei.tsingm.service.PlanService;
 import com.google.gson.Gson;
+
+import org.litepal.crud.DataSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +44,7 @@ public class FlexibilityActivity extends BaseActivity {
 
     private List<String> stringData=new ArrayList<>();
 
+    private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
 
     public static Handler handler;//消息处理
@@ -58,7 +64,8 @@ public class FlexibilityActivity extends BaseActivity {
         submitButton.setEnabled(false);
         submitButton.setAlpha(0.5f);//设置按钮变透明
 
-        editor=PreferenceManager.getDefaultSharedPreferences(FlexibilityActivity.this).edit();
+        prefs=PreferenceManager.getDefaultSharedPreferences(FlexibilityActivity.this);
+        editor=prefs.edit();
 
         Glide.with(this).load(R.mipmap.qiangqu).into(flexibilityIV);
 
@@ -119,6 +126,11 @@ public class FlexibilityActivity extends BaseActivity {
 //                    editor.putString("user_plan",str);
 //                    editor.apply();
 //                }
+                if(prefs.getBoolean("isEvaluate",false)){
+                    DataSupport.deleteAll(DayPlanInfo.class);
+                    DataSupport.deleteAll(EveryActionInfo.class);
+                    DataSupport.deleteAll(NutrimentInfo.class);
+                }
                 Utility.dbSave(str);//将服务器传递的数据存储到数据库中
                 stringData=GetBeforeData.getBeforeData(null, 20);//存储日期列表
                 Gson gson=new Gson();

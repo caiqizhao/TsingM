@@ -63,7 +63,7 @@ public class Utility {
                 everyActionInfo.setDayId(dayPlanInfo.getId());
                 everyActionInfo.setName(everyActions.get(j).getAction_name());
                 everyActionInfo.setTime(everyActions.get(j).getAction_time());
-                everyActionInfo.setUrl(everyActions.get(j).getUrl());
+                everyActionInfo.setUrl(everyActions.get(j).getId());
                 everyActionInfo.setComplete(false);//默认没有完成
                 everyActionInfo.save();
             }

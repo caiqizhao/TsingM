@@ -72,7 +72,7 @@
                                 android:src="@mipmap/buwei"/>
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="30dp"
+                                android:layout_height="35dp"
                                 android:text="训练部位"
                                 android:textColor="@color/colorWhite"
                                 android:layout_marginLeft="10dp"
@@ -115,8 +115,8 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="27dp"
+                                android:layout_height="27dp"
                                 android:src="@mipmap/jiqun"/>
                             <TextView
                                 android:layout_width="wrap_content"

@@ -183,7 +183,7 @@ public class ActionDetailActivity extends BaseActivity {
         if(ActionDetailActivity.i==0){
             preButton.setVisibility(View.GONE);
         }
-        if(ActionDetailActivity.i==Integer.parseInt(dayPlan.getCountAction())){
+        if(ActionDetailActivity.i==Integer.parseInt(dayPlan.getCountAction())-1){
             nextButton.setVisibility(View.GONE);
         }
     }

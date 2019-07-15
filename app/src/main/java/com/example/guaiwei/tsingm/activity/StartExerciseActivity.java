@@ -23,6 +23,7 @@ import com.example.guaiwei.tsingm.utils.GetBeforeData;
 import com.example.guaiwei.tsingm.db.DayPlanInfo;
 import com.example.guaiwei.tsingm.db.EveryActionInfo;
 import com.example.guaiwei.tsingm.db.MotionRecordsEntity;
+import com.example.guaiwei.tsingm.utils.VariableUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -57,6 +58,7 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
 
     private List<EveryActionInfo> everyActions=new ArrayList<>();
     private List<String> everyActionUrl=new ArrayList<>();
+    DecimalFormat df;
 
     public static Handler mHandler;
 
@@ -76,6 +78,7 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
         dayPlan=gson.fromJson(getIntent().getStringExtra("dayplan"),DayPlanInfo.class);
         for(int i=0;i<everyActions.size();i++){
             everyActionUrl.add(DownloadUtil.getDownFilePath(everyActions.get(i).getName(),"mp4"));
+//            everyActionUrl.add(VariableUtil.Service_IP+everyActions.get(i).getId()+".mp4");
         }
         mHandler=new MessageUtil();
         //计时
@@ -100,6 +103,10 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
                 }
             }
         };
+        while (everyActions.get(i).isComplete()){
+            i++;
+            complete_i++;
+        }
         initComponent();
         setData();
         initSurfaceView();
@@ -202,10 +209,6 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
      * 设置数据
      */
     private void setData() {
-        if(everyActions.get(i).isComplete()){
-            i++;
-            complete_i++;
-        }
         countAction.setText(i+1+"");
         videoNameTx.setText(everyActions.get(i).getName());
         String time=everyActions.get(i).getTime();
@@ -236,6 +239,9 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
         countTimeTx=findViewById(R.id.count_time);
         if (i==0){
             preVideoBtn.setVisibility(View.GONE);//刚进入时，向前按钮不能被点击
+        }
+        else {
+            preVideoBtn.setVisibility(View.VISIBLE);
         }
         if (i==Integer.parseInt(dayPlan.getCountAction())-1){
             nextVideoBtn.setVisibility(View.GONE);
@@ -269,13 +275,32 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
                     mp.start();
                 }
             });
-            File file = new File(everyActionUrl.get(i));
-            FileInputStream fis = new FileInputStream(file);
-            mPlayer.setDataSource(fis.getFD());
-            // 准备并播放
-            mPlayer.prepare();
-            mPlayer.start();
-            mPlayer.seekTo(currentPosition);
+            if (everyActionUrl.get(i).equals("")){
+                i++;
+                if (i==everyActions.size()){
+                    Intent intent=new Intent(StartExerciseActivity.this,CompleteActivity.class);
+                    exerciseDb();
+                    intent.putExtra("count_time",GetBeforeData.formatTime(n));
+                    intent.putExtra("nengliang",df.format(factHaoNeng));
+                    intent.putExtra("count_action",complete_i+"");
+                    startActivity(intent);
+                    ActivityCollector.finishAll();
+                    finish();
+                }
+                else {
+                    resetTime();
+                }
+            }
+            else {
+                File file = new File(everyActionUrl.get(i));
+                FileInputStream fis = new FileInputStream(file);
+                mPlayer.setDataSource(fis.getFD());
+//            mPlayer.setDataSource(VariableUtil.Service_IP+everyActions.get(i).getId()+".mp4");
+                // 准备并播放
+                mPlayer.prepareAsync();
+                mPlayer.start();
+                mPlayer.seekTo(currentPosition);
+            }
         }
         catch (Exception e){
             e.printStackTrace();
@@ -332,7 +357,7 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
      * 将运动数据存储数据库中
      */
     public void exerciseDb(){
-        DecimalFormat df = new DecimalFormat("0.0");
+        df= new DecimalFormat("0.0");
         //计算实际耗能
         factHaoNeng=(complete_i*1.0/everyActions.size()*1.0)*Integer.parseInt(dayPlan.getNengliang());
         dayPlan.setCompleteAction(complete_i+"");
@@ -384,10 +409,10 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
                     EveryActionInfo everyActionInfo=new EveryActionInfo();
                     everyActionInfo.setComplete(true);//设置该动作已完成
                     everyActionInfo.updateAll("id=?",String.valueOf(everyActions.get(i).getId()));
-                    preVideoBtn.setClickable(true);
+                    preVideoBtn.setVisibility(View.VISIBLE);
                     i++;
                     if(i==everyActions.size()-1){
-                        nextVideoBtn.setClickable(false);
+                        nextVideoBtn.setVisibility(View.GONE);
                     }
                     resetTime();
                     time_i="";
