@@ -93,7 +93,7 @@ public class WorkDayFragment extends Fragment {
             timeTv.setText(countTime+"");
             DecimalFormat df=new DecimalFormat("0.0");
             haonengTv.setText(df.format(values.get(id)));
-            float complete=values.get(id)/Float.parseFloat(dayPlanInfos.get(id).getNengliang());
+            float complete=values.get(id)/(Float.parseFloat(dayPlanInfos.get(id).getNengliang())+20);
             countTv.setText(df.format(complete*100));
         }
     }
@@ -146,7 +146,8 @@ public class WorkDayFragment extends Fragment {
         motionRecordsEntities=DataSupport.findAll(MotionRecordsEntity.class);//找出所有的运动记录
         dates=new ArrayList<>();
         values=new ArrayList<>();
-        for(DayPlanInfo dayPlanInfo:dayPlanInfos){
+        for(int i=0;i<dayPlanInfos.size();i++){
+            DayPlanInfo dayPlanInfo=dayPlanInfos.get(i);
             float value=0;
             String date[]=dayPlanInfo.getData().substring(5,10).split("-");
             dates.add(date[0]+"月"+date[1]+"日");
@@ -156,13 +157,13 @@ public class WorkDayFragment extends Fragment {
                 }
             }
             values.add(value);
-            if(dayPlanInfo.getData().equals(GetBeforeData.getBeforeData(null,0))){
+            if(dayPlanInfo.getData().equals(GetBeforeData.getBeforeData(null,0).get(0))){
                 break;
             }
         }
         for(int i=0;i<dates.size();i++){
             datas.add(values.get(i));
-            datas.add(Float.parseFloat(dayPlanInfos.get(i).getNengliang()));
+            datas.add(Float.parseFloat(dayPlanInfos.get(i).getNengliang())+20);
             lineChartManager.addEntry(datas,dates.get(i));
             datas.clear();
         }
@@ -194,7 +195,7 @@ public class WorkDayFragment extends Fragment {
                 }
             }
             values.add(value);
-            if(nutrimentInfo.getData().equals(GetBeforeData.getBeforeData(null,0))){
+            if(nutrimentInfo.getData().equals(GetBeforeData.getBeforeData(null,0).get(0))){
                 break;
             }
         }
@@ -262,7 +263,7 @@ public class WorkDayFragment extends Fragment {
             LinearLayoutManager supperLayoutManger=new LinearLayoutManager(getContext());
             supperLayoutManger.setOrientation(LinearLayoutManager.VERTICAL);
             supperRv.setLayoutManager(supperLayoutManger);
-            FoodRecordAdapter adapter=new FoodRecordAdapter(breakFasts);
+            FoodRecordAdapter adapter=new FoodRecordAdapter(suppers);
             supperRv.setAdapter(adapter);
         }
         if (breakFasts.size()==0&&lunchs.size()==0&&suppers.size()==0){

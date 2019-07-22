@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 
 import org.litepal.crud.DataSupport;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -118,8 +119,9 @@ public class  MyFragment extends Fragment {
                 foodEnergy+=haoNeng;
             }
         }
-        sportEnergyTv.setText(sportEnergy+"");
-        foodEnergyTv.setText(foodEnergy+"");
+        DecimalFormat df = new DecimalFormat("0.0");
+        sportEnergyTv.setText(df.format(sportEnergy));
+        foodEnergyTv.setText(df.format(foodEnergy));
     }
 
     /**

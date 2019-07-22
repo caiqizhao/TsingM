@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 style="@style/button_nomal_style"
                 android:layout_marginBottom="20dp"
-                android:text="生成训练计划"/>
+                android:text="下一步"/>
         </LinearLayout>
 
     </LinearLayout>

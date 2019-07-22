@@ -103,7 +103,7 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
                 }
             }
         };
-        while (everyActions.get(i).isComplete()){
+        while (i<everyActions.size()&&everyActions.get(i).isComplete()){
             i++;
             complete_i++;
         }
@@ -275,17 +275,13 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
                     mp.start();
                 }
             });
+            if (i==everyActions.size()){
+                complete();
+            }
             if (everyActionUrl.get(i).equals("")){
                 i++;
                 if (i==everyActions.size()){
-                    Intent intent=new Intent(StartExerciseActivity.this,CompleteActivity.class);
-                    exerciseDb();
-                    intent.putExtra("count_time",GetBeforeData.formatTime(n));
-                    intent.putExtra("nengliang",df.format(factHaoNeng));
-                    intent.putExtra("count_action",complete_i+"");
-                    startActivity(intent);
-                    ActivityCollector.finishAll();
-                    finish();
+                    complete();
                 }
                 else {
                     resetTime();
@@ -390,6 +386,16 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
             motionRecordsEntity.save();
         }
     }
+    private void complete(){
+        Intent intent=new Intent(StartExerciseActivity.this,CompleteActivity.class);
+        exerciseDb();
+        intent.putExtra("count_time",GetBeforeData.formatTime(n));
+        intent.putExtra("nengliang",df.format(factHaoNeng));
+        intent.putExtra("count_action",complete_i+"");
+        startActivity(intent);
+        ActivityCollector.finishAll();
+        finish();
+    }
 
     /**
      * 消息处理内部类
@@ -398,39 +404,32 @@ public class StartExerciseActivity extends AppCompatActivity implements SurfaceH
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if(msg.what==0x001){
-                Bundle data=msg.getData();
-                String time_i=GetBeforeData.formatTime(data.getInt("time"));
-                String time_j=GetBeforeData.formatTime(data.getInt("time_count"));
-                String str=actionTimeTx.getText().toString();
-                nowTimeTx.setText(time_i+"/");
+            if (msg.what == 0x001) {
+                Bundle data = msg.getData();
+                String time_i = GetBeforeData.formatTime(data.getInt("time"));
+                String time_j = GetBeforeData.formatTime(data.getInt("time_count"));
+                String str = actionTimeTx.getText().toString();
+                nowTimeTx.setText(time_i + "/");
                 countTimeTx.setText(time_j);
-                if(time_i.equals(str)&&data.getInt("time")!=0&&i!=everyActions.size()-1){
-                    EveryActionInfo everyActionInfo=new EveryActionInfo();
+                if (time_i.equals(str) && data.getInt("time") != 0 && i != everyActions.size() - 1) {
+                    EveryActionInfo everyActionInfo = new EveryActionInfo();
                     everyActionInfo.setComplete(true);//设置该动作已完成
-                    everyActionInfo.updateAll("id=?",String.valueOf(everyActions.get(i).getId()));
+                    everyActionInfo.updateAll("id=?", String.valueOf(everyActions.get(i).getId()));
                     preVideoBtn.setVisibility(View.VISIBLE);
                     i++;
-                    if(i==everyActions.size()-1){
+                    if (i == everyActions.size() - 1) {
                         nextVideoBtn.setVisibility(View.GONE);
                     }
                     resetTime();
-                    time_i="";
+                    time_i = "";
                     complete_i++;
                 }
-                if(time_i.equals(str)&&data.getInt("time")!=0&&i==everyActions.size()-1){
-                    EveryActionInfo everyActionInfo=new EveryActionInfo();
+                if (time_i.equals(str) && data.getInt("time") != 0 && i == everyActions.size() - 1) {
+                    EveryActionInfo everyActionInfo = new EveryActionInfo();
                     everyActionInfo.setComplete(true);//设置该动作已完成
-                    everyActionInfo.updateAll("id=?",String.valueOf(everyActions.get(i).getId()));
+                    everyActionInfo.updateAll("id=?", String.valueOf(everyActions.get(i).getId()));
                     complete_i++;
-                    Intent intent=new Intent(StartExerciseActivity.this,CompleteActivity.class);
-                    exerciseDb();
-                    intent.putExtra("count_time",time_j);
-                    intent.putExtra("nengliang",factHaoNeng);
-                    intent.putExtra("count_action",complete_i+"");
-                    startActivity(intent);
-                    ActivityCollector.finishAll();
-                    finish();
+                    complete();
                 }
             }
         }

@@ -41,7 +41,7 @@ public class ExerciseSiteActivity extends BaseActivity {
                         }
                     }
                     User.user.setExerciseSite(str);
-                    Intent intent=new Intent(ExerciseSiteActivity.this,CardioPulmonaryActivity.class);
+                    Intent intent=new Intent(ExerciseSiteActivity.this,LowerLimbActivity.class);
                     //开启新的activity，进入下一个问题页面
                     startActivity(intent);
                 }

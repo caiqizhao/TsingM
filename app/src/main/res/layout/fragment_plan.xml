@@ -25,7 +25,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorWhite"
                     android:padding="20dp"
-                    android:text="今天是计划的第一天,\n你的训练任务已经完成1/20天"
+                    android:text="今天是计划的第一天,\n你的训练任务已经完成0/20天"
                     android:textSize="15dp"/>
 
             </android.support.v7.widget.CardView>

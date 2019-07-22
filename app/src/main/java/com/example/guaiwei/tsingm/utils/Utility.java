@@ -11,6 +11,7 @@ import com.example.guaiwei.tsingm.db.NutrimentInfo;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -39,6 +40,7 @@ public class Utility {
         User_Plan user_plan=handleUserPlanResponse(response);
         List<DayPlan> dayPlans=user_plan.getDayPlans();
         List<String> data=GetBeforeData.getBeforeData(null,4);
+
         for(int i=0;i<dayPlans.size();i++){
             DayPlanInfo dayPlanInfo=new DayPlanInfo();
             dayPlanInfo.setCountAction(dayPlans.get(i).getCountAction());
@@ -52,7 +54,7 @@ public class Utility {
             NutrimentInfo nutrimentInfo=new NutrimentInfo();
             nutrimentInfo.setCarbohydrate(nutriment.getCarbohydrate());
             nutrimentInfo.setFat(nutriment.getFat());
-            nutrimentInfo.setHeat(nutriment.getHeat());
+            nutrimentInfo.setHeat(nutriment.getHeat()+500);
             nutrimentInfo.setProtein(nutriment.getProtein());
             nutrimentInfo.setData(data.get(i));
             nutrimentInfo.save();

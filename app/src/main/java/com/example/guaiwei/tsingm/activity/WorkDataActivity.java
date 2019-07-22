@@ -92,7 +92,7 @@ public class WorkDataActivity extends BaseActivity {
             foodRecommendEnergy=nutriment.getHeat();
         }
         if(dayPlanInfo.size()!=0){
-            sportRecommendEnergy=Double.parseDouble(dayPlanInfo.get(0).getNengliang());
+            sportRecommendEnergy=Double.parseDouble(dayPlanInfo.get(0).getNengliang())+20;
         }
         needEnergy=foodRecommendEnergy-sportRecommendEnergy;
 //        double food_complete=foodFactEnergy/(foodRecommendEnergy*0.01);

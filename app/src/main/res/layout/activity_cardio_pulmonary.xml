@@ -24,7 +24,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="上楼梯时是否感觉呼吸急促?"
+                    android:text="爬5楼是否感觉呼吸急促？"
                     style="@style/textView_question_style"/>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 style="@style/button_nomal_style"
                 android:layout_marginBottom="20dp"
-                android:text="下一步"/>
+                android:text="生成计划"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

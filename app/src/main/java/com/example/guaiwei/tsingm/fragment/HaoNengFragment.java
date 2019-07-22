@@ -105,7 +105,7 @@ public class HaoNengFragment extends Fragment {
     private void searchDb(){
         String data=GetBeforeData.getBeforeData(null,0).get(0);
         DayPlanInfo dayPlanInfo=DataSupport.where("data=?",data).find(DayPlanInfo.class).get(0);
-        tuijianHaoneng=Double.parseDouble(dayPlanInfo.getNengliang());
+        tuijianHaoneng=Double.parseDouble(dayPlanInfo.getNengliang())+20;
         List<MotionRecordsEntity> motionRecordsEntitys=DataSupport.where("data=?",data).find(MotionRecordsEntity.class);
         for(MotionRecordsEntity motionRecordsEntity:motionRecordsEntitys){
             if(motionRecordsEntity.getMovement_type().equals("行走")){

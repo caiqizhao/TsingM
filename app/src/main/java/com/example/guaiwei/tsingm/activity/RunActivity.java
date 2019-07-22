@@ -273,8 +273,6 @@ public class RunActivity extends AppCompatActivity implements SensorEventListene
 
 //        AMapLocation aMapLocation = mLocationClient.getLastKnownLocation();
 //        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude()), 18));
-
-
     }
 
     /**
