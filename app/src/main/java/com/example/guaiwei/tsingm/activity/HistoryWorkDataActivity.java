@@ -35,10 +35,12 @@ public class HistoryWorkDataActivity extends BaseActivity {
     private Fragment monthFragment;
     private Fragment countFragment;
     private List<String> list_title;
+    public static int type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_work_data);
+        type=getIntent().getIntExtra("type",0);
         initComponent();
         ChangeColor.changeColor(this,Color.parseColor("#584f60"));
     }

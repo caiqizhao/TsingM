@@ -1,6 +1,7 @@
 package com.example.guaiwei.tsingm.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Handler;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.guaiwei.tsingm.R;
+import com.example.guaiwei.tsingm.gson.BaseActivity;
 import com.example.guaiwei.tsingm.utils.PasswordMD5Util;
 import com.example.guaiwei.tsingm.utils.ToastUtil;
 import com.example.guaiwei.tsingm.service.RegisterService;
@@ -24,7 +26,7 @@ import com.example.guaiwei.tsingm.utils.UsernameAndPasswordByIs;
  * author：hqq
  * data:2019.7.4
  */
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends BaseActivity {
     private TextView textView;
     private EditText userNameTv,passwordTv,ensurePasswordTv;
     private Button registerBtn;
@@ -47,11 +49,11 @@ public class SignUpActivity extends AppCompatActivity {
         //透明状态栏          
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        textView=findViewById(R.id.sign_up_text);
-        userNameTv=findViewById(R.id.user_name);
-        passwordTv=findViewById(R.id.password);
-        ensurePasswordTv=findViewById(R.id.ensure_password);
-        registerBtn=findViewById(R.id.register_btn);
+        textView=(TextView)findViewById(R.id.sign_up_text);
+        userNameTv=(EditText)findViewById(R.id.user_name);
+        passwordTv=(EditText)findViewById(R.id.password);
+        ensurePasswordTv=(EditText)findViewById(R.id.ensure_password);
+        registerBtn=(Button)findViewById(R.id.register_btn);
     }
 
     /**

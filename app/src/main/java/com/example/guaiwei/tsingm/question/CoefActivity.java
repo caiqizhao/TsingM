@@ -54,10 +54,14 @@ public class CoefActivity extends BaseActivity {
             public void onClick(View view) {
                 showProgressDialog();
                 //将用户输入的数据信息持久化
-                String userData=new Gson().toJson(User.user);
-                editor.putString("user_data",userData);
-                editor.apply();
-
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String userData=new Gson().toJson(User.user);
+                        editor.putString("user_data",userData);
+                        editor.apply();
+                    }
+                }).start();
                 Intent intent=new Intent(CoefActivity.this,FoodService.class);
                 //开启服务向服务器发出请求
                 startService(intent);
@@ -100,7 +104,7 @@ public class CoefActivity extends BaseActivity {
             if(msg.what == 0x005){
                 //获得消息中的数据赋值给用户计划实例
                 Bundle data = msg.getData();
-                String foodStr=data.getString("food");//人体每天需要摄入的营养素
+                final String foodStr=data.getString("food");//人体每天需要摄入的营养素
                 Log.v("1",foodStr);
                 Intent intent=new Intent(CoefActivity.this,MainActivity.class);//成功获取服务器传递的计划数据，跳转到主界面
                 startActivity(intent);

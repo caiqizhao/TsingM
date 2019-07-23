@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Message;
 
+import com.example.guaiwei.tsingm.Evaluate.CardioPulmonaryActivity;
 import com.example.guaiwei.tsingm.Evaluate.FlexibilityActivity;
 import com.example.guaiwei.tsingm.utils.VariableUtil;
 import com.example.guaiwei.tsingm.gson.User;
@@ -54,7 +55,7 @@ public class PlanService extends Service {
                     data.putString("plan_data",str);
                     message.setData(data);
                     message.what = 0x001;
-                    FlexibilityActivity.handler.sendMessage(message);
+                    CardioPulmonaryActivity.handler.sendMessage(message);
                     stopSelf();//关闭服务
                 } catch (IOException e) {
                     Message message = new Message();
@@ -62,7 +63,7 @@ public class PlanService extends Service {
                     data.putString("plan_data",str);
                     message.setData(data);
                     message.what = 0x002;
-                    FlexibilityActivity.handler.sendMessage(message);
+                    CardioPulmonaryActivity.handler.sendMessage(message);
                 }
             }
         });

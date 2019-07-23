@@ -45,8 +45,6 @@ public class SplashActivity extends AppCompatActivity {
 
 //设置字体
         textView.setTypeface(tf);
-
-
         final SplashActivity splashActivity=this;
         pref=PreferenceManager.getDefaultSharedPreferences(SplashActivity.this);
         editor=pref.edit();

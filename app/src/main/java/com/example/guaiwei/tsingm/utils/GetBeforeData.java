@@ -61,5 +61,14 @@ public class GetBeforeData {
             return time / 60 + ":" + time  % 60;
         }
     }
+
+    /**
+     * 将字符串时间转化成数字
+     */
+    public static int transforTime(String time){
+        String [] timeS=time.split(":");
+        int t=Integer.parseInt(timeS[0])+1;
+        return t;
+    }
 }
 

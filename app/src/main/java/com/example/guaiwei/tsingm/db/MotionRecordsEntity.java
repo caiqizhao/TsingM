@@ -11,6 +11,15 @@ public class MotionRecordsEntity extends DataSupport {
     private double haoneng;
     private int dayplanId;
 
+    public MotionRecordsEntity(){}
+    public MotionRecordsEntity(String movement_type, String movement_content, String data, String time, double haoneng, int dayplanId) {
+        this.movement_type = movement_type;
+        this.movement_content = movement_content;
+        this.data = data;
+        this.time = time;
+        this.haoneng = haoneng;
+        this.dayplanId = dayplanId;
+    }
     public int getDayplanId() {
         return dayplanId;
     }

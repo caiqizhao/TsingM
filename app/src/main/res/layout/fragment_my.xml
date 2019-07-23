@@ -15,7 +15,7 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <com.example.guaiwei.tsingm.utils.RoundImageView
+            <com.example.guaiwei.tsingm.view.RoundImageView
                 android:id="@+id/head_image"
                 android:layout_width="70dp"
                 android:layout_marginLeft="20dp"
@@ -49,7 +49,7 @@
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <TextView
-                android:id="@+id/id_me"
+                android:id="@+id/change_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -86,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:gravity="center_vertical"
-                    android:text="我的运动数据"
+                    android:text="运动&amp;饮食记录"
                     android:textColor="@color/colorGrayBlack"
                     android:textSize="18dp" />
             </LinearLayout>
@@ -104,18 +104,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="40dp"
-                android:text="总运动(分钟)"/>
+                android:text="运动耗能（千卡）"/>
             <TextView
                 android:id="@+id/tx3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="近一周运动（分钟）"
+                android:text="饮食摄入（千卡）"
                 android:layout_marginTop="17dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="30dp"
                 android:layout_below="@+id/in_btn"
                 android:layout_toRightOf="@+id/tx2"/>
             <TextView
-                android:id="@+id/time_count"
+                android:id="@+id/sport_energy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tx2"
@@ -125,12 +125,12 @@
                 android:textColor="#000"
                 android:text="0"/>
             <TextView
-                android:id="@+id/week_time_count"
+                android:id="@+id/food_energy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tx2"
                 android:layout_toRightOf="@+id/tx2"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="30dp"
                 android:textStyle="bold"
                 android:textSize="25dp"
                 android:textColor="#000"
@@ -217,11 +217,50 @@
         </RelativeLayout>
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
+        android:id="@+id/card3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
         android:layout_below="@id/card2"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="1dp">
+        <RelativeLayout
+            android:id="@+id/body_text"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+            <ImageView
+                android:id="@+id/text_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@mipmap/test"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="体质重测"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/text_image"
+                android:gravity="center_vertical"
+                android:textSize="18dp"
+                android:textColor="@color/colorGrayBlack"/>
+            <Button
+                android:id="@+id/in_btn2"
+                android:background="@drawable/text_in"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="10dp"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@id/card3"
         app:cardCornerRadius="5dp"
         app:cardElevation="1dp">
         <RelativeLayout
@@ -245,7 +284,7 @@
                 android:textSize="18dp"
                 android:textColor="@color/colorGrayBlack"/>
             <Button
-                android:id="@+id/in_btn2"
+                android:id="@+id/in_btn3"
                 android:background="@drawable/set_in"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

@@ -16,17 +16,25 @@
         app:cardElevation="0dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="单位：千卡"
             android:layout_margin="10dp"
+            android:gravity="right"
             android:textColor="@color/pregnancy_color_888888"/>
+        <ImageView
+            android:id="@+id/iscomplete"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@mipmap/ok"
+            android:visibility="gone"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:layout_margin="10dp">
-            <com.example.guaiwei.tsingm.utils.SportStepCountView
+
+            <com.example.guaiwei.tsingm.view.ConsumeEnergyView
                 android:id="@+id/circleProgress"
                 android:layout_width="210dp"
                 android:layout_height="210dp"

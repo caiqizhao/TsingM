@@ -42,7 +42,7 @@ public class AbdominalEnduranceActivity extends BaseActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(AbdominalEnduranceActivity.this,LowerLimbActivity.class);
+                Intent intent=new Intent(AbdominalEnduranceActivity.this,CardioPulmonaryActivity.class);
 
                 //开启新的activity，进入下一个问题页面
                 startActivity(intent);

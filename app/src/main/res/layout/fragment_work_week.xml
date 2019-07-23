@@ -7,7 +7,8 @@
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="6月3日-6月9日"
+                    android:text="7月13日-7月17日"
                     android:layout_gravity="center"
                     android:textSize="16sp" />
                 <TextView
@@ -52,6 +53,7 @@
                 android:background="@color/colorWhite"
                 android:textStyle="bold"
                 android:textSize="50sp"
+                android:textColor="@color/colorGrayBlack"
                 android:gravity="center" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,6 +75,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="0"
+                        android:textColor="@color/colorGrayBlack"
                         android:textStyle="bold"
                         android:textSize="22sp"
                         android:gravity="center" />
@@ -92,6 +95,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="0"
+                        android:textColor="@color/colorGrayBlack"
                         android:textStyle="bold"
                         android:textSize="22sp"
                         android:gravity="center" />
@@ -111,6 +115,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="0"
+                        android:textColor="@color/colorGrayBlack"
                         android:textStyle="bold"
                         android:textSize="22sp"
                         android:gravity="center" />

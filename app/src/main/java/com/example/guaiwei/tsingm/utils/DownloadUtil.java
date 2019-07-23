@@ -10,6 +10,7 @@ import android.util.Log;
 import com.example.guaiwei.tsingm.activity.ExerciseListActivity;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,35 +45,45 @@ public class DownloadUtil {
                         if (file.exists()) {
                             continue;
                         } else {
-                            URL myURL = new URL(url.get(i));
-                            URLConnection conn = myURL.openConnection();
-                            conn.connect();
-                            InputStream is = conn.getInputStream();
-                            int fileSize = conn.getContentLength();
-                            if (fileSize <= 0)
-                                throw new RuntimeException("can not know the file`s size");
-                            if (is == null)
-                                throw new RuntimeException("stream is null");
-                            FileOutputStream fos = new FileOutputStream(file.getPath());
-                            byte buf[] = new byte[1024];
-                            while (true) {
-                                // 循环读取
-                                int numread = is.read(buf);
-                                if (numread == -1) {
-                                    break;
-                                }
-                                fos.write(buf, 0, numread);
-                            }
+                            boolean isexit=true;
+                            InputStream is=null;int fileSize=0;
                             try {
-                                is.close();
-                            } catch (Exception ex) {
+                                URL myURL = new URL(url.get(i));
+                                URLConnection conn = myURL.openConnection();
+                                conn.connect();
+                                is = conn.getInputStream();
+                                fileSize= conn.getContentLength();
+                            }
+                            catch (FileNotFoundException e){
+                                isexit=false;
+                            }
+                            if (!isexit){
+                                continue;
+                            }else {
+                                if (fileSize <= 0)
+                                    throw new RuntimeException("can not know the file`s size");
+                                if (is == null)
+                                    throw new RuntimeException("stream is null");
+                                FileOutputStream fos = new FileOutputStream(file.getPath());
+                                byte buf[] = new byte[1024];
+                                while (true) {
+                                    // 循环读取
+                                    int numread = is.read(buf);
+                                    if (numread == -1) {
+                                        break;
+                                    }
+                                    fos.write(buf, 0, numread);
+                                }
+                                try {
+                                    is.close();
+                                } catch (Exception ex) {
+                                }
                             }
                         }
                     }
                     Message message = new Message();
                     message.what=0x0001;
                     ExerciseListActivity.handler.sendMessage(message);
-
                 } catch (IOException e) {
                     e.printStackTrace();
                     Message message = new Message();
@@ -82,6 +93,7 @@ public class DownloadUtil {
             }
         }).start();
     }
+
 
     /**
      * 获取文件地址

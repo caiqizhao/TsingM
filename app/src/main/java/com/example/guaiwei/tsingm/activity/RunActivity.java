@@ -1,5 +1,6 @@
 package com.example.guaiwei.tsingm.activity;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -8,6 +9,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -27,11 +29,15 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.PolylineOptions;
 import com.example.guaiwei.tsingm.R;
+import com.example.guaiwei.tsingm.gson.User;
 import com.example.guaiwei.tsingm.utils.GetBeforeData;
 import com.example.guaiwei.tsingm.gson.LatLngPoint;
 import com.example.guaiwei.tsingm.db.LocationPoint;
 import com.example.guaiwei.tsingm.db.MotionRecordsEntity;
+import com.example.guaiwei.tsingm.utils.MyApplication;
+import com.google.gson.Gson;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,6 +46,7 @@ import java.util.List;
  * 跑步界面
  */
 public class RunActivity extends AppCompatActivity implements SensorEventListener,AMapLocationListener {
+    private User user;
 
     private SensorManager mSM;
     private Sensor mSensor;
@@ -88,6 +95,9 @@ public class RunActivity extends AppCompatActivity implements SensorEventListene
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run);
+        SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext());
+        String userData=prefs.getString("user_data",null);
+        user=new Gson().fromJson(userData,User.class);
         initComponent();
         initPositioning();
         mHandler=new MessageUtil();
@@ -155,11 +165,15 @@ public class RunActivity extends AppCompatActivity implements SensorEventListene
             @Override
             public void onClick(View v) {
                 isOpenTrajectory=true;
-                MotionRecordsEntity motionRecordsEntity=new MotionRecordsEntity();
-                motionRecordsEntity.setData(GetBeforeData.getBeforeData(null,0).get(0));
-                motionRecordsEntity.setMovement_type("跑步");
-                motionRecordsEntity.setMovement_content("跑步"+distance+"公里");
-                motionRecordsEntity.save();
+                if(distance!=0.0){
+                    double haoneng=getEnergy(user.getWeight(),distance);
+                    MotionRecordsEntity motionRecordsEntity=new MotionRecordsEntity();
+                    motionRecordsEntity.setData(GetBeforeData.getBeforeData(null,0).get(0));
+                    motionRecordsEntity.setMovement_type("跑步");
+                    motionRecordsEntity.setMovement_content("跑步"+distance+"公里");
+                    motionRecordsEntity.setHaoneng(haoneng);
+                    motionRecordsEntity.save();
+                }
 //                for(LocationPoint locationPoint:locationPoints){
 ////                    locationPoint.save();
 ////                }
@@ -187,8 +201,19 @@ public class RunActivity extends AppCompatActivity implements SensorEventListene
      * 设置各组件数据
      */
     private void setData() {
+
         timeTv.setText(GetBeforeData.formatTime(time));
-        inastanceTv.setText(distance+"公里");
+        inastanceTv.setText(distance+"");
+    }
+
+    /**
+     * 计算跑步耗能
+     * @param weight 用户的体重（kg）
+     * @param instance 跑步的距离（公里）
+     * @return
+     */
+    public static double getEnergy (double weight,double instance){
+        return weight*instance*1.036;
     }
 
 
@@ -198,38 +223,29 @@ public class RunActivity extends AppCompatActivity implements SensorEventListene
     private void initPositioning(){
         //初始化定位
         mLocationClient = new AMapLocationClient(getApplicationContext());
-
-
         //设置定位回调监听
         mLocationClient.setLocationListener(this);
-
         //初始化AMapLocationClientOption对象
         mLocationOption = new AMapLocationClientOption();
-
         /**
          * 设置定位场景，目前支持三种场景（签到、出行、运动，默认无场景）
          */
         mLocationOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.SignIn);
-
         //设置定位模式为AMapLocationMode.Hight_Accuracy，高精度模式。
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-
         //获取一次定位结果：
         //该方法默认为false。
         mLocationOption.setOnceLocation(false);
-
         //设置定位间隔,单位毫秒,默认为2000ms
         mLocationOption.setInterval(3000);
-
         //获取最近3s内精度最高的一次定位结果：
         //设置setOnceLocationLatest(boolean b)接口为true，启动定位时SDK会返回最近3s内精度最高的一次定位结果。如果设置其为true，setOnceLocation(boolean b)接口也会被设置为true，反之不会，默认为false。
         mLocationOption.setOnceLocationLatest(true);
-
         //单位是毫秒，默认30000毫秒，建议超时时间不要低于8000毫秒。
         mLocationOption.setHttpTimeOut(20000);
     }
 
-    /**
+    /*
      * 初始化地图控件
      * @param savedInstanceState
      */
@@ -257,8 +273,6 @@ public class RunActivity extends AppCompatActivity implements SensorEventListene
 
 //        AMapLocation aMapLocation = mLocationClient.getLastKnownLocation();
 //        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude()), 18));
-
-
     }
 
     /**
@@ -355,7 +369,6 @@ public class RunActivity extends AppCompatActivity implements SensorEventListene
             options.width(10).geodesic(true).color(Color.GREEN);
             aMap.addPolyline(options);
         }
-
     }
 
 

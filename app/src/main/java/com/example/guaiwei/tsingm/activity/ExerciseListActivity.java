@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.utils.DownloadUtil;
+import com.example.guaiwei.tsingm.utils.MyApplication;
 import com.example.guaiwei.tsingm.utils.VariableUtil;
 import com.example.guaiwei.tsingm.adapter.PlanDetailAdapter;
 import com.example.guaiwei.tsingm.gson.BaseActivity;
@@ -51,22 +52,36 @@ public class ExerciseListActivity extends BaseActivity {
         String dayPlanStr=getIntent().getStringExtra("day_plan");//获取传递过来的每天的训练数据
         final Gson gson=new Gson();
         dayPlan=(DayPlanInfo) gson.fromJson(dayPlanStr,DayPlanInfo.class);//解析成DayPlan对象
-        initActionAdapter();
+
         setTextViewData();
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showProgressDialog();
                 Log.v("1","下载");
-                DownloadUtil.downFile(actionUrl,actionName,"mp4");
+//                Intent intent = new Intent(ExerciseListActivity.this, StartExerciseActivity.class);//成功获取服务器传递的计划数据，跳转到主界面
+//                Gson gson=new Gson();
+//                String str=gson.toJson(everyActions);
+//                String dayplanStr=gson.toJson(dayPlan);
+//                intent.putExtra("every_actions",str);
+//                intent.putExtra("dayplan",dayplanStr);
+//                startActivity(intent);
+                    DownloadUtil.downFile(actionUrl,actionName,"mp4");
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initActionAdapter();
     }
 
     /**
      * 设置总时长，总动作数量，总燃脂的文本框数据
      */
     private void setTextViewData() {
+        everyActions=DataSupport.where("dayId=?",String.valueOf(dayPlan.getId())).find(EveryActionInfo.class);//获得数据源
         //各组件实例化
         timeCountTV=(TextView) findViewById(R.id.duration);
         actionCountTV=(TextView) findViewById(R.id.action_count);
@@ -77,7 +92,7 @@ public class ExerciseListActivity extends BaseActivity {
         actionCountTV.setText(dayPlan.getCountAction()+"");
         fatBurningTV.setText(dayPlan.getNengliang()+"");
         for(int i=0;i<everyActions.size();i++){
-            actionUrl.add(VariableUtil.Service_IP+everyActions.get(i).getId()+".mp4");
+            actionUrl.add(VariableUtil.Service_IP+everyActions.get(i).getUrl()+".mp4");
             actionName.add(everyActions.get(i).getName());
         }
     }
@@ -86,7 +101,7 @@ public class ExerciseListActivity extends BaseActivity {
      * 初始化recyclerView的适配器
      */
     private void initActionAdapter(){
-        everyActions=DataSupport.where("dayId=?",String.valueOf(dayPlan.getId())).find(EveryActionInfo.class);//获得数据源
+
         recyclerView=(RecyclerView) findViewById(R.id.motionList);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -124,7 +139,12 @@ public class ExerciseListActivity extends BaseActivity {
             super.handleMessage(msg);
             if (msg.what == 0x001) {
                 for(int i=0;i<everyActions.size();i++){
-                    DownloadUtil.updateMedia(DownloadUtil.getDownFilePath(actionName.get(i),"mp4"));
+                    try {
+                        DownloadUtil.updateMedia(DownloadUtil.getDownFilePath(actionName.get(i),"mp4"));
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
                 Intent intent = new Intent(ExerciseListActivity.this, StartExerciseActivity.class);//成功获取服务器传递的计划数据，跳转到主界面
                 Gson gson=new Gson();

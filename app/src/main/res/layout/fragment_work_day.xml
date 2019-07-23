@@ -9,7 +9,8 @@
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:descendantFocusability="blocksDescendants">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -26,12 +27,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="5dp"
-                android:layout_margin="5dp">
+                android:layout_margin="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <LinearLayout
+                        android:id="@+id/sport_text1"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:padding="10dp"
@@ -41,43 +43,72 @@
                             android:id="@+id/day_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
                             android:text="6月2日"
-                            android:layout_gravity="center"
+                            android:gravity="center"
                             android:textSize="16sp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="，运动时长"
-                            android:layout_gravity="center"
-                            android:textSize="16sp" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="（分钟）"
-                            android:textSize="16sp"
-                            android:gravity="center|right"/>
                     </LinearLayout>
-                    <TextView
-                        android:id="@+id/day_time"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:background="@color/colorWhite"
-                        android:text="0"
-                        android:textStyle="bold"
-                        android:textSize="50sp"
-                        android:gravity="center" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp">
                         <LinearLayout
+                            android:id="@+id/food_date"
                             android:orientation="vertical"
-                            android:layout_width="190dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:background="@color/colorWhite"
                             android:layout_height="wrap_content">
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="完成（次）"
+                                android:text="记录日期"
+                                android:textSize="15sp"
+                                android:gravity="center" />
+                            <TextView
+                                android:id="@+id/date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                android:text="7月24日"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorGrayBlack"
+                                android:gravity="center" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/sport_time"
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="时长(分钟)"
+                                android:textSize="15sp"
+                                android:gravity="center" />
+                            <TextView
+                                android:id="@+id/day_time"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/colorGrayBlack"
+                                android:textStyle="bold"
+                                android:textSize="22sp"
+                                android:gravity="center" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="完成度(%)"
                                 android:textSize="15sp"
                                 android:gravity="center" />
                             <TextView
@@ -85,26 +116,31 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="0"
+                                android:textColor="@color/colorGrayBlack"
                                 android:textStyle="bold"
                                 android:textSize="22sp"
                                 android:gravity="center" />
                         </LinearLayout>
                         <LinearLayout
                             android:orientation="vertical"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:background="@color/colorWhite"
                             android:layout_height="wrap_content">
+
                             <TextView
+                                android:id="@+id/energy_tv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="消耗（千卡）"
-                                android:textSize="15sp"
-                                android:gravity="center" />
+                                android:gravity="center"
+                                android:text="消耗(千卡)"
+                                android:textSize="15sp" />
                             <TextView
                                 android:id="@+id/day_haoneng"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="0"
+                                android:textColor="@color/colorGrayBlack"
                                 android:textStyle="bold"
                                 android:textSize="22sp"
                                 android:gravity="center" />
@@ -121,6 +157,86 @@
                 android:layout_height="wrap_content">
 
             </android.support.v7.widget.RecyclerView>
+            <LinearLayout
+                android:id="@+id/food_record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+                <LinearLayout
+                    android:id="@+id/breakfast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="早餐"/>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/breakfast_record"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/lunch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="午餐"/>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/lunch_record"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/supper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="晚餐"/>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/supper_record"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/no_data"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="暂无数据~"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

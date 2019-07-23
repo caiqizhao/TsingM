@@ -1,4 +1,4 @@
-package com.example.guaiwei.tsingm.utils;
+package com.example.guaiwei.tsingm.view;
 
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
@@ -8,17 +8,15 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.SweepGradient;
-import android.graphics.Typeface;
-import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.example.guaiwei.tsingm.R;
 
-public class SportStepCountView extends View {
+public class ScoreView extends View {
 
-    private int startColor = 0xFF7BE7E7;
-    private int endColor = 0xFF49C9C9;
+    private int startColor = 0xff67a4f5;
+    private int endColor = 0xFF3abbe2;
     private int defaultColor = 0x00F5F5F5;
     private int defaultColor1 = 0xFFF5F5F5;
 
@@ -26,7 +24,7 @@ public class SportStepCountView extends View {
 
     private int strokeWidth;
     private float percent = 0.0006f;
-    private int mFootStep = 15;
+    private float mFootStep = 0;
 
     // 用于渐变
     private Paint paint;
@@ -34,15 +32,9 @@ public class SportStepCountView extends View {
     private int deltaR, deltaB, deltaG;
     private int startR, startB, startG;
 
-    private TextPaint mValuePaint;
-    private TextPaint mUnitPaint;
-
     private ValueAnimator mAnimator;
     private long mAnimTime = 1000;
 
-    private Paint mInitRedCirclePaint;
-    private Paint mLittleCirclePaint;
-    private int mLittleCircleSize;
     private Paint mBackgroundCirclePaint;
     private Paint startPaint;
     private Paint endPaint;
@@ -55,25 +47,20 @@ public class SportStepCountView extends View {
     private float[] customPositions;
     private float[] extremePositions;
 
-    private float mValueOffset;
-    private CharSequence mHint;
-    private CharSequence mUnit;
-    private float mHintOffset;
-    private float mUnitOffset;
     private float mTextOffsetPercentInRadius = 0.5f;
-    private float mValueFix =0.4f;
-    private int mTarget = 100;
+    private float mValueFix = 0.5f;
+    private float mTarget = 100.0f;
     private Context mContext;
-    private int mDefaultTarget = 100;
-    private static final String TAG = "SportStepCountView";
+    private float mDefaultTarget = 100.0f;
+    private static final String TAG = "ScoreView";
 
 
-    public SportStepCountView(Context context, AttributeSet attrs) {
+    public ScoreView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public SportStepCountView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ScoreView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
@@ -83,7 +70,7 @@ public class SportStepCountView extends View {
         float defaultPercent = -1;
         mContext = context;
 
-        final int strokeWdithDefaultValue = (int) (17 * getResources().getDisplayMetrics().density + 0.5f);
+        final int strokeWdithDefaultValue = (int) (10 * getResources().getDisplayMetrics().density + 0.5f);
 
         TypedArray typedArray = null;
         try {
@@ -99,44 +86,19 @@ public class SportStepCountView extends View {
             }
         }
 
-        mLittleCircleSize = (int) (4 * getResources().getDisplayMetrics().density + 0.5f);
-
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setStrokeWidth(strokeWidth);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
+        ;
 
-        mValuePaint = new TextPaint();
-        mValuePaint.setAntiAlias(true);
-
-        mValuePaint.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.circle_foot_step_size));
-        mValuePaint.setColor(context.getResources().getColor(R.color.pregnancy_color_181818));
-        mValuePaint.setTypeface(Typeface.DEFAULT_BOLD);
-        mValuePaint.setTextAlign(Paint.Align.CENTER);
-
-        mUnitPaint = new TextPaint();
-        mUnitPaint.setAntiAlias(true);
-        mUnitPaint.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.circle_foot_step_title_size));
-        mUnitPaint.setColor(context.getResources().getColor(R.color.pregnancy_color_888888));
-        mUnitPaint.setTextAlign(Paint.Align.CENTER);
-
-        mLittleCirclePaint = new Paint();
-        mLittleCirclePaint.setAntiAlias(true);
-        mLittleCirclePaint.setStyle(Paint.Style.FILL);
-        mLittleCirclePaint.setColor(context.getResources().getColor(R.color.white));
-
-        mInitRedCirclePaint = new Paint();
-        mInitRedCirclePaint.setAntiAlias(true);
-        mInitRedCirclePaint.setStyle(Paint.Style.FILL);
-        mInitRedCirclePaint.setColor(context.getResources().getColor(R.color.pregnancy_color_49c9c9));
-
-        int samllCircleSize = (int) (7 * getResources().getDisplayMetrics().density + 0.5f);
+        int samllCircleSize = (int) (8 * getResources().getDisplayMetrics().density + 0.5f);
 
         mBackgroundCirclePaint = new Paint();
         mBackgroundCirclePaint.setAntiAlias(true);
-        mBackgroundCirclePaint.setColor(context.getResources().getColor(R.color.pregnancy_color_f5f5f5));
+        mBackgroundCirclePaint.setColor(context.getResources().getColor(R.color.pregnancy_color_5a5a66));
         mBackgroundCirclePaint.setStyle(Paint.Style.STROKE);
         mBackgroundCirclePaint.setStrokeJoin(Paint.Join.ROUND);
         mBackgroundCirclePaint.setStrokeCap(Paint.Cap.ROUND);
@@ -164,21 +126,17 @@ public class SportStepCountView extends View {
 
         extremePositions = new float[]{0, 1};
 
-
-        mHint = "今日已耗能";
-        mUnit = "推荐耗能: "+mTarget;
         initRed();
     }
 
-    public void setValue(float value,int target) {
+    public void setValue(float value,float target) {
         if(target == 0) {
             target = mTarget;
         }
 
         //如果是恢复期，target=0的情况,这个时候mDefaultTarget=0
         if(target == 0) {
-            mFootStep = (int) value;
-            mUnit = "推荐耗能: "+target;
+            mFootStep =  value;
             startAnimator(0, 1, mAnimTime);
             return;
         }
@@ -186,9 +144,6 @@ public class SportStepCountView extends View {
         float start = 0;
         float end = value / (target*(1.0f));
 
-        //重置目标
-        mUnit = "推荐耗能: "+target;
-
         if(value > target) {
             end = 1;
         }
@@ -197,16 +152,16 @@ public class SportStepCountView extends View {
         }
         if (mFootStep != 0) {
             percent = end;
-            mFootStep = (int) value;
+            mFootStep = value;
             startAnimator(start, end, mAnimTime);
         } else {
-            mFootStep = (int) value;
+            mFootStep =  value;
             startAnimator(start, end, mAnimTime);
         }
 
     }
 
-    public void setValueDuringRefresh(float value, int target) {
+    public void setValueDuringRefresh(float value, float target) {
         if(target == 0) {
             target = mTarget;
         }
@@ -214,7 +169,7 @@ public class SportStepCountView extends View {
         //如果是恢复期，target=0的情况,这个时候mDefaultTarget=0
         if(target == 0) {
             percent = 1;
-            mFootStep = (int) value;
+            mFootStep = value;
             invalidate();
             return;
         }
@@ -222,8 +177,6 @@ public class SportStepCountView extends View {
         float start = 0;
         float end = value / target;
 
-        //重置目标
-        mUnit = "推荐耗能: "+target;
         if(value > target) {
             end = 1;
         }
@@ -233,11 +186,11 @@ public class SportStepCountView extends View {
 
         if (mFootStep != 0) {
             percent = end;
-            mFootStep = (int) value;
+            mFootStep = value;
             invalidate();
 
         } else {
-            mFootStep = (int) value;
+            mFootStep =  value;
             startAnimator(start, end, mAnimTime);
         }
     }
@@ -333,24 +286,6 @@ public class SportStepCountView extends View {
 
         canvas.restore();
 
-        //中间的步数写在这里
-        mValueOffset = cy + getBaselineOffsetFromY(mValuePaint)- DensityUtil.dp2px(mContext,20);
-        //这个是写步数
-        canvas.drawText(String.valueOf(mFootStep), cx, mValueOffset, mValuePaint);
-
-        mHintOffset = cy - radius * mTextOffsetPercentInRadius + getBaselineOffsetFromY(mUnitPaint);
-        mUnitOffset = cy + radius * mTextOffsetPercentInRadius + getBaselineOffsetFromY(mUnitPaint) -DensityUtil.dp2px(mContext,30);
-
-
-        if (mHint != null) {
-            canvas.drawText(mHint.toString(), cx, mHintOffset-10, mUnitPaint);
-        }
-
-        if (mUnit != null) {
-            canvas.drawText(mUnit.toString(), cx, mUnitOffset+10, mUnitPaint);
-        }
-
-
         if (drawPercent > 0) {
             // 绘制结束的半圆
             if (drawPercent < 1) {
@@ -367,21 +302,8 @@ public class SportStepCountView extends View {
             canvas.restore();
         }
 
-        //这个是y顶部非常小的白色小圆，像扣子一样
-        canvas.drawCircle(cx, cy - radius, mLittleCircleSize, mLittleCirclePaint);
         canvas.restoreToCount(restore);
     }
-
-
-    private float getBaselineOffsetFromY(Paint paint) {
-        return measureTextHeight(paint) / 2;
-    }
-
-    public static float measureTextHeight(Paint paint) {
-        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
-        return (Math.abs(fontMetrics.ascent) - fontMetrics.descent);
-    }
-
     private void refreshDelta() {
         int endR = (endColor & 0xFF0000) >> 16;
         int endG = (endColor & 0xFF00) >> 8;

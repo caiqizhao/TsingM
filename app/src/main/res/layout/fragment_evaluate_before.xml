@@ -15,7 +15,7 @@
         android:paddingLeft="70dp"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:text="健身阶段评估"
+        android:text="体质阶段评估"
         />
     <TextView
         android:id="@+id/text2"
@@ -26,7 +26,7 @@
         android:paddingRight="70dp"
         android:paddingLeft="70dp"
         android:textSize="15dp"
-        android:text="接下来，会通过几个简单的问题来评估你当前处于健身的哪一个阶段，以便于为你推荐最合适的智能训练计划。"/>
+        android:text="接下来，会通过几个简单的问题来评估评估你当前的身体素质处于哪一个阶段，以便于为你推荐最合适的智能计划。"/>
     <Button
         android:id="@+id/start_evaluate"
         android:layout_width="match_parent"

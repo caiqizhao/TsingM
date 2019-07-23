@@ -8,12 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.guaiwei.tsingm.R;
 import com.example.guaiwei.tsingm.utils.GetBeforeData;
 import com.example.guaiwei.tsingm.utils.MyApplication;
-import com.example.guaiwei.tsingm.utils.SportStepCountView;
+import com.example.guaiwei.tsingm.view.ConsumeEnergyView;
 import com.example.guaiwei.tsingm.activity.HistoryWorkDataActivity;
 import com.example.guaiwei.tsingm.db.DayPlanInfo;
 import com.example.guaiwei.tsingm.db.MotionRecordsEntity;
@@ -26,7 +27,7 @@ import java.util.List;
  * 显示消耗能量的fragment
  */
 public class HaoNengFragment extends Fragment {
-    private SportStepCountView sportStepCountView;
+    private ConsumeEnergyView consumeEnergyView;
     private TextView footTv,fitTv,runTv;
     private Button historyBtn;
     private int mProgress;
@@ -36,6 +37,7 @@ public class HaoNengFragment extends Fragment {
     private double footHaoneng;//步行耗能
     private double fitHoaneng;//健身耗能
     private double runHaoneng;//跑步耗能
+    private ImageView isComplete;
     public HaoNengFragment() {
         // Required empty public constructor
     }
@@ -76,7 +78,8 @@ public class HaoNengFragment extends Fragment {
         runTv=view.findViewById(R.id.haoneng_run);
         fitTv=view.findViewById(R.id.haoneng_fit);
         historyBtn=view.findViewById(R.id.checkHistoryData);
-        sportStepCountView=view.findViewById(R.id.circleProgress);
+        consumeEnergyView=view.findViewById(R.id.circleProgress);
+        isComplete=view.findViewById(R.id.iscomplete);
     }
 
     /**
@@ -85,10 +88,15 @@ public class HaoNengFragment extends Fragment {
     private void setData() {
         searchDb();
         mProgress=(int)shijiHaoneng;
-        sportStepCountView.setValueDuringRefresh(mProgress,(int)tuijianHaoneng);
+        consumeEnergyView.setValueDuringRefresh(mProgress,(int)tuijianHaoneng);
         footTv.setText(footHaoneng+"");
         fitTv.setText(fitHoaneng+"");
         runTv.setText(runHaoneng+"");
+        if(shijiHaoneng>tuijianHaoneng){
+            isComplete.setVisibility(View.VISIBLE);
+        }
+        else
+            isComplete.setVisibility(View.GONE);
     }
 
     /**
@@ -97,7 +105,7 @@ public class HaoNengFragment extends Fragment {
     private void searchDb(){
         String data=GetBeforeData.getBeforeData(null,0).get(0);
         DayPlanInfo dayPlanInfo=DataSupport.where("data=?",data).find(DayPlanInfo.class).get(0);
-        tuijianHaoneng=Double.parseDouble(dayPlanInfo.getNengliang());
+        tuijianHaoneng=Double.parseDouble(dayPlanInfo.getNengliang())+20;
         List<MotionRecordsEntity> motionRecordsEntitys=DataSupport.where("data=?",data).find(MotionRecordsEntity.class);
         for(MotionRecordsEntity motionRecordsEntity:motionRecordsEntitys){
             if(motionRecordsEntity.getMovement_type().equals("行走")){

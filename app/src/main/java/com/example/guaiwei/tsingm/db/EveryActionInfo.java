@@ -6,7 +6,7 @@ public class EveryActionInfo extends DataSupport {
     private int id;
     private String name;
     private String time;
-    private String url;
+    private int url;
     private int dayId;
     private boolean isComplete;//动作是否完成
 
@@ -42,11 +42,11 @@ public class EveryActionInfo extends DataSupport {
         this.time = time;
     }
 
-    public String getUrl() {
+    public int getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(int url) {
         this.url = url;
     }
 
